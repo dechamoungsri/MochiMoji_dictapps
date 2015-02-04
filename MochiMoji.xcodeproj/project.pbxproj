@@ -1,0 +1,617 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BE08F9BC1A75221200FAF01C /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE08F9B51A7521CF00FAF01C /* pop.framework */; };
+		BE08FA2D1A762C2A00FAF01C /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE08F9B51A7521CF00FAF01C /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE7C99D31A74A5C7007E65AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7C99D21A74A5C7007E65AD /* AppDelegate.swift */; };
+		BE7C99D51A74A5C7007E65AD /* MainPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7C99D41A74A5C7007E65AD /* MainPageController.swift */; };
+		BE7C99D81A74A5C8007E65AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE7C99D61A74A5C8007E65AD /* Main.storyboard */; };
+		BE7C99DA1A74A5C8007E65AD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE7C99D91A74A5C8007E65AD /* Images.xcassets */; };
+		BE7C99DD1A74A5C8007E65AD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE7C99DB1A74A5C8007E65AD /* LaunchScreen.xib */; };
+		BE7C99E91A74A5C8007E65AD /* MochiMojiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7C99E81A74A5C8007E65AD /* MochiMojiTests.swift */; };
+		BE7C99F41A74C313007E65AD /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE7C99F31A74C313007E65AD /* Roboto-Regular.ttf */; };
+		BE7C99F61A74C930007E65AD /* KanjiCardView_temp.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE7C99F51A74C930007E65AD /* KanjiCardView_temp.xib */; };
+		BE87F7D51A74DC7400267E85 /* TestCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE87F7D41A74DC7400267E85 /* TestCardView.xib */; };
+		BE87F7D71A74DF6100267E85 /* KanjiCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE87F7D61A74DF6100267E85 /* KanjiCardView.xib */; };
+		BEEA15D41A76587700C76F9F /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA15CF1A76587700C76F9F /* BlurView.swift */; };
+		BEEA15D51A76587700C76F9F /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA15D01A76587700C76F9F /* Data.swift */; };
+		BEEA15D61A76587700C76F9F /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA15D11A76587700C76F9F /* DesignableView.swift */; };
+		BEEA15D71A76587700C76F9F /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA15D21A76587700C76F9F /* Misc.swift */; };
+		BEEA15D81A76587700C76F9F /* SpringAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA15D31A76587700C76F9F /* SpringAnimation.swift */; };
+		BEEA15E21A765CD200C76F9F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA15E11A765CD200C76F9F /* SearchViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BE08F9B01A7521CF00FAF01C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE08F9A81A7521CF00FAF01C /* pop.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EC191218162FB53A00E0CC76;
+			remoteInfo = pop;
+		};
+		BE08F9B21A7521CF00FAF01C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE08F9A81A7521CF00FAF01C /* pop.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EC68857F18C7B60000C6194C;
+			remoteInfo = "pop-osx";
+		};
+		BE08F9B41A7521CF00FAF01C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE08F9A81A7521CF00FAF01C /* pop.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0B6BE74819FFD3B900762101;
+			remoteInfo = "pop-embedded";
+		};
+		BE08F9B61A7521CF00FAF01C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE08F9A81A7521CF00FAF01C /* pop.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ECF01ED318C92B7F009E0AD1;
+			remoteInfo = "pop-tests";
+		};
+		BE08F9B81A7521CF00FAF01C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE08F9A81A7521CF00FAF01C /* pop.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EC7E319918C93D6500B38170;
+			remoteInfo = "pop-tests-osx";
+		};
+		BE08F9BA1A75220800FAF01C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE08F9A81A7521CF00FAF01C /* pop.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0B6BE74719FFD3B900762101;
+			remoteInfo = "pop-embedded";
+		};
+		BE7C99E31A74A5C8007E65AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE7C99C51A74A5C7007E65AD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BE7C99CC1A74A5C7007E65AD;
+			remoteInfo = MochiMoji;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BE08FA2B1A762C1700FAF01C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BE08FA2D1A762C2A00FAF01C /* pop.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		BE08F9A81A7521CF00FAF01C /* pop.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pop.xcodeproj; path = ../../github/pop/pop.xcodeproj; sourceTree = "<group>"; };
+		BE7C99CD1A74A5C7007E65AD /* MochiMoji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MochiMoji.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE7C99D11A74A5C7007E65AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE7C99D21A74A5C7007E65AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BE7C99D41A74A5C7007E65AD /* MainPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageController.swift; sourceTree = "<group>"; };
+		BE7C99D71A74A5C8007E65AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BE7C99D91A74A5C8007E65AD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BE7C99DC1A74A5C8007E65AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		BE7C99E21A74A5C8007E65AD /* MochiMojiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MochiMojiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE7C99E71A74A5C8007E65AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE7C99E81A74A5C8007E65AD /* MochiMojiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MochiMojiTests.swift; sourceTree = "<group>"; };
+		BE7C99F31A74C313007E65AD /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		BE7C99F51A74C930007E65AD /* KanjiCardView_temp.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KanjiCardView_temp.xib; sourceTree = "<group>"; };
+		BE87F7D41A74DC7400267E85 /* TestCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestCardView.xib; sourceTree = "<group>"; };
+		BE87F7D61A74DF6100267E85 /* KanjiCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KanjiCardView.xib; sourceTree = "<group>"; };
+		BEB8067D1A751B190096E790 /* MochiMoji-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MochiMoji-Bridging-Header.h"; sourceTree = "<group>"; };
+		BEEA15CF1A76587700C76F9F /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		BEEA15D01A76587700C76F9F /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		BEEA15D11A76587700C76F9F /* DesignableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
+		BEEA15D21A76587700C76F9F /* Misc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
+		BEEA15D31A76587700C76F9F /* SpringAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringAnimation.swift; sourceTree = "<group>"; };
+		BEEA15E11A765CD200C76F9F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BE7C99CA1A74A5C7007E65AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE08F9BC1A75221200FAF01C /* pop.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE7C99DF1A74A5C8007E65AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BE08F9A91A7521CF00FAF01C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE08F9B11A7521CF00FAF01C /* libpop.a */,
+				BE08F9B31A7521CF00FAF01C /* pop.framework */,
+				BE08F9B51A7521CF00FAF01C /* pop.framework */,
+				BE08F9B71A7521CF00FAF01C /* pop-tests.xctest */,
+				BE08F9B91A7521CF00FAF01C /* pop-tests-osx.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE7C99C41A74A5C7007E65AD = {
+			isa = PBXGroup;
+			children = (
+				BE7C99CF1A74A5C7007E65AD /* MochiMoji */,
+				BE7C99E51A74A5C8007E65AD /* MochiMojiTests */,
+				BE7C99CE1A74A5C7007E65AD /* Products */,
+				BE08F9A81A7521CF00FAF01C /* pop.xcodeproj */,
+			);
+			sourceTree = "<group>";
+		};
+		BE7C99CE1A74A5C7007E65AD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE7C99CD1A74A5C7007E65AD /* MochiMoji.app */,
+				BE7C99E21A74A5C8007E65AD /* MochiMojiTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE7C99CF1A74A5C7007E65AD /* MochiMoji */ = {
+			isa = PBXGroup;
+			children = (
+				BEEA15CE1A76587700C76F9F /* Spring */,
+				BE7C99D21A74A5C7007E65AD /* AppDelegate.swift */,
+				BE7C99D41A74A5C7007E65AD /* MainPageController.swift */,
+				BEEA15E11A765CD200C76F9F /* SearchViewController.swift */,
+				BE7C99D61A74A5C8007E65AD /* Main.storyboard */,
+				BE7C99D91A74A5C8007E65AD /* Images.xcassets */,
+				BE7C99DB1A74A5C8007E65AD /* LaunchScreen.xib */,
+				BE7C99F71A74C939007E65AD /* CardView */,
+				BE7C99F21A74C286007E65AD /* AppFonts */,
+				BE7C99D01A74A5C7007E65AD /* Supporting Files */,
+				BEB8067D1A751B190096E790 /* MochiMoji-Bridging-Header.h */,
+			);
+			path = MochiMoji;
+			sourceTree = "<group>";
+		};
+		BE7C99D01A74A5C7007E65AD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BE7C99D11A74A5C7007E65AD /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BE7C99E51A74A5C8007E65AD /* MochiMojiTests */ = {
+			isa = PBXGroup;
+			children = (
+				BE7C99E81A74A5C8007E65AD /* MochiMojiTests.swift */,
+				BE7C99E61A74A5C8007E65AD /* Supporting Files */,
+			);
+			path = MochiMojiTests;
+			sourceTree = "<group>";
+		};
+		BE7C99E61A74A5C8007E65AD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BE7C99E71A74A5C8007E65AD /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BE7C99F21A74C286007E65AD /* AppFonts */ = {
+			isa = PBXGroup;
+			children = (
+				BE7C99F31A74C313007E65AD /* Roboto-Regular.ttf */,
+			);
+			name = AppFonts;
+			sourceTree = "<group>";
+		};
+		BE7C99F71A74C939007E65AD /* CardView */ = {
+			isa = PBXGroup;
+			children = (
+				BE7C99F51A74C930007E65AD /* KanjiCardView_temp.xib */,
+				BE87F7D41A74DC7400267E85 /* TestCardView.xib */,
+				BE87F7D61A74DF6100267E85 /* KanjiCardView.xib */,
+			);
+			name = CardView;
+			sourceTree = "<group>";
+		};
+		BEEA15CE1A76587700C76F9F /* Spring */ = {
+			isa = PBXGroup;
+			children = (
+				BEEA15CF1A76587700C76F9F /* BlurView.swift */,
+				BEEA15D01A76587700C76F9F /* Data.swift */,
+				BEEA15D11A76587700C76F9F /* DesignableView.swift */,
+				BEEA15D21A76587700C76F9F /* Misc.swift */,
+				BEEA15D31A76587700C76F9F /* SpringAnimation.swift */,
+			);
+			name = Spring;
+			path = ../../../Desktop/Spring;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BE7C99CC1A74A5C7007E65AD /* MochiMoji */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE7C99EC1A74A5C8007E65AD /* Build configuration list for PBXNativeTarget "MochiMoji" */;
+			buildPhases = (
+				BE7C99C91A74A5C7007E65AD /* Sources */,
+				BE7C99CA1A74A5C7007E65AD /* Frameworks */,
+				BE7C99CB1A74A5C7007E65AD /* Resources */,
+				BE08FA2B1A762C1700FAF01C /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BE08F9BB1A75220800FAF01C /* PBXTargetDependency */,
+			);
+			name = MochiMoji;
+			productName = MochiMoji;
+			productReference = BE7C99CD1A74A5C7007E65AD /* MochiMoji.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BE7C99E11A74A5C8007E65AD /* MochiMojiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE7C99EF1A74A5C8007E65AD /* Build configuration list for PBXNativeTarget "MochiMojiTests" */;
+			buildPhases = (
+				BE7C99DE1A74A5C8007E65AD /* Sources */,
+				BE7C99DF1A74A5C8007E65AD /* Frameworks */,
+				BE7C99E01A74A5C8007E65AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BE7C99E41A74A5C8007E65AD /* PBXTargetDependency */,
+			);
+			name = MochiMojiTests;
+			productName = MochiMojiTests;
+			productReference = BE7C99E21A74A5C8007E65AD /* MochiMojiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BE7C99C51A74A5C7007E65AD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Decha Moungsri";
+				TargetAttributes = {
+					BE7C99CC1A74A5C7007E65AD = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					BE7C99E11A74A5C8007E65AD = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = BE7C99CC1A74A5C7007E65AD;
+					};
+				};
+			};
+			buildConfigurationList = BE7C99C81A74A5C7007E65AD /* Build configuration list for PBXProject "MochiMoji" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BE7C99C41A74A5C7007E65AD;
+			productRefGroup = BE7C99CE1A74A5C7007E65AD /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = BE08F9A91A7521CF00FAF01C /* Products */;
+					ProjectRef = BE08F9A81A7521CF00FAF01C /* pop.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				BE7C99CC1A74A5C7007E65AD /* MochiMoji */,
+				BE7C99E11A74A5C8007E65AD /* MochiMojiTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		BE08F9B11A7521CF00FAF01C /* libpop.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libpop.a;
+			remoteRef = BE08F9B01A7521CF00FAF01C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BE08F9B31A7521CF00FAF01C /* pop.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = pop.framework;
+			remoteRef = BE08F9B21A7521CF00FAF01C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BE08F9B51A7521CF00FAF01C /* pop.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = pop.framework;
+			remoteRef = BE08F9B41A7521CF00FAF01C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BE08F9B71A7521CF00FAF01C /* pop-tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "pop-tests.xctest";
+			remoteRef = BE08F9B61A7521CF00FAF01C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BE08F9B91A7521CF00FAF01C /* pop-tests-osx.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "pop-tests-osx.xctest";
+			remoteRef = BE08F9B81A7521CF00FAF01C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BE7C99CB1A74A5C7007E65AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE87F7D51A74DC7400267E85 /* TestCardView.xib in Resources */,
+				BE7C99D81A74A5C8007E65AD /* Main.storyboard in Resources */,
+				BE7C99DD1A74A5C8007E65AD /* LaunchScreen.xib in Resources */,
+				BE7C99F41A74C313007E65AD /* Roboto-Regular.ttf in Resources */,
+				BE87F7D71A74DF6100267E85 /* KanjiCardView.xib in Resources */,
+				BE7C99F61A74C930007E65AD /* KanjiCardView_temp.xib in Resources */,
+				BE7C99DA1A74A5C8007E65AD /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE7C99E01A74A5C8007E65AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BE7C99C91A74A5C7007E65AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE7C99D51A74A5C7007E65AD /* MainPageController.swift in Sources */,
+				BE7C99D31A74A5C7007E65AD /* AppDelegate.swift in Sources */,
+				BEEA15E21A765CD200C76F9F /* SearchViewController.swift in Sources */,
+				BEEA15D41A76587700C76F9F /* BlurView.swift in Sources */,
+				BEEA15D71A76587700C76F9F /* Misc.swift in Sources */,
+				BEEA15D81A76587700C76F9F /* SpringAnimation.swift in Sources */,
+				BEEA15D61A76587700C76F9F /* DesignableView.swift in Sources */,
+				BEEA15D51A76587700C76F9F /* Data.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE7C99DE1A74A5C8007E65AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE7C99E91A74A5C8007E65AD /* MochiMojiTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BE08F9BB1A75220800FAF01C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "pop-embedded";
+			targetProxy = BE08F9BA1A75220800FAF01C /* PBXContainerItemProxy */;
+		};
+		BE7C99E41A74A5C8007E65AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BE7C99CC1A74A5C7007E65AD /* MochiMoji */;
+			targetProxy = BE7C99E31A74A5C8007E65AD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BE7C99D61A74A5C8007E65AD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE7C99D71A74A5C8007E65AD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BE7C99DB1A74A5C8007E65AD /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE7C99DC1A74A5C8007E65AD /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BE7C99EA1A74A5C8007E65AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BE7C99EB1A74A5C8007E65AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BE7C99ED1A74A5C8007E65AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MochiMoji/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MochiMoji/MochiMoji-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		BE7C99EE1A74A5C8007E65AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MochiMoji/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MochiMoji/MochiMoji-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		BE7C99F01A74A5C8007E65AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MochiMojiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MochiMoji.app/MochiMoji";
+			};
+			name = Debug;
+		};
+		BE7C99F11A74A5C8007E65AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MochiMojiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MochiMoji.app/MochiMoji";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BE7C99C81A74A5C7007E65AD /* Build configuration list for PBXProject "MochiMoji" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE7C99EA1A74A5C8007E65AD /* Debug */,
+				BE7C99EB1A74A5C8007E65AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE7C99EC1A74A5C8007E65AD /* Build configuration list for PBXNativeTarget "MochiMoji" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE7C99ED1A74A5C8007E65AD /* Debug */,
+				BE7C99EE1A74A5C8007E65AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE7C99EF1A74A5C8007E65AD /* Build configuration list for PBXNativeTarget "MochiMojiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE7C99F01A74A5C8007E65AD /* Debug */,
+				BE7C99F11A74A5C8007E65AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BE7C99C51A74A5C7007E65AD /* Project object */;
+}

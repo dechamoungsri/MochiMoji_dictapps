@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="KanjiCardView_temp">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Last seen : 7 days ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMP-Ga-RrF">
+                    <rect key="frame" x="279" y="290" width="42" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="dhS-xd-ha5">
+                            <variation key="widthClass=compact" constant="32"/>
+                        </constraint>
+                        <constraint firstAttribute="height" constant="27" id="evn-hY-Mdg">
+                            <variation key="heightClass=regular-widthClass=compact" constant="32"/>
+                        </constraint>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                    <color key="textColor" red="0.71365642547607422" green="0.71377545595169067" blue="0.71363109350204468" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="rect" keyPath="contentInset">
+                            <rect key="value" x="-10" y="-5" width="0.0" height="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="dhS-xd-ha5"/>
+                            <exclude reference="evn-hY-Mdg"/>
+                        </mask>
+                    </variation>
+                    <variation key="widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="dhS-xd-ha5"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                        <rect key="frame" x="8" y="8" width="212" height="32"/>
+                        <mask key="constraints">
+                            <include reference="evn-hY-Mdg"/>
+                        </mask>
+                    </variation>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="53G-iW-e5n" userLabel="RecallContainerView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recall again in next ..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDh-Wd-VPu">
+                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="IfL-8K-cI0">
+                                    <variation key="widthClass=compact" constant="32"/>
+                                </constraint>
+                                <constraint firstAttribute="height" constant="21" id="sdk-XV-8VJ">
+                                    <variation key="heightClass=regular-widthClass=compact" constant="32"/>
+                                </constraint>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                            <color key="textColor" red="0.23506200313568115" green="0.66936302185058594" blue="0.94295048713684082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="rect" keyPath="contentInset">
+                                    <rect key="value" x="-10" y="-5" width="0.0" height="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="IfL-8K-cI0"/>
+                                    <exclude reference="sdk-XV-8VJ"/>
+                                </mask>
+                            </variation>
+                            <variation key="widthClass=compact">
+                                <mask key="constraints">
+                                    <include reference="IfL-8K-cI0"/>
+                                </mask>
+                            </variation>
+                            <variation key="heightClass=regular-widthClass=compact">
+                                <mask key="constraints">
+                                    <include reference="sdk-XV-8VJ"/>
+                                </mask>
+                            </variation>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="GDh-Wd-VPu" firstAttribute="top" secondItem="53G-iW-e5n" secondAttribute="top" constant="8" id="CnM-u2-PUg"/>
+                        <constraint firstAttribute="trailing" secondItem="GDh-Wd-VPu" secondAttribute="trailing" constant="162" id="NFM-h0-NZ8">
+                            <variation key="widthClass=compact" constant="24"/>
+                        </constraint>
+                        <constraint firstAttribute="height" constant="129" id="atZ-Oa-L2v">
+                            <variation key="widthClass=compact" constant="108"/>
+                        </constraint>
+                        <constraint firstItem="GDh-Wd-VPu" firstAttribute="leading" secondItem="53G-iW-e5n" secondAttribute="leading" constant="24" id="egs-5d-WNf"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="subviews">
+                            <exclude reference="GDh-Wd-VPu"/>
+                        </mask>
+                        <mask key="constraints">
+                            <exclude reference="atZ-Oa-L2v"/>
+                            <exclude reference="CnM-u2-PUg"/>
+                            <exclude reference="NFM-h0-NZ8"/>
+                            <exclude reference="egs-5d-WNf"/>
+                        </mask>
+                    </variation>
+                    <variation key="widthClass=compact">
+                        <mask key="subviews">
+                            <include reference="GDh-Wd-VPu"/>
+                        </mask>
+                        <mask key="constraints">
+                            <include reference="atZ-Oa-L2v"/>
+                            <include reference="CnM-u2-PUg"/>
+                            <include reference="NFM-h0-NZ8"/>
+                            <include reference="egs-5d-WNf"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="53G-iW-e5n" secondAttribute="bottom" constant="90" id="3DE-1T-o2u">
+                    <variation key="widthClass=compact" constant="0.0"/>
+                </constraint>
+                <constraint firstAttribute="trailing" secondItem="53G-iW-e5n" secondAttribute="trailing" constant="80" id="AQK-yv-w9n">
+                    <variation key="widthClass=compact" constant="0.0"/>
+                </constraint>
+                <constraint firstAttribute="trailing" secondItem="yMP-Ga-RrF" secondAttribute="trailing" constant="214" id="Q5a-ic-Un1">
+                    <variation key="widthClass=compact" constant="80"/>
+                </constraint>
+                <constraint firstItem="53G-iW-e5n" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="77" id="RqO-5T-9T0">
+                    <variation key="widthClass=compact" constant="0.0"/>
+                </constraint>
+                <constraint firstItem="yMP-Ga-RrF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="dOh-EZ-IDl"/>
+                <constraint firstItem="yMP-Ga-RrF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="44" id="fYZ-CH-cNW">
+                    <variation key="widthClass=compact" constant="8"/>
+                </constraint>
+            </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowIBColor">
+                    <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                    <size key="value" width="0.0" height="2"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                    <real key="value" value="0.34999999999999998"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="53G-iW-e5n"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="Q5a-ic-Un1"/>
+                    <exclude reference="dOh-EZ-IDl"/>
+                    <exclude reference="fYZ-CH-cNW"/>
+                    <exclude reference="3DE-1T-o2u"/>
+                    <exclude reference="AQK-yv-w9n"/>
+                    <exclude reference="RqO-5T-9T0"/>
+                </mask>
+            </variation>
+            <variation key="widthClass=compact">
+                <mask key="subviews">
+                    <include reference="53G-iW-e5n"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="Q5a-ic-Un1"/>
+                    <include reference="dOh-EZ-IDl"/>
+                    <include reference="fYZ-CH-cNW"/>
+                    <include reference="3DE-1T-o2u"/>
+                    <include reference="AQK-yv-w9n"/>
+                    <include reference="RqO-5T-9T0"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="-86" y="-989"/>
+        </view>
+    </objects>
+</document>
