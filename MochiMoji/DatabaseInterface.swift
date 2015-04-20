@@ -38,11 +38,17 @@ class DatabaseInterface {
     }
 
     func queryWordinJMDict(text:String) -> CBLQueryEnumerator {
+        
+        var databaseManager = CBLManager.sharedInstance().copy()
+        var error :NSError?
+        var database = databaseManager.existingDatabaseNamed(DatabaseStringName.JMDICT.rawValue, error: &error)
+        
         var starttime = NSDate().timeIntervalSince1970
-        let query = databases[DatabaseName.JMDICT]?.viewNamed("wordsViewDidAppear").createQuery()
+        //let query = databases[DatabaseName.JMDICT]?.viewNamed("wordsViewDidAppear").createQuery()
+        let query = database.viewNamed("wordsViewDidAppear").createQuery()
         query?.limit = 50
         query?.fullTextQuery = text
-        var error :NSError?
+//        var error :NSError?
         let result = query?.run(&error)
         var endtime = NSDate().timeIntervalSince1970
         println("queryWordinJMDict Query Duration : \(endtime-starttime) Seconds")

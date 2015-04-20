@@ -63,7 +63,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //println("numberOfRowsInSection")
-        return 0//cellsEntity.count
+        return cellsEntity.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -87,7 +87,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     // ----------------------------- End Table Sectionnnnnnnnn ----------------------------- //
     
     // ============================= Start Search Text field Section ============================= //
-    
+    var mem_Text = ""
+    var ENTITY_KEY = "ENTITY_KEY"
+    var INPUTTEXT_KEY = "INPUTTEXT_KEY"
     @IBAction func searchTextFieldEditingChanged(sender: UITextField) {
         
         var inputText:String = searchTextField.text
@@ -96,16 +98,29 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         println("Search Input text is : \(inputText)")
-        searchProcessing(inputText)
         
+        mem_Text = inputText
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) {
+            var result = self.searchProcessing(inputText)
+            dispatch_async(dispatch_get_main_queue()) { // 2
+                if result.valueForKey(self.INPUTTEXT_KEY) as String == self.mem_Text {
+                    self.cellsEntity = result.valueForKey(self.ENTITY_KEY) as [Entity]
+                    self.tableView.reloadData()
+                }
+            }
+        }
+       
     }
     
-    func searchProcessing(inputText:String){
+    func searchProcessing(inputText:String) -> NSMutableDictionary{
         var starttime = NSDate().timeIntervalSince1970
-        cellsEntity = DatabaseHelper.sharedInstance.queryTextInput(inputText)
-        tableView.reloadData()
+        var cells = DatabaseHelper.sharedInstance.queryTextInput(inputText)
         var endtime = NSDate().timeIntervalSince1970
         println("searchProcessing Duration : \(endtime-starttime) Seconds")
+        var dictionary = NSMutableDictionary()
+        dictionary.setObject(cells, forKey: ENTITY_KEY)
+        dictionary.setObject(inputText, forKey: INPUTTEXT_KEY)
+        return dictionary
     }
     
     // On press search button
