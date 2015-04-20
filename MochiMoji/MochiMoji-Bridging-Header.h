@@ -7,3 +7,6 @@
 //
 
 #import "pop/POP.h"
+
+#import "CouchbaseLite/CouchbaseLite.h"
+#import "CouchbaseLite/CBLDocument.h"

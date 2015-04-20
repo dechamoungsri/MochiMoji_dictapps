@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        databaseConnection()
         return true
     }
 
@@ -41,6 +42,63 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func databaseConnection() {
+        let dbManager = CBLManager.sharedInstance()
+        var error :NSError?
+        var database = dbManager.existingDatabaseNamed("jmdict", error: &error)
+        if database == nil {
+            let cannedDbPath = NSBundle.mainBundle().pathForResource("jmdict", ofType: "cblite")
+            //println(cannedDbPath)
+            let cannedAttPath = NSBundle.mainBundle().pathForResource("CouchbaseLite/jmdict attachments", ofType: "")
+            dbManager.replaceDatabaseNamed("jmdict", withDatabaseFile: cannedDbPath, withAttachments: cannedAttPath, error: &error)
+            database = dbManager.existingDatabaseNamed("jmdict", error: &error)
+            if error != nil {
+                //self.handleError(error)
+                println("Error \(error?.description)")
+            }
+        }
+        
+        DatabaseHelper.sharedInstance.queryTextInput("食べる")
+        
+//        DatabaseInterface.sharedInstance
+//        let result = DatabaseInterface.sharedInstance.queryWordinJMDict("食べる")
+        
+        
+//        let wordView = database?.viewNamed("wordsViewDidAppear")
+//        let query = database?.viewNamed("wordsViewDidAppear").createQuery()
+//        //query?.limit = 10
+//        query?.fullTextQuery = "飲む"
+//        
+//        var starttime = NSDate().timeIntervalSince1970
+//        println("ViewDidAppaer Query start : \(NSDate().timeIntervalSince1970)")
+//        let result = query?.run(&error)
+//        
+//        var endtime = NSDate().timeIntervalSince1970
+//        println("ViewDidAppaer Query end : \(NSDate().timeIntervalSince1970)")
+//        println("ViewDidAppaer Query Duration : \(endtime-starttime) Seconds")
+//        
+//        var list = getListOfDictionary(result)
+//        println("Result \(list.count)")
+//        for var i = 0 ; i < list.count ; i++ {
+//            let jsData = NSJSONSerialization.dataWithJSONObject(list[i].document!.properties["k_ele"]!, options: NSJSONWritingOptions.allZeros, error: &error)
+//            let nsJson = NSString(data: jsData!, encoding: NSUTF8StringEncoding)
+//            println(nsJson!)
+//        }
+        
+    }
+    
+    func getListOfDictionary(enumerator: CBLQueryEnumerator) -> [CBLQueryRow] {
+        var outList: [CBLQueryRow] = [];
+        var setCheck = NSMutableSet()
+        while let row = enumerator.nextRow() {
+            var st = row.documentID
+            if !setCheck.containsObject(st) {
+                setCheck.addObject(st)
+                outList.append(row)
+            }
+        }
+        return outList
+    }
+    
 }
 

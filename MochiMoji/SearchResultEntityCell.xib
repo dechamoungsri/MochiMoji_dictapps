@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="NotoSansCJKjp-Regular.otf">
+            <string>NotoSansCJKjp-Regular</string>
+            <string>NotoSansCJKjp-Regular</string>
+        </mutableArray>
+        <mutableArray key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultEntittyCellidentifier" rowHeight="81" id="qQZ-14-JkC" customClass="SearchResultEntityCell" customModule="MochiMoji" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="76"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qQZ-14-JkC" id="kxn-c5-UtB">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="食べる" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wzm-nK-1Re" userLabel="japaneseEntityLabel">
+                        <rect key="frame" x="22" y="12" width="72" height="24"/>
+                        <fontDescription key="fontDescription" name="NotoSansCJKjp-Regular" family="Noto Sans CJK JP" pointSize="24"/>
+                        <color key="textColor" red="0.12939518690109253" green="0.12942373752593994" blue="0.12938910722732544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="to eat,to eat,to eat,to eat,to eat,to eat,to eat,to eat,to eat,to eat,to eat," lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fm-OC-lXK" userLabel="EnglishEntityLabel">
+                        <rect key="frame" x="22" y="48" width="219" height="18"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                        <color key="textColor" red="0.44701367616653442" green="0.44709134101867676" blue="0.44699710607528687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="たべる,たべるたべるたべるたべるたべるたべる" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWk-Yw-Tf8" userLabel="readingLabel">
+                        <rect key="frame" x="114" y="17" width="187" height="14"/>
+                        <fontDescription key="fontDescription" name="NotoSansCJKjp-Regular" family="Noto Sans CJK JP" pointSize="14"/>
+                        <color key="textColor" red="0.93670910596847534" green="0.41067388653755188" blue="0.36670923233032227" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Last seen : 7 days ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aH-jV-xrc">
+                        <rect key="frame" x="251" y="59" width="120" height="15"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                        <color key="textColor" red="0.71365642547607422" green="0.71377545595169067" blue="0.71363109350204468" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTv-Es-M8h" userLabel="entityTypeLabel">
+                        <rect key="frame" x="311" y="6" width="50" height="50"/>
+                        <color key="backgroundColor" red="0.48260664939880371" green="0.70265179872512817" blue="0.41826996207237244" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="coO-p8-9s2"/>
+                            <constraint firstAttribute="width" constant="50" id="eCn-qT-7Od"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                        <color key="textColor" red="0.96069306135177612" green="0.9608502984046936" blue="0.96065956354141235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="25"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXw-lo-ACK" userLabel="cellSeparator">
+                        <rect key="frame" x="0.0" y="74" width="375" height="1"/>
+                        <color key="backgroundColor" red="0.87834751605987549" green="0.87849199771881104" blue="0.87831676006317139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="t5I-qz-s2s"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.98029917478561401" green="0.98045939207077026" blue="0.98026508092880249" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="3aH-jV-xrc" secondAttribute="trailing" constant="-4" id="1Gv-LX-nje"/>
+                    <constraint firstItem="wzm-nK-1Re" firstAttribute="leading" secondItem="kxn-c5-UtB" secondAttribute="leadingMargin" constant="10" id="6Dx-H3-C6X"/>
+                    <constraint firstItem="3aH-jV-xrc" firstAttribute="leading" secondItem="1fm-OC-lXK" secondAttribute="trailing" constant="10" id="6R9-H9-DSu"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="1fm-OC-lXK" secondAttribute="bottom" constant="1" id="7qh-Y8-zD0"/>
+                    <constraint firstItem="1fm-OC-lXK" firstAttribute="leading" secondItem="kxn-c5-UtB" secondAttribute="leadingMargin" constant="14" id="8mM-gr-TAo"/>
+                    <constraint firstItem="aXw-lo-ACK" firstAttribute="leading" secondItem="kxn-c5-UtB" secondAttribute="leadingMargin" constant="-8" id="9jd-D6-Q0O"/>
+                    <constraint firstItem="3aH-jV-xrc" firstAttribute="top" secondItem="aXw-lo-ACK" secondAttribute="bottom" constant="-8" id="Laa-tu-OYH"/>
+                    <constraint firstItem="RWk-Yw-Tf8" firstAttribute="top" secondItem="kxn-c5-UtB" secondAttribute="topMargin" constant="5" id="Rd7-Ro-Lus"/>
+                    <constraint firstItem="RWk-Yw-Tf8" firstAttribute="leading" secondItem="wzm-nK-1Re" secondAttribute="trailing" constant="20" id="TCT-vJ-qaK"/>
+                    <constraint firstItem="gTv-Es-M8h" firstAttribute="top" secondItem="kxn-c5-UtB" secondAttribute="topMargin" constant="-2" id="UHc-U1-TkN"/>
+                    <constraint firstItem="3aH-jV-xrc" firstAttribute="leading" relation="lessThanOrEqual" secondItem="1fm-OC-lXK" secondAttribute="trailing" priority="500" constant="10" id="UQb-Gg-HG8"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="gTv-Es-M8h" secondAttribute="trailing" constant="6" id="bIZ-Ip-iI9"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="3aH-jV-xrc" secondAttribute="bottom" constant="4" id="gey-3r-OZy"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="aXw-lo-ACK" secondAttribute="trailing" constant="-8" id="ogZ-a3-Iks"/>
+                    <constraint firstItem="gTv-Es-M8h" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RWk-Yw-Tf8" secondAttribute="trailing" constant="10" id="otS-v1-gfZ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="3aH-jV-xrc" secondAttribute="bottom" constant="-7" id="qNw-lJ-Jw1"/>
+                    <constraint firstItem="wzm-nK-1Re" firstAttribute="leading" secondItem="kxn-c5-UtB" secondAttribute="leadingMargin" constant="14" id="sEx-zs-3dR"/>
+                    <constraint firstItem="aXw-lo-ACK" firstAttribute="leading" secondItem="kxn-c5-UtB" secondAttribute="leadingMargin" id="uqM-ED-zmq"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="3aH-jV-xrc" secondAttribute="trailing" constant="4" id="vQ0-xq-6sl"/>
+                    <constraint firstItem="gTv-Es-M8h" firstAttribute="leading" secondItem="aXw-lo-ACK" secondAttribute="trailing" id="x6O-oe-UZg"/>
+                    <constraint firstItem="RWk-Yw-Tf8" firstAttribute="centerY" secondItem="wzm-nK-1Re" secondAttribute="centerY" id="x7H-8b-PtJ"/>
+                    <constraint firstItem="aXw-lo-ACK" firstAttribute="bottom" secondItem="kxn-c5-UtB" secondAttribute="bottomMargin" constant="8" id="xp2-fx-WIn"/>
+                    <constraint firstItem="wzm-nK-1Re" firstAttribute="top" secondItem="kxn-c5-UtB" secondAttribute="topMargin" constant="4" id="yiU-Mh-cmw"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="6Dx-H3-C6X"/>
+                        <exclude reference="uqM-ED-zmq"/>
+                        <exclude reference="Rd7-Ro-Lus"/>
+                        <exclude reference="Laa-tu-OYH"/>
+                        <exclude reference="UQb-Gg-HG8"/>
+                        <exclude reference="gey-3r-OZy"/>
+                        <exclude reference="vQ0-xq-6sl"/>
+                        <exclude reference="x6O-oe-UZg"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="englishEntityLabel" destination="1fm-OC-lXK" id="tyv-rX-WnJ"/>
+                <outlet property="entityTypeLabel" destination="gTv-Es-M8h" id="gIu-fo-n67"/>
+                <outlet property="japaneseEntityLabel" destination="wzm-nK-1Re" id="nIl-mW-YlX"/>
+                <outlet property="lastseenLabel" destination="3aH-jV-xrc" id="NTH-on-iu1"/>
+                <outlet property="readingLabel" destination="RWk-Yw-Tf8" id="xkw-X7-pnf"/>
+            </connections>
+            <point key="canvasLocation" x="335.5" y="173"/>
+        </tableViewCell>
+    </objects>
+</document>

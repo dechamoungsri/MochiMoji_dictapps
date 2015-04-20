@@ -24,14 +24,19 @@ class MainPageController: UIViewController {
     @IBOutlet weak var cardContextView: UIView!
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var searchButton: UIButton!
-    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var searchTextField: UILabel!
     @IBOutlet weak var flashCardView: UIView!
     @IBOutlet weak var answerCardView: UIView!
     @IBOutlet weak var cardFrontView: UIView!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet weak var topview: UIView!
 
     var isMenuButtonPressed : Bool = false
     var isFliped : Bool = false
     var flashCardCenter : CGPoint!
+    
+    var screenWidth:CGFloat = UIScreen.mainScreen().bounds.size.width
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,11 +51,27 @@ class MainPageController: UIViewController {
         //cardView.frame = CGRectMake(0, 0, 200, 2000)
         cardContextView.addSubview(cardView)
         
-        //menuView.layer.anchorPoint = CGPointMake(0.5, 0)
-        //menuView.transform = CGAffineTransformMakeTranslation(0, -150)
+        component_list["backButton.layer.position.x"] = 80+backButton.layer.position.x
+        component_list["clearButton.layer.position.x"] = -80 + screenWidth - 20 - clearButton.frame.width/2
         
-        //menuView.layer.transform =
+        backButton.transform = CGAffineTransformMakeTranslation(-80, 0)
+        clearButton.transform = CGAffineTransformMakeTranslation(80, 0)
         
+        backButton.layer.position.x = backButton.layer.position.x-80
+        clearButton.layer.position.x = clearButton.layer.position.x+80
+//
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        //println("viewWillAppear")
+        super.viewWillAppear(animated)
+//        component_list["backButton.layer.position.x"] = backButton.layer.position.x
+//        component_list["clearButton.layer.position.x"] = clearButton.layer.position.x
+//        backButton.layer.position.x = backButton.layer.position.x-80
+//        clearButton.layer.position.x = clearButton.layer.position.x+80
+//        backButton.layer.position.x = backButton.layer.position.x-80
+//        clearButton.layer.position.x = clearButton.layer.position.x+80
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,7 +80,8 @@ class MainPageController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(Bool())
+        //println("viewDidAppear")
+        super.viewDidAppear(animated)
         flashCardCenter = flashCardView.center
         self.cardFrontView.hidden = false
         self.answerCardView.hidden = true
@@ -67,6 +89,12 @@ class MainPageController: UIViewController {
         let translate = CGAffineTransformMakeTranslation(0, -200)
         flashCardView.transform = CGAffineTransformConcat(scale, translate)
         
+//        component_list["backButton.layer.position.x"] = backButton.layer.position.x
+//        component_list["clearButton.layer.position.x"] = clearButton.layer.position.x
+        
+//        backButton.layer.position.x = backButton.layer.position.x-80
+//        clearButton.layer.position.x = clearButton.layer.position.x+80
+//
         spring(0.5) {
             let scale = CGAffineTransformMakeScale(1, 1)
             let translate = CGAffineTransformMakeTranslation(0, 0)
@@ -76,24 +104,153 @@ class MainPageController: UIViewController {
         flashCardView.alpha = 1
     }
     
-    @IBAction func searchButtonPressed(sender: AnyObject) {
-        springWithCompletion(0.3, {
+    @IBAction func searchAreaTouchUpOutside(sender: UIButton) {
+        var searchTextFieldAnimation = touchDownPopSpringAnimationGenerate("searchTextFieldScaleTouch", toValue:1.0, animatedTarget: searchTextField)
+        searchTextField.pop_addAnimation(searchTextFieldAnimation, forKey: "searchTextFieldScaleTouch")
+        
+        var searchButtonAnimation = touchDownPopSpringAnimationGenerate("searchButtonScaleTouch", toValue:1.0, animatedTarget: searchButton)
+        searchButton.pop_addAnimation(searchButtonAnimation, forKey: "searchButtonScaleTouch")
+        
+        var menuButtonAnimation = touchDownPopSpringAnimationGenerate("menuButtonScaleTouch", toValue:1.0, animatedTarget: menuButton)
+        menuButton.pop_addAnimation(menuButtonAnimation, forKey: "menuButtonScaleTouch")
+    }
+    
+    var component_list = Dictionary<String, CGFloat>()
+    var finish_check_list:[Bool] = []
+    let max_anim = 4
+    @IBAction func searchAreaTouchUpInside(sender: UIButton) {
+        //println("Touch Up")
+        finish_check_list = []
+        var searchTextFieldAnimation = touchDownPopSpringAnimationGenerate("searchTextFieldScaleTouch", toValue:1.0, animatedTarget: searchTextField)
+        searchTextFieldAnimation.completionBlock = {
+            (animation, finished) in
+            self.finish_check_list.append(finished)
+            if (self.finish_check_list.count == self.max_anim) {
+                self.searchControllerPreprocessing()
+            }
+        }
+        searchTextField.pop_addAnimation(searchTextFieldAnimation, forKey: "searchTextFieldScaleTouch")
+        
+        var searchButtonAnimation = touchDownPopSpringAnimationGenerate("searchButtonScaleTouch", toValue:1.0, animatedTarget: searchButton)
+        searchButton.pop_addAnimation(searchButtonAnimation, forKey: "searchButtonScaleTouch")
+        
+        var menuButtonAnimation = touchDownPopSpringAnimationGenerate("menuButtonScaleTouch", toValue:1.0, animatedTarget: menuButton)
+        menuButton.pop_addAnimation(menuButtonAnimation, forKey: "menuButtonScaleTouch")
+        
+        var alphaFade = searchButton.pop_animationForKey("FadeOutIcon") as? POPSpringAnimation
+        if (alphaFade != nil) {
+            alphaFade!.toValue = 0.0
+        }
+        else {
+            alphaFade = POPSpringAnimation(propertyNamed: kPOPViewAlpha)
+            alphaFade!.toValue = 0.0
+            menuButton.pop_addAnimation(alphaFade, forKey: "FadeOutIcon")
+            searchButton.pop_addAnimation(alphaFade, forKey: "FadeOutIcon")
+            flashCardView.pop_addAnimation(alphaFade, forKey: "FadeOutIcon")
+        }
+        
+        var searchTextFieldColor = searchTextField.pop_animationForKey("searchTextFieldColor") as? POPSpringAnimation
+        if (searchTextFieldColor != nil) {
+            searchTextFieldColor!.toValue = colorWithHexString("#FAFAFA")
+        }
+        else {
             
-            let screenSize: CGRect = UIScreen.mainScreen().bounds
-            let screenWidth = screenSize.width;
-            let screenHeight = screenSize.height;
-            
-            self.searchTextField.frame = CGRectMake(0, 0, screenWidth, 80)
-            self.searchTextField.layer.cornerRadius = 0
-            self.searchTextField.backgroundColor = self.colorWithHexString("F5F5F5")
-            self.searchTextField.textColor = self.searchTextField.backgroundColor
-            self.searchButton.alpha = 0
-            self.menuButton.alpha = 0
-            self.flashCardView.alpha = 0
+            searchTextFieldColor = POPSpringAnimation(propertyNamed: kPOPViewBackgroundColor)
+            searchTextFieldColor!.toValue = colorWithHexString("#FAFAFA")
+            searchTextFieldColor!.completionBlock = {
+                (animation, finished) in
+                self.finish_check_list.append(finished)
+                if (self.finish_check_list.count == self.max_anim) {
+                    self.searchControllerPreprocessing()
+                }
+            }
+            searchTextField.pop_addAnimation(searchTextFieldColor, forKey: "searchTextFieldColor")
+        }
+        
+        var translateBackButton = backButton.pop_animationForKey("translateBackButton") as? POPSpringAnimation
+        if (translateBackButton != nil) {
+            translateBackButton!.toValue = component_list["backButton.layer.position.x"]
+        }
+        else {
+            translateBackButton = POPSpringAnimation(propertyNamed: kPOPLayerPositionX)
+            translateBackButton!.toValue = component_list["backButton.layer.position.x"]
+            translateBackButton!.springBounciness = 5.0
+            translateBackButton!.springSpeed = 20.0
+            translateBackButton!.completionBlock = {
+                (animation, finished) in
+                self.finish_check_list.append(finished)
+                if (self.finish_check_list.count == self.max_anim) {
+                    self.searchControllerPreprocessing()
+                }
+            }
+            backButton.pop_addAnimation(translateBackButton, forKey: "translateBackButton")
+        }
+        
+        var translateClearButton = backButton.pop_animationForKey("translateClearButton") as? POPSpringAnimation
+        if (translateClearButton != nil) {
+            translateClearButton!.toValue = component_list["clearButton.layer.position.x"]
+        }
+        else {
+            translateClearButton = POPSpringAnimation(propertyNamed: kPOPLayerPositionX)
+            translateClearButton!.toValue = component_list["clearButton.layer.position.x"]
+            translateClearButton!.springBounciness = 5.0
+            translateClearButton!.springSpeed = 20.0
+            translateClearButton!.completionBlock = {
+                (animation, finished) in
+                self.finish_check_list.append(finished)
+                if (self.finish_check_list.count == self.max_anim) {
+                    self.searchControllerPreprocessing()
+                }
+            }
+            clearButton.pop_addAnimation(translateClearButton, forKey: "translateClearButton")
+        }
+        
+    }
+    
+    @IBAction func searchAreaTouchDown(sender: UIButton) {
+        
+        //println("Touch Down")
+        var searchTextFieldAnimation = touchDownPopSpringAnimationGenerate("searchTextFieldScaleTouch", toValue:0.9, animatedTarget: searchTextField)
+        searchTextField.pop_addAnimation(searchTextFieldAnimation, forKey: "searchTextFieldScaleTouch")
+        var searchButtonAnimation = touchDownPopSpringAnimationGenerate("searchButtonScaleTouch", toValue:0.9, animatedTarget: searchButton)
+        searchButton.pop_addAnimation(searchButtonAnimation, forKey: "searchButtonScaleTouch")
+        var menuButtonAnimation = touchDownPopSpringAnimationGenerate("menuButtonScaleTouch", toValue:0.9, animatedTarget: menuButton)
+        menuButton.pop_addAnimation(menuButtonAnimation, forKey: "menuButtonScaleTouch")
+        
+    }
+    
+    func touchDownPopSpringAnimationGenerate(name:String, toValue:CGFloat, animatedTarget:UIView) -> POPSpringAnimation {
+        var scaleXY: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
+        
+        if (scaleXY != nil) {
+            //println("Not new \(toValue)")
+            scaleXY!.toValue = NSValue(CGSize: CGSize(width: toValue, height: toValue))
+        }
+        else {
+            //println("New \(toValue)")
+            scaleXY = POPSpringAnimation(propertyNamed: kPOPViewScaleXY)
+            scaleXY!.toValue = NSValue(CGSize: CGSize(width: toValue, height: toValue))
+            scaleXY!.springBounciness = 5.0
+            scaleXY!.springSpeed = 20.0
+            //view.pop_addAnimation(scaleXY, forKey: name)
+        }
+        
+        return scaleXY!
+    }
 
-            }, { finished in
-                self.performSegueWithIdentifier("mainToSearchView", sender: self)
-        })
+    override func segueForUnwindingToViewController(toViewController: UIViewController, fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue {
+        println("dog")
+        return UIStoryboardSegue(identifier: identifier, source: fromViewController, destination: toViewController)
+    }
+    
+    
+    func searchControllerPreprocessing() {
+        
+//        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(dur * Double(NSEC_PER_SEC)))
+//        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.performSegueWithIdentifier("mainToSearchView", sender: self)
+//        }
+
     }
     
     @IBAction func menuPressAction(sender: AnyObject) {
@@ -133,6 +290,7 @@ class MainPageController: UIViewController {
     @IBAction func tabOnFlashcard(sender: AnyObject) {
         self.flipFlashcard()
     }
+    
     
     func flipFlashcard() {
         
