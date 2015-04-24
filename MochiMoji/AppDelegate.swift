@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        DatabaseHelper.sharedInstance.queryTextInput("食べる")
+        DatabaseHelper.sharedInstance.queryTextInput("食")
         
 //        DatabaseInterface.sharedInstance
 //        let result = DatabaseInterface.sharedInstance.queryWordinJMDict("食べる")

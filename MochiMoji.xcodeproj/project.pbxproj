@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		897FD41369A0167F00F1A6A6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 763DAF4BC3171D37A88242DD /* libPods.a */; };
+		BE1B667E1AE9D1D10041D065 /* DummyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1B667D1AE9D1D10041D065 /* DummyEntity.swift */; };
 		BE51929A1A96DDE300F19BEA /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE51927F1A96DDE300F19BEA /* BlurView.swift */; };
 		BE51929B1A96DDE300F19BEA /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5192801A96DDE300F19BEA /* DesignableButton.swift */; };
 		BE51929C1A96DDE300F19BEA /* DesignableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5192811A96DDE300F19BEA /* DesignableImageView.swift */; };
@@ -88,6 +89,7 @@
 		5DE0274CDEF855A992DD8D5A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		763DAF4BC3171D37A88242DD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E55323F697205746F1FD91E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		BE1B667D1AE9D1D10041D065 /* DummyEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyEntity.swift; sourceTree = "<group>"; };
 		BE51927F1A96DDE300F19BEA /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		BE5192801A96DDE300F19BEA /* DesignableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
 		BE5192811A96DDE300F19BEA /* DesignableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableImageView.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 			children = (
 				BED227001AD76EBC000C0E88 /* Entity.swift */,
 				BED227091ADA5F7D000C0E88 /* JMDictEntity.swift */,
+				BE1B667D1AE9D1D10041D065 /* DummyEntity.swift */,
 			);
 			name = DatabaseEntity;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				BED227041AD773DC000C0E88 /* DatabaseHelper.swift in Sources */,
 				BE7C99D31A74A5C7007E65AD /* AppDelegate.swift in Sources */,
 				BE51929B1A96DDE300F19BEA /* DesignableButton.swift in Sources */,
+				BE1B667E1AE9D1D10041D065 /* DummyEntity.swift in Sources */,
 				BE5192AF1A96DDE300F19BEA /* SpringTextView.swift in Sources */,
 				BE5192B11A96DDE300F19BEA /* TransitionManager.swift in Sources */,
 				BE5192A91A96DDE300F19BEA /* Spring.swift in Sources */,

@@ -25,27 +25,84 @@ class DatabaseHelper{
         
     }
     
-    func queryTextInput(text:String) -> [Entity]{
+//    func queryTextInput(text:String) -> [Entity]{
+    func queryTextInput(text:String) -> [DummyEntity]{
         var starttime = NSDate().timeIntervalSince1970
-        var results = DatabaseInterface.sharedInstance.queryWordinJMDict(text)
-        var wordList = CBLQueryEnumeratorToJMEntity(results)
+        
+        var inputText = text//textAddingSearchFunction(text)
+        //println(inputText)
+        
+        //var output_array:[Entity] = []
+        var output_array:[DummyEntity] = []
+        
+//        if countElements(inputText) < 10 {
+//            for var size = countElements(inputText) ; size < 10 ; size++ {
+//                var results = DatabaseInterface.sharedInstance.queryWordinJMDict(inputText, size: size)
+//                var wordList = CBLQueryEnumeratorToJMEntity(results, text: text)
+//                output_array = output_array + wordList
+//                if (output_array.count > 50) {
+//                    break
+//                }
+//            }
+//        }
+//        else {
+//            var results = DatabaseInterface.sharedInstance.queryWordinJMDict(inputText, size: countElements(inputText))
+//            var wordList = CBLQueryEnumeratorToJMEntity(results, text: text)
+//            output_array = output_array + wordList
+//        }
+        
+        var results = DatabaseInterface.sharedInstance.queryWordinJMDict(inputText, size: countElements(inputText))
+        
+        var mid = NSDate().timeIntervalSince1970
+        
+        var wordList = CBLQueryEnumeratorToJMEntity(results, text: text)
+        output_array = output_array + wordList
+    
+//        println(results.count)
+//        println(wordList.count)
+        
         var endtime = NSDate().timeIntervalSince1970
+        //println("DatabaseInterface.sharedInstance.queryWordinJMDict Duration : \(mid-starttime) Seconds")
+        println("CBLQueryEnumeratorToJMEntity Duration : \(endtime-mid) Seconds")
         println("queryTextInput(text:String) Duration : \(endtime-starttime) Seconds")
-        return wordList
+        
+        for var i = 0 ; i < output_array.count ; i++ {
+            //println((output_array[i] as JMDictEntity).unique_id)
+        }
+        
+        return output_array
     }
     
-    func CBLQueryEnumeratorToJMEntity(queryLists:CBLQueryEnumerator) -> [JMDictEntity]{
+    func textAddingSearchFunction(text:String) -> String{
+        return text + "*"
+    }
+    
+    //func CBLQueryEnumeratorToJMEntity(queryLists:CBLQueryEnumerator, text:String) -> [JMDictEntity]{
+    func CBLQueryEnumeratorToJMEntity(queryLists:CBLQueryEnumerator, text:String) -> [DummyEntity]{
+        var starttime = NSDate().timeIntervalSince1970
+        var output:[DummyEntity] = []
+        //var output:[JMDictEntity] = []
         
-        var output:[JMDictEntity] = []
-        
-        var qlist_clean = removeDuplicate(queryLists)
-        
-        for var i = 0 ; i < qlist_clean.count ; i++ {
-            var jmDict = JMDictEntity(row: qlist_clean[i])
+        while let row = queryLists.nextRow() {
+            //var jmDict = JMDictEntity(row: row)
+            var jmDict = DummyEntity(row: row)
             output.append(jmDict)
         }
         
+        var mid = NSDate().timeIntervalSince1970
+        output.sort({
+            //(a:JMDictEntity,b:JMDictEntity)-> Bool in
+            (a:DummyEntity,b:DummyEntity)-> Bool in
+            
+            return a.unique_id < b.unique_id
+        })
+        var endtime = NSDate().timeIntervalSince1970
+        
+        println("JMDictEntity Duration : \(mid-starttime) Seconds")
+        println("output.sort Duration : \(endtime-mid) Seconds")
+        
         return output
+        
     }
  
     func removeDuplicate(enumerator: CBLQueryEnumerator) -> [CBLQueryRow] {
@@ -57,6 +114,7 @@ class DatabaseHelper{
                 setCheck.addObject(st)
                 outList.append(row)
             }
+
         }
         return outList
     }

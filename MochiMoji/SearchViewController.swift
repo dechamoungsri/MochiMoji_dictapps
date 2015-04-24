@@ -75,7 +75,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         let row = indexPath.row
         //println(row)
-        cell.setComponentExample("\(row)")
+        //cell.setComponentExample("\(row)")
+        //cell.setComponentFromEntity(entity: Entity)
         
         return cell
     }

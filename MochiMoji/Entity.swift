@@ -26,17 +26,17 @@ class Entity {
     var englishEntity:String
     var databaseName:DatabaseInterface.DatabaseName
     var tableCellEntityType:SearchResultEntityCell.CellEntityType
-    var lastseen:NSDate
+    var lastseen:String
     
     init(){
-        self.japaneseEntity = "";
-        self.englishEntity = "";
+        self.japaneseEntity = ""
+        self.englishEntity = ""
         self.databaseName = DatabaseInterface.DatabaseName.JMDICT
         self.tableCellEntityType = SearchResultEntityCell.CellEntityType.OTHER
-        self.lastseen = NSDate(dateString:"2015-04-01")
+        self.lastseen = ""//NSDate(dateString:"2015-04-01")
     }
     
-    init(jpEntity:String, engEntity:String, dbName:DatabaseInterface.DatabaseName, cellEntityType:SearchResultEntityCell.CellEntityType, last_seen:NSDate){
+    init(jpEntity:String, engEntity:String, dbName:DatabaseInterface.DatabaseName, cellEntityType:SearchResultEntityCell.CellEntityType, last_seen:String){
         self.japaneseEntity = jpEntity;
         self.englishEntity = engEntity;
         self.databaseName = dbName

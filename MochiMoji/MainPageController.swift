@@ -17,14 +17,14 @@ extension UIView {
     }
 }
 
-class MainPageController: UIViewController {
+class MainPageController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
 
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var lastSeenReportUILabel: UILabel!
     @IBOutlet weak var cardContextView: UIView!
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var searchButton: UIButton!
-    @IBOutlet weak var searchTextField: UILabel!
+    @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var flashCardView: UIView!
     @IBOutlet weak var answerCardView: UIView!
     @IBOutlet weak var cardFrontView: UIView!
@@ -38,10 +38,16 @@ class MainPageController: UIViewController {
     
     var screenWidth:CGFloat = UIScreen.mainScreen().bounds.size.width
     
+    let entityCellIdentifier = "searchResultEntittyCellidentifier"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     
+        var paddingView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
+        self.searchTextField.leftView = paddingView
+        self.searchTextField.leftViewMode = UITextFieldViewMode.Always
+        
         animator = UIDynamicAnimator(referenceView: view)
         
         //var flashCardCenterX = view.constraints().
@@ -59,19 +65,17 @@ class MainPageController: UIViewController {
         
         backButton.layer.position.x = backButton.layer.position.x-80
         clearButton.layer.position.x = clearButton.layer.position.x+80
-//
+        
+        // Search View initialization
+        let nibName = UINib(nibName: "SearchResultEntityCell", bundle:nil)
+        self.tableView.registerNib(nibName, forCellReuseIdentifier: entityCellIdentifier)
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
     }
     
     override func viewWillAppear(animated: Bool) {
         //println("viewWillAppear")
         super.viewWillAppear(animated)
-//        component_list["backButton.layer.position.x"] = backButton.layer.position.x
-//        component_list["clearButton.layer.position.x"] = clearButton.layer.position.x
-//        backButton.layer.position.x = backButton.layer.position.x-80
-//        clearButton.layer.position.x = clearButton.layer.position.x+80
-//        backButton.layer.position.x = backButton.layer.position.x-80
-//        clearButton.layer.position.x = clearButton.layer.position.x+80
     }
 
     override func didReceiveMemoryWarning() {
@@ -88,13 +92,7 @@ class MainPageController: UIViewController {
         let scale = CGAffineTransformMakeScale(0.5, 0.5)
         let translate = CGAffineTransformMakeTranslation(0, -200)
         flashCardView.transform = CGAffineTransformConcat(scale, translate)
-        
-//        component_list["backButton.layer.position.x"] = backButton.layer.position.x
-//        component_list["clearButton.layer.position.x"] = clearButton.layer.position.x
-        
-//        backButton.layer.position.x = backButton.layer.position.x-80
-//        clearButton.layer.position.x = clearButton.layer.position.x+80
-//
+
         spring(0.5) {
             let scale = CGAffineTransformMakeScale(1, 1)
             let translate = CGAffineTransformMakeTranslation(0, 0)
@@ -115,40 +113,38 @@ class MainPageController: UIViewController {
         menuButton.pop_addAnimation(menuButtonAnimation, forKey: "menuButtonScaleTouch")
     }
     
+    /*
+        Search area touchup indeside 
+        Animation tranform to search view
+    */
     var component_list = Dictionary<String, CGFloat>()
-    var finish_check_list:[Bool] = []
-    let max_anim = 4
+//    var finish_check_list:[Bool] = []
+//    let max_anim = 4
     @IBAction func searchAreaTouchUpInside(sender: UIButton) {
         //println("Touch Up")
-        finish_check_list = []
+        //finish_check_list = []
+        
+        // Dictionary Textfield Scale Up animation
         var searchTextFieldAnimation = touchDownPopSpringAnimationGenerate("searchTextFieldScaleTouch", toValue:1.0, animatedTarget: searchTextField)
         searchTextFieldAnimation.completionBlock = {
             (animation, finished) in
-            self.finish_check_list.append(finished)
-            if (self.finish_check_list.count == self.max_anim) {
-                self.searchControllerPreprocessing()
-            }
+            self.searchControllerPreprocessing(true)
         }
         searchTextField.pop_addAnimation(searchTextFieldAnimation, forKey: "searchTextFieldScaleTouch")
         
+        // Search Button and Menu button Scale Up
         var searchButtonAnimation = touchDownPopSpringAnimationGenerate("searchButtonScaleTouch", toValue:1.0, animatedTarget: searchButton)
         searchButton.pop_addAnimation(searchButtonAnimation, forKey: "searchButtonScaleTouch")
         
         var menuButtonAnimation = touchDownPopSpringAnimationGenerate("menuButtonScaleTouch", toValue:1.0, animatedTarget: menuButton)
         menuButton.pop_addAnimation(menuButtonAnimation, forKey: "menuButtonScaleTouch")
         
-        var alphaFade = searchButton.pop_animationForKey("FadeOutIcon") as? POPSpringAnimation
-        if (alphaFade != nil) {
-            alphaFade!.toValue = 0.0
-        }
-        else {
-            alphaFade = POPSpringAnimation(propertyNamed: kPOPViewAlpha)
-            alphaFade!.toValue = 0.0
-            menuButton.pop_addAnimation(alphaFade, forKey: "FadeOutIcon")
-            searchButton.pop_addAnimation(alphaFade, forKey: "FadeOutIcon")
-            flashCardView.pop_addAnimation(alphaFade, forKey: "FadeOutIcon")
-        }
+        // Main view component fade away
+        fadeToComponent(menuButton, fadeTo: 0.0)
+        fadeToComponent(searchButton, fadeTo: 0.0)
+        fadeToComponent(flashCardView, fadeTo: 0.0)
         
+        // Change Dictionary Color
         var searchTextFieldColor = searchTextField.pop_animationForKey("searchTextFieldColor") as? POPSpringAnimation
         if (searchTextFieldColor != nil) {
             searchTextFieldColor!.toValue = colorWithHexString("#FAFAFA")
@@ -157,16 +153,10 @@ class MainPageController: UIViewController {
             
             searchTextFieldColor = POPSpringAnimation(propertyNamed: kPOPViewBackgroundColor)
             searchTextFieldColor!.toValue = colorWithHexString("#FAFAFA")
-            searchTextFieldColor!.completionBlock = {
-                (animation, finished) in
-                self.finish_check_list.append(finished)
-                if (self.finish_check_list.count == self.max_anim) {
-                    self.searchControllerPreprocessing()
-                }
-            }
             searchTextField.pop_addAnimation(searchTextFieldColor, forKey: "searchTextFieldColor")
         }
         
+        // Search view component move in
         var translateBackButton = backButton.pop_animationForKey("translateBackButton") as? POPSpringAnimation
         if (translateBackButton != nil) {
             translateBackButton!.toValue = component_list["backButton.layer.position.x"]
@@ -176,13 +166,6 @@ class MainPageController: UIViewController {
             translateBackButton!.toValue = component_list["backButton.layer.position.x"]
             translateBackButton!.springBounciness = 5.0
             translateBackButton!.springSpeed = 20.0
-            translateBackButton!.completionBlock = {
-                (animation, finished) in
-                self.finish_check_list.append(finished)
-                if (self.finish_check_list.count == self.max_anim) {
-                    self.searchControllerPreprocessing()
-                }
-            }
             backButton.pop_addAnimation(translateBackButton, forKey: "translateBackButton")
         }
         
@@ -195,17 +178,17 @@ class MainPageController: UIViewController {
             translateClearButton!.toValue = component_list["clearButton.layer.position.x"]
             translateClearButton!.springBounciness = 5.0
             translateClearButton!.springSpeed = 20.0
-            translateClearButton!.completionBlock = {
-                (animation, finished) in
-                self.finish_check_list.append(finished)
-                if (self.finish_check_list.count == self.max_anim) {
-                    self.searchControllerPreprocessing()
-                }
-            }
             clearButton.pop_addAnimation(translateClearButton, forKey: "translateClearButton")
         }
         
+        tableViewContainer.hidden = false
+        fadeToComponent(tableViewContainer, fadeTo: 1.0)
+
     }
+    
+    /*
+        End Touch up inside
+    */
     
     @IBAction func searchAreaTouchDown(sender: UIButton) {
         
@@ -230,7 +213,7 @@ class MainPageController: UIViewController {
             //println("New \(toValue)")
             scaleXY = POPSpringAnimation(propertyNamed: kPOPViewScaleXY)
             scaleXY!.toValue = NSValue(CGSize: CGSize(width: toValue, height: toValue))
-            scaleXY!.springBounciness = 5.0
+            scaleXY!.springBounciness = 10.0
             scaleXY!.springSpeed = 20.0
             //view.pop_addAnimation(scaleXY, forKey: name)
         }
@@ -238,19 +221,37 @@ class MainPageController: UIViewController {
         return scaleXY!
     }
 
-    override func segueForUnwindingToViewController(toViewController: UIViewController, fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue {
-        println("dog")
-        return UIStoryboardSegue(identifier: identifier, source: fromViewController, destination: toViewController)
-    }
+//    override func segueForUnwindingToViewController(toViewController: UIViewController, fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue {
+//        println("dog")
+//        return UIStoryboardSegue(identifier: identifier, source: fromViewController, destination: toViewController)
+//    }
     
     
-    func searchControllerPreprocessing() {
+    /*
+        Search Controller processing
+        Do this after finish tranformation
+    */
+    func searchControllerPreprocessing(showSearchView: Bool) {
         
-//        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(dur * Double(NSEC_PER_SEC)))
-//        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            self.performSegueWithIdentifier("mainToSearchView", sender: self)
-//        }
-
+        // Move to search controller
+        //self.performSegueWithIdentifier("mainToSearchView", sender: self)
+        if showSearchView {
+            searchTextField.text = ""
+            searchTextField.placeholder = "Search"
+            searchTextField.textAlignment = NSTextAlignment.Left
+            searchView.hidden = false
+            searchTextField.textColor = colorWithHexString("#7D7D7D")
+            self.searchTextField.becomeFirstResponder()
+            
+        }
+        else {
+            searchTextField.text = "Dictionary"
+            searchTextField.placeholder = ""
+            searchTextField.textAlignment = NSTextAlignment.Center
+            searchView.hidden = true
+            searchTextField.textColor = colorWithHexString("#FAFAFA")
+            
+        }
     }
     
     @IBAction func menuPressAction(sender: AnyObject) {
@@ -391,5 +392,200 @@ class MainPageController: UIViewController {
         return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: CGFloat(1))
     }
 
+    /*
+        Search View section
+    */
+    
+    @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewContainer: UIView!
+    
+    @IBAction func onBackPressed(sender: UIButton) {
+        //searchTextField.textColor = colorWithHexString("#2D8BCE")
+        var searchTextFieldColor = searchTextField.pop_animationForKey("searchTextFieldColor") as? POPSpringAnimation
+        if (searchTextFieldColor != nil) {
+            searchTextFieldColor!.toValue = colorWithHexString("#2D8BCE")
+        }
+        else {
+            searchTextFieldColor = POPSpringAnimation(propertyNamed: kPOPViewBackgroundColor)
+            searchTextFieldColor!.toValue = colorWithHexString("#2D8BCE")
+            searchTextFieldColor!.completionBlock = {
+                (animation, finished) in
+                self.searchControllerPreprocessing(false)
+            }
+            searchTextField.pop_addAnimation(searchTextFieldColor, forKey: "searchTextFieldColor")
+        }
+        
+        menuButton.transform = CGAffineTransformMakeScale(0.001, 0.001);
+        scaleToComponent(menuButton, scaleTo: 1.0)
+        searchButton.transform = CGAffineTransformMakeScale(0.001, 0.001);
+        scaleToComponent(searchButton, scaleTo: 1.0)
+        
+        // Main view component fade in
+        
+        fadeToComponent(menuButton, fadeTo: 1.0)
+        fadeToComponent(searchButton, fadeTo: 1.0)
+        fadeToComponent(flashCardView, fadeTo: 1.0)
+        
+        // Search view component move in
+        var translateBackButton = backButton.pop_animationForKey("translateBackButton") as? POPSpringAnimation
+        if (translateBackButton != nil) {
+            translateBackButton!.toValue = component_list["backButton.layer.position.x"]! - 80
+        }
+        else {
+            translateBackButton = POPSpringAnimation(propertyNamed: kPOPLayerPositionX)
+            translateBackButton!.toValue = component_list["backButton.layer.position.x"]! - 80
+            translateBackButton!.springBounciness = 5.0
+            translateBackButton!.springSpeed = 20.0
+            backButton.pop_addAnimation(translateBackButton, forKey: "translateBackButton")
+        }
+        
+        var translateClearButton = backButton.pop_animationForKey("translateClearButton") as? POPSpringAnimation
+        if (translateClearButton != nil) {
+            translateClearButton!.toValue = component_list["clearButton.layer.position.x"]! + 80
+        }
+        else {
+            translateClearButton = POPSpringAnimation(propertyNamed: kPOPLayerPositionX)
+            translateClearButton!.toValue = component_list["clearButton.layer.position.x"]! + 80
+            translateClearButton!.springBounciness = 5.0
+            translateClearButton!.springSpeed = 20.0
+            clearButton.pop_addAnimation(translateClearButton, forKey: "translateClearButton")
+        }
+        
+        var fadeAnimation = fadeAnimationFactory("fade", toValue: 0.0, animatedTarget: tableViewContainer)
+        fadeAnimation.completionBlock = {
+            (animation, finished) in
+            self.tableViewContainer.hidden = true
+        }
+        tableViewContainer.pop_addAnimation(fadeAnimation, forKey: "fade")
+        
+        searchTextField.resignFirstResponder()
+    }
+    
+    func scaleToComponent(component:UIView, scaleTo:CGFloat){
+        var scaleAnimation = scaleAnimaionFactory("scaleAnimation", toValue:scaleTo, animatedTarget: component)
+        component.pop_addAnimation(scaleAnimation, forKey: "scaleAnimation")
+    }
+    
+    func scaleAnimaionFactory(name:String, toValue:CGFloat, animatedTarget:UIView) -> POPSpringAnimation {
+        var scaleXY: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
+        
+        if (scaleXY != nil) {
+            //println("Not new \(toValue)")
+            scaleXY!.toValue = NSValue(CGSize: CGSize(width: toValue, height: toValue))
+        }
+        else {
+            //println("New \(toValue)")
+            scaleXY = POPSpringAnimation(propertyNamed: kPOPViewScaleXY)
+            scaleXY!.toValue = NSValue(CGSize: CGSize(width: toValue, height: toValue))
+            scaleXY!.springBounciness = 10.0
+            scaleXY!.springSpeed = 20.0
+            //view.pop_addAnimation(scaleXY, forKey: name)
+        }
+        
+        return scaleXY!
+    }
+    
+    func fadeToComponent(component:UIView, fadeTo:CGFloat){
+        var fadeAnimation = fadeAnimationFactory("fade", toValue: fadeTo, animatedTarget: component)
+        component.pop_addAnimation(fadeAnimation, forKey: "fade")
+    }
+    
+    func fadeAnimationFactory(name:String, toValue:CGFloat, animatedTarget:UIView) -> POPSpringAnimation {
+        var fade: POPSpringAnimation?  = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
+        
+        if fade != nil {
+            fade?.toValue = toValue
+        }
+        else {
+            fade = POPSpringAnimation(propertyNamed: kPOPViewAlpha)
+            fade!.toValue = toValue
+        }
+        
+        return fade!
+    }
+    
+    // ============================= Start Table Sectionnnnnnnnn ============================= //
+    
+    var cellsEntity = [Entity]()
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //println("numberOfRowsInSection")
+        return cellsEntity.count
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 76.0
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(entityCellIdentifier, forIndexPath: indexPath) as SearchResultEntityCell
+        
+        let row = indexPath.row
+        //println(row)
+        //cell.setComponentExample("\(row)")
+        cell.setComponentFromEntity(cellsEntity[row], text: searchTextField.text)
+        
+        
+        return cell
+    }
+    
+    func endUpdates() {
+        println("endUpdates")
+    }
+    
+    // ----------------------------- End Table Sectionnnnnnnnn ----------------------------- //
+    
+    // ============================= Start Search Text field Section ============================= //
+    var mem_Text = ""
+    var ENTITY_KEY = "ENTITY_KEY"
+    var INPUTTEXT_KEY = "INPUTTEXT_KEY"
+    @IBAction func searchTextFieldEditingChanged(sender: UITextField) {
+        
+        var inputText:String = searchTextField.text
+        if inputText == "" {
+            return
+        }
+        
+        println("Search Input text is : \(inputText)")
+        
+        mem_Text = inputText
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) {
+            var result = self.searchProcessing(inputText)
+            dispatch_async(dispatch_get_main_queue()) { // 2
+                if result.valueForKey(self.INPUTTEXT_KEY) as String == self.mem_Text {
+                    self.cellsEntity = result.valueForKey(self.ENTITY_KEY) as [Entity]
+                    println("Reload Data")
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        
+    }
+    
+    func searchProcessing(inputText:String) -> NSMutableDictionary{
+        var starttime = NSDate().timeIntervalSince1970
+        var cells = DatabaseHelper.sharedInstance.queryTextInput(inputText)
+        var endtime = NSDate().timeIntervalSince1970
+        //println("searchProcessing Duration : \(endtime-starttime) Seconds")
+        var dictionary = NSMutableDictionary()
+        dictionary.setObject(cells, forKey: ENTITY_KEY)
+        dictionary.setObject(inputText, forKey: INPUTTEXT_KEY)
+        return dictionary
+    }
+    
+    // On press search button
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {   //delegate method
+        println("Resign call")
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // ----------------------------- End Search Text field Section ----------------------------- //
+    
 }
 

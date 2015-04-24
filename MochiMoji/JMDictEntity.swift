@@ -8,6 +8,8 @@
 
 import Foundation
 
+let JM_DICT_PART_OF_SPEECH_KEY = "pos"
+
 extension String {
     
     subscript (i: Int) -> Character {
@@ -27,8 +29,11 @@ class JMDictEntity: Entity {
     
     var japaneseEntityList = [NSDictionary]()
     var englishEntityList = [NSDictionary]()
+    var document: CBLDocument?
+    var unique_id: Int = 0
     
     override init(){
+        self.document = nil
         super.init()
     }
     
@@ -41,12 +46,24 @@ class JMDictEntity: Entity {
             return
         }
         
+        self.document = doc
+        
         var unique:String = (doc.properties as NSDictionary).valueForKey("ent_seq") as String
+        self.unique_id = unique.toInt()!
         //println(unique)
         
-        assignJapaneseEntity(doc)
-        assignEnglishEntity(doc)
+        assignDictName()
+//        assignJapaneseEntity(doc)
+//        assignEnglishEntity(doc)
         
+    }
+    
+    func extractDoc(){
+        
+    }
+    
+    func assignDictName(){
+        self.databaseName = DatabaseInterface.DatabaseName.JMDICT
     }
     
     func assignJapaneseEntity(doc: CBLDocument) {
@@ -63,7 +80,7 @@ class JMDictEntity: Entity {
     func assignEnglishEntity(doc: CBLDocument) {
         var senseKey = "sense"
         var glossKey = "gloss"
-        var posKey = "pos"
+        var posKey = JM_DICT_PART_OF_SPEECH_KEY
         var languageKey = "language"
         var meaningKey = "meaning"
         
