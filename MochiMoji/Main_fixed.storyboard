@@ -369,6 +369,18 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Y5-xV-JZA" userLabel="TopBar-SearhView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOY-s7-hsl" userLabel="searchOnShowTouch">
+                                                <rect key="frame" x="60" y="0.0" width="200" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="ndP-ZF-gDu"/>
+                                                </constraints>
+                                                <state key="normal">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="searchShowOnTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AGa-Z0-52r"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="567-65-thV" userLabel="backTouchArea">
                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="80"/>
                                                 <color key="backgroundColor" red="0.47961419820000001" green="0.94288974999999997" blue="0.078057102860000005" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -388,7 +400,10 @@
                                         <constraints>
                                             <constraint firstItem="567-65-thV" firstAttribute="leading" secondItem="1Y5-xV-JZA" secondAttribute="leading" id="AmE-ee-C7O"/>
                                             <constraint firstItem="567-65-thV" firstAttribute="top" secondItem="1Y5-xV-JZA" secondAttribute="top" id="HHa-G6-ten"/>
+                                            <constraint firstItem="wOY-s7-hsl" firstAttribute="top" secondItem="1Y5-xV-JZA" secondAttribute="top" id="SRE-gC-qcU"/>
                                             <constraint firstAttribute="height" constant="80" id="elW-He-mz2"/>
+                                            <constraint firstItem="wOY-s7-hsl" firstAttribute="leading" secondItem="567-65-thV" secondAttribute="trailing" id="iso-ed-a2z"/>
+                                            <constraint firstAttribute="trailing" secondItem="wOY-s7-hsl" secondAttribute="trailing" constant="60" id="m2i-N3-iGW"/>
                                         </constraints>
                                     </view>
                                 </subviews>

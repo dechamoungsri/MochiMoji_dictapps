@@ -24,7 +24,7 @@ class DatabaseInterface {
     }
     
     enum DatabaseStringName: String{
-        case JMDICT = "jmdict"
+        case JMDICT = "jmdict-27-4-2015-full"
     }
     
     var dbManager:CBLManager
@@ -51,15 +51,7 @@ class DatabaseInterface {
         let query = database.viewNamed("wordsViewDidAppear").createQuery()
         
 //        query?.limit = 100
-        query?.fullTextQuery = text + "*"
-
-//        query?.startKey = [size, text]
-        
-        //if size < 10 {
-//        query?.endKey = [size, text + "\u{FFFFF}"]
-        //}
-        
-//        var error :NSError?
+        query?.fullTextQuery = text
         let result = query?.run(&error)
 
         var endtime = NSDate().timeIntervalSince1970
@@ -79,13 +71,6 @@ class DatabaseInterface {
                         if ((d[i] as NSDictionary)["keb"] != nil) {
                             let str = (d[i] as NSDictionary)["keb"] as String
                             str_all = str_all + " " + str
-                            
-                            //emit(str,nil)
-                            //emit([countElements(str),str],nil)
-                            //emit([countElements(str),str],nil)
-//                            for var j = 0 ; j < countElements(str) ; j++ {
-//                                emit(CBLTextKey(str[Range(start: j,end: countElements(str))]),nil)
-//                            }
                         }
                     }
                     emit(CBLTextKey(str_all),nil)
@@ -95,20 +80,12 @@ class DatabaseInterface {
                     if (d["keb"] != nil) {
                         let str = d["keb"] as String
                         emit(CBLTextKey(str),nil)
-                        //emit(str,nil)
-                        //emit([countElements(str),str],nil)
-                        //emit([countElements(str),str],nil)
-//                        for var j = 0 ; j < countElements(str) ; j++ {
-//                            emit(CBLTextKey(str[Range(start: j,end: countElements(str))]),nil)
-//                        }
                     }
                 }
                 
             }
         }, version: "13")
-        
-        //println("Max \(maxy)")
-        
+
     }
 
     

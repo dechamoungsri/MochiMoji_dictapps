@@ -43,15 +43,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func databaseConnection() {
+        
+        var dbname = "jmdict-27-4-2015-full"
+        
         let dbManager = CBLManager.sharedInstance()
         var error :NSError?
-        var database = dbManager.existingDatabaseNamed("jmdict", error: &error)
+        var database = dbManager.existingDatabaseNamed(dbname, error: &error)
         if database == nil {
-            let cannedDbPath = NSBundle.mainBundle().pathForResource("jmdict", ofType: "cblite")
+            let cannedDbPath = NSBundle.mainBundle().pathForResource(dbname, ofType: "cblite")
             //println(cannedDbPath)
             let cannedAttPath = NSBundle.mainBundle().pathForResource("CouchbaseLite/jmdict attachments", ofType: "")
-            dbManager.replaceDatabaseNamed("jmdict", withDatabaseFile: cannedDbPath, withAttachments: cannedAttPath, error: &error)
-            database = dbManager.existingDatabaseNamed("jmdict", error: &error)
+            dbManager.replaceDatabaseNamed(dbname, withDatabaseFile: cannedDbPath, withAttachments: cannedAttPath, error: &error)
+            database = dbManager.existingDatabaseNamed(dbname, error: &error)
             if error != nil {
                 //self.handleError(error)
                 println("Error \(error?.description)")

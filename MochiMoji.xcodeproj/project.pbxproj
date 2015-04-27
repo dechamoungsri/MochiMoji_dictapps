@@ -43,7 +43,6 @@
 		BE7C99F41A74C313007E65AD /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE7C99F31A74C313007E65AD /* Roboto-Regular.ttf */; };
 		BE87F7D51A74DC7400267E85 /* TestCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE87F7D41A74DC7400267E85 /* TestCardView.xib */; };
 		BE87F7D71A74DF6100267E85 /* KanjiCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE87F7D61A74DF6100267E85 /* KanjiCardView.xib */; };
-		BEC117B31AD4DC2000FB5457 /* jmdict.cblite in Resources */ = {isa = PBXBuildFile; fileRef = BEC117B21AD4DC1000FB5457 /* jmdict.cblite */; };
 		BEC117B51AD4DC7400FB5457 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC117B41AD4DC7400FB5457 /* CouchbaseLite.framework */; };
 		BEC117B71AD4DC9800FB5457 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC117B61AD4DC9800FB5457 /* libz.dylib */; };
 		BEC117B91AD4DC9F00FB5457 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC117B81AD4DC9F00FB5457 /* libsqlite3.dylib */; };
@@ -60,6 +59,7 @@
 		BED2270A1ADA5F7D000C0E88 /* JMDictEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED227091ADA5F7D000C0E88 /* JMDictEntity.swift */; };
 		BED711361ACF92B30013E891 /* Main_fixed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED711351ACF92B30013E891 /* Main_fixed.storyboard */; };
 		BEEA15E21A765CD200C76F9F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA15E11A765CD200C76F9F /* SearchViewController.swift */; };
+		BEFB3ECC1AED0722004FEC9D /* jmdict-27-4-2015-full.cblite in Resources */ = {isa = PBXBuildFile; fileRef = BEFB3ECB1AED0722004FEC9D /* jmdict-27-4-2015-full.cblite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,7 +130,6 @@
 		BE87F7D41A74DC7400267E85 /* TestCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestCardView.xib; sourceTree = "<group>"; };
 		BE87F7D61A74DF6100267E85 /* KanjiCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KanjiCardView.xib; sourceTree = "<group>"; };
 		BEB8067D1A751B190096E790 /* MochiMoji-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MochiMoji-Bridging-Header.h"; sourceTree = "<group>"; };
-		BEC117B21AD4DC1000FB5457 /* jmdict.cblite */ = {isa = PBXFileReference; lastKnownFileType = file; path = jmdict.cblite; sourceTree = "<group>"; };
 		BEC117B41AD4DC7400FB5457 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = ../../Desktop/CouchbaseLite.framework; sourceTree = "<group>"; };
 		BEC117B61AD4DC9800FB5457 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BEC117B81AD4DC9F00FB5457 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -147,6 +146,7 @@
 		BED227091ADA5F7D000C0E88 /* JMDictEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMDictEntity.swift; sourceTree = "<group>"; };
 		BED711351ACF92B30013E891 /* Main_fixed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_fixed.storyboard; sourceTree = "<group>"; };
 		BEEA15E11A765CD200C76F9F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		BEFB3ECB1AED0722004FEC9D /* jmdict-27-4-2015-full.cblite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "jmdict-27-4-2015-full.cblite"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,8 +318,8 @@
 		BEC117B01AD4DC1000FB5457 /* CouchbaseLite */ = {
 			isa = PBXGroup;
 			children = (
+				BEFB3ECB1AED0722004FEC9D /* jmdict-27-4-2015-full.cblite */,
 				BEC117B11AD4DC1000FB5457 /* jmdict attachments */,
-				BEC117B21AD4DC1000FB5457 /* jmdict.cblite */,
 			);
 			name = CouchbaseLite;
 			path = ../../Desktop/MojiMochi_Database/databaseFile/CouchbaseLite;
@@ -462,7 +462,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEC117B31AD4DC2000FB5457 /* jmdict.cblite in Resources */,
 				BED226F71AD637DA000C0E88 /* SearchResultEntityCell.xib in Resources */,
 				BE5192A31A96DDE300F19BEA /* Info.plist in Resources */,
 				BE87F7D51A74DC7400267E85 /* TestCardView.xib in Resources */,
@@ -472,6 +471,7 @@
 				BED226F91AD63A94000C0E88 /* NotoSansCJKjp-Regular.otf in Resources */,
 				BED711361ACF92B30013E891 /* Main_fixed.storyboard in Resources */,
 				BE5192A61A96DDE300F19BEA /* LoadingView.xib in Resources */,
+				BEFB3ECC1AED0722004FEC9D /* jmdict-27-4-2015-full.cblite in Resources */,
 				BE7C99DA1A74A5C8007E65AD /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

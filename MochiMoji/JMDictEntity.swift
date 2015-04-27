@@ -29,6 +29,7 @@ class JMDictEntity: Entity {
     
     var japaneseEntityList = [NSDictionary]()
     var englishEntityList = [NSDictionary]()
+    var readingEntityList = [NSDictionary]()
     var document: CBLDocument?
     var unique_id: Int = 0
     
@@ -36,34 +37,38 @@ class JMDictEntity: Entity {
         self.document = nil
         super.init()
     }
-    
-    convenience init(row:CBLQueryRow){
-        
+
+    convenience init(entity:DummyEntity){
         self.init()
         
-        var doc = row.document
+        var doc = entity.doc?
         if doc == nil {
             return
         }
         
-        self.document = doc
+        self.document = doc!
         
-        var unique:String = (doc.properties as NSDictionary).valueForKey("ent_seq") as String
+        var unique:String = (self.document!.properties as NSDictionary).valueForKey("ent_seq") as String
         self.unique_id = unique.toInt()!
         //println(unique)
         
         assignDictName()
-//        assignJapaneseEntity(doc)
-//        assignEnglishEntity(doc)
-        
-    }
-    
-    func extractDoc(){
-        
+        assignJapaneseEntity(self.document!)
+        assignEnglishEntity(self.document!)
+        assignReadingEntity(self.document!)
     }
     
     func assignDictName(){
         self.databaseName = DatabaseInterface.DatabaseName.JMDICT
+    }
+    
+    func assignReadingEntity(doc: CBLDocument){
+        var r_ele_Key = "r_ele"
+        if let d = Utility.getArrayForKey(doc.properties, keyString: r_ele_Key) {
+            for var i = 0; i < d.count ; i++ {
+                readingEntityList.append(d[i] as NSDictionary)
+            }
+        }
     }
     
     func assignJapaneseEntity(doc: CBLDocument) {
@@ -147,5 +152,28 @@ class JMDictEntity: Entity {
         }
         return out
     }
+    
+    
+    convenience init(row:CBLQueryRow){
+        
+        self.init()
+        
+        var doc = row.document
+        if doc == nil {
+            return
+        }
+        
+        self.document = doc
+        
+        var unique:String = (doc.properties as NSDictionary).valueForKey("ent_seq") as String
+        self.unique_id = unique.toInt()!
+        //println(unique)
+        
+        assignDictName()
+        assignJapaneseEntity(doc)
+        assignEnglishEntity(doc)
+        
+    }
+    
     
 }

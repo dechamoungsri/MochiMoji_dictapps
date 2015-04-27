@@ -11,20 +11,22 @@ import Foundation
 class DummyEntity {
     
     let doc:CBLDocument?
-    let unique_id: Int
+    let frequency: Int
+    let databaseName:DatabaseInterface.DatabaseName
     
     init(){
         self.doc = nil
-        self.unique_id = 0
+        self.frequency = 0
+        self.databaseName = DatabaseInterface.DatabaseName.JMDICT
     }
     
-    init(row:CBLQueryRow){
+    init(row:CBLQueryRow, dbName:DatabaseInterface.DatabaseName){
         
         var doc = row.document
         
         self.doc = doc
-        self.unique_id = ((doc.properties as NSDictionary).valueForKey("ent_seq") as String).toInt()!
-        
+        self.frequency = ((doc.properties as NSDictionary).valueForKey("frequency") as Int)
+        self.databaseName = dbName
     }
     
 }

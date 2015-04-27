@@ -24,32 +24,13 @@ class DatabaseHelper{
     init(){
         
     }
-    
-//    func queryTextInput(text:String) -> [Entity]{
+
     func queryTextInput(text:String) -> [DummyEntity]{
         var starttime = NSDate().timeIntervalSince1970
         
-        var inputText = text//textAddingSearchFunction(text)
-        //println(inputText)
-        
-        //var output_array:[Entity] = []
+        var inputText = textAddingSearchFunction(text)
+
         var output_array:[DummyEntity] = []
-        
-//        if countElements(inputText) < 10 {
-//            for var size = countElements(inputText) ; size < 10 ; size++ {
-//                var results = DatabaseInterface.sharedInstance.queryWordinJMDict(inputText, size: size)
-//                var wordList = CBLQueryEnumeratorToJMEntity(results, text: text)
-//                output_array = output_array + wordList
-//                if (output_array.count > 50) {
-//                    break
-//                }
-//            }
-//        }
-//        else {
-//            var results = DatabaseInterface.sharedInstance.queryWordinJMDict(inputText, size: countElements(inputText))
-//            var wordList = CBLQueryEnumeratorToJMEntity(results, text: text)
-//            output_array = output_array + wordList
-//        }
         
         var results = DatabaseInterface.sharedInstance.queryWordinJMDict(inputText, size: countElements(inputText))
         
@@ -58,17 +39,17 @@ class DatabaseHelper{
         var wordList = CBLQueryEnumeratorToJMEntity(results, text: text)
         output_array = output_array + wordList
     
-//        println(results.count)
-//        println(wordList.count)
         
         var endtime = NSDate().timeIntervalSince1970
-        //println("DatabaseInterface.sharedInstance.queryWordinJMDict Duration : \(mid-starttime) Seconds")
-        println("CBLQueryEnumeratorToJMEntity Duration : \(endtime-mid) Seconds")
+        //println("CBLQueryEnumeratorToJMEntity Duration : \(endtime-mid) Seconds")
         println("queryTextInput(text:String) Duration : \(endtime-starttime) Seconds")
         
-        for var i = 0 ; i < output_array.count ; i++ {
-            //println((output_array[i] as JMDictEntity).unique_id)
-        }
+//        for var i = 0 ; i < output_array.count ; i++ {
+//            var doc = (output_array[i] as DummyEntity).doc
+//            var k_ele = (doc!.properties as NSDictionary)["k_ele"]
+//            var str = Utility.nsobjectToString(k_ele!)
+//            println("\((output_array[i] as DummyEntity).frequency) \(str)")
+//        }
         
         return output_array
     }
@@ -77,30 +58,26 @@ class DatabaseHelper{
         return text + "*"
     }
     
-    //func CBLQueryEnumeratorToJMEntity(queryLists:CBLQueryEnumerator, text:String) -> [JMDictEntity]{
     func CBLQueryEnumeratorToJMEntity(queryLists:CBLQueryEnumerator, text:String) -> [DummyEntity]{
         var starttime = NSDate().timeIntervalSince1970
         var output:[DummyEntity] = []
-        //var output:[JMDictEntity] = []
-        
+
         while let row = queryLists.nextRow() {
-            //var jmDict = JMDictEntity(row: row)
-            var jmDict = DummyEntity(row: row)
+            var jmDict = DummyEntity(row: row, dbName:DatabaseInterface.DatabaseName.JMDICT)
             output.append(jmDict)
         }
         
         var mid = NSDate().timeIntervalSince1970
         output.sort({
-            //(a:JMDictEntity,b:JMDictEntity)-> Bool in
             (a:DummyEntity,b:DummyEntity)-> Bool in
             
-            return a.unique_id < b.unique_id
+            return a.frequency > b.frequency
         })
         var endtime = NSDate().timeIntervalSince1970
         
-        println("JMDictEntity Duration : \(mid-starttime) Seconds")
-        println("output.sort Duration : \(endtime-mid) Seconds")
-        
+//        println("DummayEntity Duration : \(mid-starttime) Seconds")
+//        println("output.sort Duration : \(endtime-mid) Seconds")
+//        
         return output
         
     }

@@ -113,6 +113,8 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         menuButton.pop_addAnimation(menuButtonAnimation, forKey: "menuButtonScaleTouch")
     }
     
+    // MARK: - Search Area Touch
+    
     /*
         Search area touchup indeside 
         Animation tranform to search view
@@ -254,6 +256,8 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    // MARK: - Menu Section
+    
     @IBAction func menuPressAction(sender: AnyObject) {
         
         if isMenuButtonPressed {
@@ -292,6 +296,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         self.flipFlashcard()
     }
     
+    // MARK: - Card Animation Factory
     
     func flipFlashcard() {
         
@@ -396,6 +401,8 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         Search View section
     */
     
+    // MARK: - SearchView
+    
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewContainer: UIView!
@@ -462,6 +469,8 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         searchTextField.resignFirstResponder()
     }
     
+    // MARK: - Animation Factory
+    
     func scaleToComponent(component:UIView, scaleTo:CGFloat){
         var scaleAnimation = scaleAnimaionFactory("scaleAnimation", toValue:scaleTo, animatedTarget: component)
         component.pop_addAnimation(scaleAnimation, forKey: "scaleAnimation")
@@ -505,9 +514,10 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         return fade!
     }
     
+    // MARK: - UITableView
     // ============================= Start Table Sectionnnnnnnnn ============================= //
     
-    var cellsEntity = [Entity]()
+    var cellsEntity = [DummyEntity]()
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -519,27 +529,62 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 76.0
+
+        return 76
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(entityCellIdentifier, forIndexPath: indexPath) as SearchResultEntityCell
         
         let row = indexPath.row
-        //println(row)
-        //cell.setComponentExample("\(row)")
-        cell.setComponentFromEntity(cellsEntity[row], text: searchTextField.text)
-        
-        
+        cell.cellEntityFromDummyEntity(cellsEntity[row], text: searchTextField.text)
+
         return cell
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let row = indexPath.row
+        println("View Appear \(row)")
+        //cell.contentView.layer.anchorPoint = CGPointMake(cell.center.x, 0)
+        //cell.contentView.transform = CGAffineTransformMakeScale(1, 0.5)
+        (cell as SearchResultEntityCell).viewContainer.transform = CGAffineTransformMakeScale(1, 0.5)
+        //setCellHeight(cell.contentView, scaleTo: 76.0)
+        
     }
     
     func endUpdates() {
         println("endUpdates")
     }
     
+    // MARK: - Table Cell Animation Factory
+    func setCellHeight(component:UIView, scaleTo:CGFloat){
+        var scaleAnimation = scaleYAnimaionFactory("scaleYAnimation", toValue:scaleTo, animatedTarget: component)
+        component.pop_addAnimation(scaleAnimation, forKey: "scaleYAnimation")
+    }
+    
+    func scaleYAnimaionFactory(name:String, toValue:CGFloat, animatedTarget:UIView) -> POPSpringAnimation {
+        var scaleY: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
+        
+        if (scaleY != nil) {
+            //println("Not new \(toValue)")
+            scaleY!.toValue = NSValue(CGRect: CGRectMake(0, 0, 375, toValue ))
+        }
+        else {
+            //println("New \(toValue)")
+            scaleY = POPSpringAnimation(propertyNamed: kPOPLayerBounds)
+            scaleY!.toValue = NSValue(CGRect: CGRectMake(0, 0, 375, toValue ))
+            scaleY!.springBounciness = 10.0
+            scaleY!.springSpeed = 1.0
+            //view.pop_addAnimation(scaleXY, forKey: name)
+        }
+        
+        return scaleY!
+    }
+    
     // ----------------------------- End Table Sectionnnnnnnnn ----------------------------- //
     
+    // MARK: - SearchTextField Processing
     // ============================= Start Search Text field Section ============================= //
     var mem_Text = ""
     var ENTITY_KEY = "ENTITY_KEY"
@@ -558,7 +603,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
             var result = self.searchProcessing(inputText)
             dispatch_async(dispatch_get_main_queue()) { // 2
                 if result.valueForKey(self.INPUTTEXT_KEY) as String == self.mem_Text {
-                    self.cellsEntity = result.valueForKey(self.ENTITY_KEY) as [Entity]
+                    self.cellsEntity = result.valueForKey(self.ENTITY_KEY) as [DummyEntity]
                     println("Reload Data")
                     self.tableView.reloadData()
                 }
@@ -585,6 +630,9 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         return true
     }
     
+    @IBAction func searchShowOnTouch(sender: UIButton) {
+        searchTextField.becomeFirstResponder()
+    }
     // ----------------------------- End Search Text field Section ----------------------------- //
     
 }

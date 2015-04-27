@@ -24,6 +24,7 @@ class Entity {
     
     var japaneseEntity:String
     var englishEntity:String
+    var readingEntity:String
     var databaseName:DatabaseInterface.DatabaseName
     var tableCellEntityType:SearchResultEntityCell.CellEntityType
     var lastseen:String
@@ -31,6 +32,7 @@ class Entity {
     init(){
         self.japaneseEntity = ""
         self.englishEntity = ""
+        self.readingEntity = ""
         self.databaseName = DatabaseInterface.DatabaseName.JMDICT
         self.tableCellEntityType = SearchResultEntityCell.CellEntityType.OTHER
         self.lastseen = ""//NSDate(dateString:"2015-04-01")
@@ -39,6 +41,7 @@ class Entity {
     init(jpEntity:String, engEntity:String, dbName:DatabaseInterface.DatabaseName, cellEntityType:SearchResultEntityCell.CellEntityType, last_seen:String){
         self.japaneseEntity = jpEntity;
         self.englishEntity = engEntity;
+        self.readingEntity = ""
         self.databaseName = dbName
         self.tableCellEntityType = cellEntityType
         self.lastseen = last_seen

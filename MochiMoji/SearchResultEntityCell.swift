@@ -37,6 +37,11 @@ class SearchResultEntityCell: UITableViewCell {
         
     }
     
+    @IBOutlet weak var cellContainer: UIView!
+    @IBOutlet weak var viewContainer: UIView!
+    
+    var entity:Entity?
+    
     @IBOutlet weak var japaneseEntityLabel: UILabel!
     @IBOutlet weak var englishEntityLabel: UILabel!
     @IBOutlet weak var entityTypeLabel: UILabel!
@@ -65,13 +70,34 @@ class SearchResultEntityCell: UITableViewCell {
 
     }
     
+    func cellEntityFromDummyEntity(entity:DummyEntity, text:String){
+        self.entity = JMDictEntity(entity: entity)
+        cellEntityFromJMDict(self.entity as JMDictEntity, text: text)
+    }
+    
     func cellEntityFromJMDict(entity:JMDictEntity, text:String){
         
         assignJapaneseEntityFromJMDict(entity, text: text)
-        println(self.japaneseEntityLabel.text)
         englishEntityLabel.text = entity.englishEntity
-        
         assignPartOfSpeechFromJMDict(entity)
+        assignReadingFromJMDict(entity)
+        
+    }
+    
+    func assignReadingFromJMDict(entity:JMDictEntity){
+        var read_out = ""
+        var readingList = entity.readingEntityList
+        for var i = 0 ; i < readingList.count ; i++ {
+            var read = (readingList[i] as NSDictionary)
+            var str = read["reb"] as String
+            read_out = read_out + str
+            if i != (readingList.count-1) {
+                read_out = read_out + ", "
+            }
+        }
+        
+        self.readingLabel.text = read_out
+        
     }
     
     func assignPartOfSpeechFromJMDict(entity:JMDictEntity){
