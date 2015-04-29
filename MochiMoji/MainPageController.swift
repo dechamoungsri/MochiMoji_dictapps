@@ -545,12 +545,37 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         
         let row = indexPath.row
-        println("View Appear \(row)")
-        //cell.contentView.layer.anchorPoint = CGPointMake(cell.center.x, 0)
-        //cell.contentView.transform = CGAffineTransformMakeScale(1, 0.5)
-        (cell as SearchResultEntityCell).viewContainer.transform = CGAffineTransformMakeScale(1, 0.5)
-        //setCellHeight(cell.contentView, scaleTo: 76.0)
         
+        let height_cell = cell.contentView.frame.size.height
+        
+        println("View Appear \(row) \(height_cell)")
+        var animatedTarget = (cell as SearchResultEntityCell).viewContainer
+        animatedTarget.transform = CGAffineTransformMakeScale(1.0, 0.001)
+        
+        println("\(animatedTarget.center.y)")
+        
+        animatedTarget.center.y = 0
+        
+        setCellScaleY(animatedTarget,scaleTo: 1.0)
+        //setCelltranslationY(animatedTarget, translateTo: 38)
+    }
+    
+    func setAnchorPoint(anchorPoint: CGPoint, forView view: UIView) {
+        var newPoint = CGPointMake(view.bounds.size.width * anchorPoint.x, view.bounds.size.height * anchorPoint.y)
+        var oldPoint = CGPointMake(view.bounds.size.width * view.layer.anchorPoint.x, view.bounds.size.height * view.layer.anchorPoint.y)
+        
+        newPoint = CGPointApplyAffineTransform(newPoint, view.transform)
+        oldPoint = CGPointApplyAffineTransform(oldPoint, view.transform)
+        
+        var position = view.layer.position
+        position.x -= oldPoint.x
+        position.x += newPoint.x
+        
+        position.y -= oldPoint.y
+        position.y += newPoint.y
+        
+        view.layer.position = position
+        view.layer.anchorPoint = anchorPoint
     }
     
     func endUpdates() {
@@ -558,7 +583,8 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     // MARK: - Table Cell Animation Factory
-    func setCellHeight(component:UIView, scaleTo:CGFloat){
+    
+    func setCellScaleY(component:UIView, scaleTo:CGFloat){
         var scaleAnimation = scaleYAnimaionFactory("scaleYAnimation", toValue:scaleTo, animatedTarget: component)
         component.pop_addAnimation(scaleAnimation, forKey: "scaleYAnimation")
     }
@@ -568,12 +594,61 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if (scaleY != nil) {
             //println("Not new \(toValue)")
-            scaleY!.toValue = NSValue(CGRect: CGRectMake(0, 0, 375, toValue ))
+            scaleY!.toValue = toValue
         }
         else {
             //println("New \(toValue)")
-            scaleY = POPSpringAnimation(propertyNamed: kPOPLayerBounds)
-            scaleY!.toValue = NSValue(CGRect: CGRectMake(0, 0, 375, toValue ))
+            scaleY = POPSpringAnimation(propertyNamed: kPOPViewScaleY)
+            scaleY!.toValue = toValue
+            scaleY!.springBounciness = 10.0
+            scaleY!.springSpeed = 1.0
+            //view.pop_addAnimation(scaleXY, forKey: name)
+        }
+        
+        return scaleY!
+    }
+    
+    func setCelltranslationY(component:UIView, translateTo:CGFloat){
+        var scaleAnimation = translationYAnimationFactory("translationYAnimation", toValue:translateTo, animatedTarget: component)
+        component.pop_addAnimation(scaleAnimation, forKey: "translationYAnimation")
+    }
+    
+    func translationYAnimationFactory(name:String, toValue:CGFloat, animatedTarget:UIView) -> POPSpringAnimation {
+        var tanslationY: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
+        
+        if (tanslationY != nil) {
+            //println("Not new \(toValue)")
+            tanslationY!.toValue = NSValue(CGPoint: CGPointMake(animatedTarget.center.x, toValue))
+        }
+        else {
+            //println("New \(toValue)")
+            tanslationY = POPSpringAnimation(propertyNamed: kPOPViewCenter)
+            tanslationY!.toValue = NSValue(CGPoint: CGPointMake(animatedTarget.center.x, toValue))
+            tanslationY!.springBounciness = 10.0
+            tanslationY!.springSpeed = 1.0
+            //view.pop_addAnimation(scaleXY, forKey: name)
+        }
+        
+        return tanslationY!
+    }
+    
+    
+    func setCellHeight(component:UIView, sizeTo:CGFloat){
+        var heightAnimation = setHeightAnimaionFactory("heightAnimation", toValue:sizeTo, animatedTarget: component)
+        component.pop_addAnimation(heightAnimation, forKey: "heightAnimation")
+    }
+    
+    func setHeightAnimaionFactory(name:String, toValue:CGFloat, animatedTarget:UIView) -> POPSpringAnimation {
+        var scaleY: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
+        
+        if (scaleY != nil) {
+            //println("Not new \(toValue)")
+            scaleY!.toValue = toValue
+        }
+        else {
+            //println("New \(toValue)")
+            scaleY = POPSpringAnimation(propertyNamed: kPOPViewSize)
+            scaleY!.toValue = toValue
             scaleY!.springBounciness = 10.0
             scaleY!.springSpeed = 1.0
             //view.pop_addAnimation(scaleXY, forKey: name)
