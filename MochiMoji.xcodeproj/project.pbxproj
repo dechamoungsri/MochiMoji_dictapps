@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		897FD41369A0167F00F1A6A6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 763DAF4BC3171D37A88242DD /* libPods.a */; };
 		BE1B667E1AE9D1D10041D065 /* DummyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1B667D1AE9D1D10041D065 /* DummyEntity.swift */; };
+		BE3238D01AF4AB970096A7F9 /* jmdict-30-4-2015-view.cblite in Resources */ = {isa = PBXBuildFile; fileRef = BE3238CF1AF4AB970096A7F9 /* jmdict-30-4-2015-view.cblite */; };
 		BE51929A1A96DDE300F19BEA /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE51927F1A96DDE300F19BEA /* BlurView.swift */; };
 		BE51929B1A96DDE300F19BEA /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5192801A96DDE300F19BEA /* DesignableButton.swift */; };
 		BE51929C1A96DDE300F19BEA /* DesignableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5192811A96DDE300F19BEA /* DesignableImageView.swift */; };
@@ -59,7 +60,6 @@
 		BED2270A1ADA5F7D000C0E88 /* JMDictEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED227091ADA5F7D000C0E88 /* JMDictEntity.swift */; };
 		BED711361ACF92B30013E891 /* Main_fixed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED711351ACF92B30013E891 /* Main_fixed.storyboard */; };
 		BEEA15E21A765CD200C76F9F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEA15E11A765CD200C76F9F /* SearchViewController.swift */; };
-		BEFB3ECC1AED0722004FEC9D /* jmdict-27-4-2015-full.cblite in Resources */ = {isa = PBXBuildFile; fileRef = BEFB3ECB1AED0722004FEC9D /* jmdict-27-4-2015-full.cblite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +90,7 @@
 		763DAF4BC3171D37A88242DD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E55323F697205746F1FD91E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		BE1B667D1AE9D1D10041D065 /* DummyEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyEntity.swift; sourceTree = "<group>"; };
+		BE3238CF1AF4AB970096A7F9 /* jmdict-30-4-2015-view.cblite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "jmdict-30-4-2015-view.cblite"; sourceTree = "<group>"; };
 		BE51927F1A96DDE300F19BEA /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		BE5192801A96DDE300F19BEA /* DesignableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
 		BE5192811A96DDE300F19BEA /* DesignableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableImageView.swift; sourceTree = "<group>"; };
@@ -146,7 +147,6 @@
 		BED227091ADA5F7D000C0E88 /* JMDictEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMDictEntity.swift; sourceTree = "<group>"; };
 		BED711351ACF92B30013E891 /* Main_fixed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_fixed.storyboard; sourceTree = "<group>"; };
 		BEEA15E11A765CD200C76F9F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		BEFB3ECB1AED0722004FEC9D /* jmdict-27-4-2015-full.cblite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "jmdict-27-4-2015-full.cblite"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +234,7 @@
 		BE7C99C41A74A5C7007E65AD = {
 			isa = PBXGroup;
 			children = (
+				BE3238CF1AF4AB970096A7F9 /* jmdict-30-4-2015-view.cblite */,
 				BE7C99CF1A74A5C7007E65AD /* MochiMoji */,
 				BE7C99E51A74A5C8007E65AD /* MochiMojiTests */,
 				BE7C99CE1A74A5C7007E65AD /* Products */,
@@ -318,7 +319,6 @@
 		BEC117B01AD4DC1000FB5457 /* CouchbaseLite */ = {
 			isa = PBXGroup;
 			children = (
-				BEFB3ECB1AED0722004FEC9D /* jmdict-27-4-2015-full.cblite */,
 				BEC117B11AD4DC1000FB5457 /* jmdict attachments */,
 			);
 			name = CouchbaseLite;
@@ -462,6 +462,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE3238D01AF4AB970096A7F9 /* jmdict-30-4-2015-view.cblite in Resources */,
 				BED226F71AD637DA000C0E88 /* SearchResultEntityCell.xib in Resources */,
 				BE5192A31A96DDE300F19BEA /* Info.plist in Resources */,
 				BE87F7D51A74DC7400267E85 /* TestCardView.xib in Resources */,
@@ -471,7 +472,6 @@
 				BED226F91AD63A94000C0E88 /* NotoSansCJKjp-Regular.otf in Resources */,
 				BED711361ACF92B30013E891 /* Main_fixed.storyboard in Resources */,
 				BE5192A61A96DDE300F19BEA /* LoadingView.xib in Resources */,
-				BEFB3ECC1AED0722004FEC9D /* jmdict-27-4-2015-full.cblite in Resources */,
 				BE7C99DA1A74A5C8007E65AD /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

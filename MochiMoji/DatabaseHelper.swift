@@ -30,15 +30,16 @@ class DatabaseHelper{
         
         var inputText = textAddingSearchFunction(text)
 
+        var viewName = getViewNameForJMDict(text)
+        
         var output_array:[DummyEntity] = []
         
-        var results = DatabaseInterface.sharedInstance.queryWordinJMDict(inputText, size: countElements(inputText))
+        var results = DatabaseInterface.sharedInstance.queryWordinJMDict(inputText, viewName: viewName)
         
         var mid = NSDate().timeIntervalSince1970
         
         var wordList = CBLQueryEnumeratorToJMEntity(results, text: text)
         output_array = output_array + wordList
-    
         
         var endtime = NSDate().timeIntervalSince1970
         //println("CBLQueryEnumeratorToJMEntity Duration : \(endtime-mid) Seconds")
@@ -46,16 +47,36 @@ class DatabaseHelper{
         
 //        for var i = 0 ; i < output_array.count ; i++ {
 //            var doc = (output_array[i] as DummyEntity).doc
-//            var k_ele = (doc!.properties as NSDictionary)["k_ele"]
-//            var str = Utility.nsobjectToString(k_ele!)
+//            
+//            var str = Utility.nsobjectToString(doc!.properties)
 //            println("\((output_array[i] as DummyEntity).frequency) \(str)")
+//
 //        }
         
         return output_array
     }
     
+    func getViewNameForJMDict(text:String) -> DatabaseInterface.JMDictViewName {
+        
+        for tempChar in text.unicodeScalars {
+            if !tempChar.isASCII() {
+                return DatabaseInterface.JMDictViewName.KANJI_VIEW
+            }
+        }
+        
+        return DatabaseInterface.JMDictViewName.ENGLISH_VIEW
+    }
+    
     func textAddingSearchFunction(text:String) -> String{
-        return text + "*"
+        
+        for tempChar in text.unicodeScalars {
+            if !tempChar.isASCII() {
+                return text + "*"
+            }
+        }
+        
+        return text
+        
     }
     
     func CBLQueryEnumeratorToJMEntity(queryLists:CBLQueryEnumerator, text:String) -> [DummyEntity]{

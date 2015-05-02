@@ -14,6 +14,8 @@ class DummyEntity {
     let frequency: Int
     let databaseName:DatabaseInterface.DatabaseName
     
+    var isShow = false
+    
     init(){
         self.doc = nil
         self.frequency = 0
@@ -27,6 +29,10 @@ class DummyEntity {
         self.doc = doc
         self.frequency = ((doc.properties as NSDictionary).valueForKey("frequency") as Int)
         self.databaseName = dbName
+    }
+    
+    func showed() {
+        isShow = true
     }
     
 }

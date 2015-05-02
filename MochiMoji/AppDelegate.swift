@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func databaseConnection() {
         
-        var dbname = "jmdict-27-4-2015-full"
+        var dbname = DatabaseInterface.DatabaseStringName.JMDICT.rawValue
         
         let dbManager = CBLManager.sharedInstance()
         var error :NSError?

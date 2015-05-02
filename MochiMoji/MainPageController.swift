@@ -530,7 +530,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 
-        return 76
+        return 72
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -538,7 +538,9 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let row = indexPath.row
         cell.cellEntityFromDummyEntity(cellsEntity[row], text: searchTextField.text)
-
+        
+        //println("cellForRowAtIndexPath \(row)")
+        
         return cell
     }
     
@@ -546,38 +548,44 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let row = indexPath.row
         
-        let height_cell = cell.contentView.frame.size.height
+        //println("View Appear \(row) ")
         
-        println("View Appear \(row) \(height_cell)")
-        var animatedTarget = (cell as SearchResultEntityCell).viewContainer
-        animatedTarget.transform = CGAffineTransformMakeScale(1.0, 0.001)
+        //println("TableView content size : \(tableView.contentSize)")
         
-        println("\(animatedTarget.center.y)")
+        if !cellsEntity[row].isShow {
+            var animatedTarget = (cell as SearchResultEntityCell).dummyView
+            animatedTarget.transform = CGAffineTransformMakeScale(1.0, 0.001)
+            
+            //let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( getDelay() * cellDelayTime * Double(NSEC_PER_SEC)))
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( 1 * cellDelayTime * Double(NSEC_PER_SEC)))
+            dispatch_after(delayTime, dispatch_get_main_queue()) {
+                self.setCellScaleY(animatedTarget,scaleTo: 1.0)
+            }
+            pushDelayStack()
+            
+            cellsEntity[row].showed()
+            
+        }
         
-        animatedTarget.center.y = 0
-        
-        setCellScaleY(animatedTarget,scaleTo: 1.0)
-        //setCelltranslationY(animatedTarget, translateTo: 38)
     }
     
-    func setAnchorPoint(anchorPoint: CGPoint, forView view: UIView) {
-        var newPoint = CGPointMake(view.bounds.size.width * anchorPoint.x, view.bounds.size.height * anchorPoint.y)
-        var oldPoint = CGPointMake(view.bounds.size.width * view.layer.anchorPoint.x, view.bounds.size.height * view.layer.anchorPoint.y)
-        
-        newPoint = CGPointApplyAffineTransform(newPoint, view.transform)
-        oldPoint = CGPointApplyAffineTransform(oldPoint, view.transform)
-        
-        var position = view.layer.position
-        position.x -= oldPoint.x
-        position.x += newPoint.x
-        
-        position.y -= oldPoint.y
-        position.y += newPoint.y
-        
-        view.layer.position = position
-        view.layer.anchorPoint = anchorPoint
+    var stack:Double = 0.0
+    let cellDelayTime:Double = 0.05
+    func getDelay() -> Double {
+        return stack
     }
     
+    func pushDelayStack() {
+        stack+=1
+    }
+    
+    func popDelayStack() {
+        stack-=1
+        if stack < 0 {
+            stack = 0
+        }
+    }
+
     func endUpdates() {
         println("endUpdates")
     }
@@ -586,6 +594,9 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func setCellScaleY(component:UIView, scaleTo:CGFloat){
         var scaleAnimation = scaleYAnimaionFactory("scaleYAnimation", toValue:scaleTo, animatedTarget: component)
+        scaleAnimation.completionBlock = {(animation, finished) in
+            self.popDelayStack()
+        }
         component.pop_addAnimation(scaleAnimation, forKey: "scaleYAnimation")
     }
     
@@ -601,7 +612,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
             scaleY = POPSpringAnimation(propertyNamed: kPOPViewScaleY)
             scaleY!.toValue = toValue
             scaleY!.springBounciness = 10.0
-            scaleY!.springSpeed = 1.0
+            scaleY!.springSpeed = 10.0
             //view.pop_addAnimation(scaleXY, forKey: name)
         }
         
@@ -639,22 +650,22 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func setHeightAnimaionFactory(name:String, toValue:CGFloat, animatedTarget:UIView) -> POPSpringAnimation {
-        var scaleY: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
+        var height: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
         
-        if (scaleY != nil) {
+        if (height != nil) {
             //println("Not new \(toValue)")
-            scaleY!.toValue = toValue
+            height!.toValue = toValue
         }
         else {
             //println("New \(toValue)")
-            scaleY = POPSpringAnimation(propertyNamed: kPOPViewSize)
-            scaleY!.toValue = toValue
-            scaleY!.springBounciness = 10.0
-            scaleY!.springSpeed = 1.0
+            height = POPSpringAnimation(propertyNamed: kPOPViewSize)
+            height!.toValue = toValue
+            height!.springBounciness = 10.0
+            height!.springSpeed = 1.0
             //view.pop_addAnimation(scaleXY, forKey: name)
         }
         
-        return scaleY!
+        return height!
     }
     
     // ----------------------------- End Table Sectionnnnnnnnn ----------------------------- //
@@ -671,6 +682,10 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
             return
         }
         
+        if mem_Text == inputText {
+            return
+        }
+        
         println("Search Input text is : \(inputText)")
         
         mem_Text = inputText
@@ -681,6 +696,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.cellsEntity = result.valueForKey(self.ENTITY_KEY) as [DummyEntity]
                     println("Reload Data")
                     self.tableView.reloadData()
+                    self.stack = 0.0
                 }
             }
         }

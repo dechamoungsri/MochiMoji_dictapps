@@ -39,6 +39,7 @@ class SearchResultEntityCell: UITableViewCell {
     
     @IBOutlet weak var cellContainer: UIView!
     @IBOutlet weak var viewContainer: UIView!
+    @IBOutlet weak var dummyView: UIView!
     
     var entity:Entity?
     
@@ -61,6 +62,10 @@ class SearchResultEntityCell: UITableViewCell {
     }
     
     func setComponentFromEntity(entity:Entity, text:String){
+        japaneseEntityLabel.text = ""
+        englishEntityLabel.text = ""
+        readingLabel.text = ""
+        lastseenLabel.text = ""
         switch entity.databaseName {
         case DatabaseInterface.DatabaseName.JMDICT:
             cellEntityFromJMDict(entity as JMDictEntity,text: text)
@@ -71,6 +76,10 @@ class SearchResultEntityCell: UITableViewCell {
     }
     
     func cellEntityFromDummyEntity(entity:DummyEntity, text:String){
+        japaneseEntityLabel.text = ""
+        englishEntityLabel.text = ""
+        readingLabel.text = ""
+        lastseenLabel.text = ""
         self.entity = JMDictEntity(entity: entity)
         cellEntityFromJMDict(self.entity as JMDictEntity, text: text)
     }
@@ -175,9 +184,14 @@ class SearchResultEntityCell: UITableViewCell {
     }
     
     func assignJapaneseEntityFromJMDict(entity:JMDictEntity, text:String) {
-        japaneseEntityLabel.text = entity.japaneseEntityList[0]["keb"] as? String
+        
         for var i = 0; i < entity.japaneseEntityList.count ; i++ {
             var kanji = entity.japaneseEntityList[i]["keb"] as String
+            
+            if i == 0 {
+                japaneseEntityLabel.text = kanji
+            }
+            
             if let hasPrefix = kanji.hasPrefix(text) as Bool? {
                 if hasPrefix {
                     japaneseEntityLabel.text = entity.japaneseEntityList[i]["keb"] as? String
