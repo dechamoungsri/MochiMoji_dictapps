@@ -37,6 +37,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     var flashCardCenter : CGPoint!
     
     var screenWidth:CGFloat = UIScreen.mainScreen().bounds.size.width
+    var screenHeight:CGFloat = UIScreen.mainScreen().bounds.size.height
     
     let entityCellIdentifier = "searchResultEntittyCellidentifier"
     
@@ -403,6 +404,8 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // MARK: - SearchView
     
+    // MARK: - SearchView IBOUTLET
+    
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewContainer: UIView!
@@ -548,20 +551,49 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let row = indexPath.row
         
-        //println("View Appear \(row) ")
+//        println("View Appear Row \(row) ")
         
         //println("TableView content size : \(tableView.contentSize)")
         
+        var frame = tableViewContainer.frame
+        var cell_height = cell.frame.height
+//        
+//        println("Frame \(frame) \(cell_height)")
+//        
+        var lastFirstShowedCell:Int = Int( frame.size.height / cell_height ) + 1
+//        
+//        println("Last First Cell \(lastFirstShowedCell)")
+        
         if !cellsEntity[row].isShow {
             var animatedTarget = (cell as SearchResultEntityCell).dummyView
+            var shadow = (cell as SearchResultEntityCell).shadowView
             animatedTarget.transform = CGAffineTransformMakeScale(1.0, 0.001)
+            shadow.alpha = 0.2
             
-            //let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( getDelay() * cellDelayTime * Double(NSEC_PER_SEC)))
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( 1 * cellDelayTime * Double(NSEC_PER_SEC)))
-            dispatch_after(delayTime, dispatch_get_main_queue()) {
-                self.setCellScaleY(animatedTarget,scaleTo: 1.0)
+            if row < lastFirstShowedCell {
+            
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( getDelay() * cellDelayTime * Double(NSEC_PER_SEC)))
+                
+                pushDelayStack()
+                
+                //let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( 1 * cellDelayTime * Double(NSEC_PER_SEC)))
+                dispatch_after(delayTime, dispatch_get_main_queue()) {
+                    self.setCellScaleY(animatedTarget,scaleTo: 1.0)
+                    
+                    UIView.animateWithDuration(0.3, animations: {
+                        shadow.alpha = 0.0
+                    }, completion: nil)
+                    
+                }
+                
             }
-            pushDelayStack()
+            else {
+                self.setCellScaleY(animatedTarget,scaleTo: 1.0)
+                UIView.animateWithDuration(0.3, animations: {
+                    shadow.alpha = 0.0
+                    }, completion: nil)
+                //self.fadeToComponent(animatedTarget, fadeTo: 1.0)
+            }
             
             cellsEntity[row].showed()
             
@@ -570,7 +602,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     var stack:Double = 0.0
-    let cellDelayTime:Double = 0.05
+    let cellDelayTime:Double = 0.075
     func getDelay() -> Double {
         return stack
     }
@@ -585,9 +617,11 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
             stack = 0
         }
     }
-
-    func endUpdates() {
-        println("endUpdates")
+    
+    // MARK: - Table Scroll Delegate
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        searchTextField.resignFirstResponder()
     }
     
     // MARK: - Table Cell Animation Factory
@@ -716,7 +750,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // On press search button
     func textFieldShouldReturn(textField: UITextField!) -> Bool {   //delegate method
-        println("Resign call")
+        //println("Resign call")
         textField.resignFirstResponder()
         return true
     }

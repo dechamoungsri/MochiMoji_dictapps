@@ -61,6 +61,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        DatabaseInterface.sharedInstance.reEmitWordView(database)
+        
+        DatabaseHelper.sharedInstance.queryTextInput("drink")
         DatabaseHelper.sharedInstance.queryTextInput("食")
         
 //        DatabaseInterface.sharedInstance

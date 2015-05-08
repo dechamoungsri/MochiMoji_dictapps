@@ -83,22 +83,28 @@ class DatabaseHelper{
         var starttime = NSDate().timeIntervalSince1970
         var output:[DummyEntity] = []
 
+        println("queryLists \(queryLists.count)")
+//        
         while let row = queryLists.nextRow() {
             var jmDict = DummyEntity(row: row, dbName:DatabaseInterface.DatabaseName.JMDICT)
+//            if (find(output, jmDict) == nil){
+//                
+//            }
             output.append(jmDict)
         }
         
+//        println("queryLists Removed \(output.count)")
+//        
         var mid = NSDate().timeIntervalSince1970
         output.sort({
             (a:DummyEntity,b:DummyEntity)-> Bool in
-            
             return a.frequency > b.frequency
         })
         var endtime = NSDate().timeIntervalSince1970
         
-//        println("DummayEntity Duration : \(mid-starttime) Seconds")
-//        println("output.sort Duration : \(endtime-mid) Seconds")
-//        
+        println("DummayEntity Duration : \(mid-starttime) Seconds")
+        println("output.sort Duration : \(endtime-mid) Seconds")
+//
         return output
         
     }

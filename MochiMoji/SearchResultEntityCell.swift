@@ -40,6 +40,7 @@ class SearchResultEntityCell: UITableViewCell {
     @IBOutlet weak var cellContainer: UIView!
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var dummyView: UIView!
+    @IBOutlet weak var shadowView: UIView!
     
     var entity:Entity?
     
