@@ -76,6 +76,8 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewWillAppear(animated: Bool) {
         //println("viewWillAppear")
+        let stackSize = self.navigationController?.viewControllers.count
+        println("Stack Size : \(stackSize)")
         super.viewWillAppear(animated)
     }
 
@@ -126,6 +128,10 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func searchAreaTouchUpInside(sender: UIButton) {
         //println("Touch Up")
         //finish_check_list = []
+        
+        if animationCell != nil {
+            animationCell?.removeFromSuperview()
+        }
         
         // Dictionary Textfield Scale Up animation
         var searchTextFieldAnimation = touchDownPopSpringAnimationGenerate("searchTextFieldScaleTouch", toValue:1.0, animatedTarget: searchTextField)
@@ -522,6 +528,14 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var cellsEntity = [DummyEntity]()
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let row = indexPath.row
+        println("didSelectRowAtIndexPath \(row)")
+        searchTextField.resignFirstResponder()
+        wordControllerAnimation(tableView.cellForRowAtIndexPath(indexPath) as SearchResultEntityCell, indexPath:indexPath)
+
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -702,6 +716,8 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         return height!
     }
     
+    
+    
     // ----------------------------- End Table Sectionnnnnnnnn ----------------------------- //
     
     // MARK: - SearchTextField Processing
@@ -729,6 +745,11 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
                 if result.valueForKey(self.INPUTTEXT_KEY) as String == self.mem_Text {
                     self.cellsEntity = result.valueForKey(self.ENTITY_KEY) as [DummyEntity]
                     println("Reload Data")
+                    
+                    if self.animationCell != nil {
+                        self.animationCell?.removeFromSuperview()
+                    }
+                    
                     self.tableView.reloadData()
                     self.stack = 0.0
                 }
@@ -759,6 +780,73 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         searchTextField.becomeFirstResponder()
     }
     // ----------------------------- End Search Text field Section ----------------------------- //
+    
+    // MARK: - Word Controller Push
+    
+    var animationCell:UICellForAnimationView?
+    
+    func wordControllerAnimation(row:SearchResultEntityCell, indexPath: NSIndexPath){
+        
+        var bounce = CGFloat(5.0)
+        var speed = CGFloat(1.0)
+        
+        // Cell enlarge Animation
+        
+        let rowContainer = row.viewContainer
+        
+        let cellFrame = tableView.rectForRowAtIndexPath(indexPath)
+        var cellRectInTable = tableView.convertRect(cellFrame, toView: tableView.superview)
+        
+        cellRectInTable.origin.y = cellRectInTable.origin.y + topview.frame.height
+        
+        if animationCell == nil {
+            animationCell = UIView.loadFromNibNamed("TableCellForAnimationView") as? UICellForAnimationView
+        }
+        
+        animationCell?.frame = cellRectInTable
+        animationCell?.layer.zPosition = CGFloat(MAXFLOAT);
+        self.view.addSubview(animationCell!)
+        
+        var rowFrameSizeAnimation = frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(0, topview.frame.height, tableViewContainer.frame.width, tableViewContainer.frame.height)), animatedTarget:rowContainer , bounce: bounce, speed: speed)
+        rowFrameSizeAnimation.completionBlock = {(animation, finished) in
+            let controller = self.storyboard?.instantiateViewControllerWithIdentifier("WordViewController") as UIViewController
+            self.navigationController?.pushViewController(controller, animated: false)
+        }
+        animationCell?.pop_addAnimation(rowFrameSizeAnimation, forKey: "FrameSizeAnimation")
+        
+        UIView.animateWithDuration(0.1, animations: {
+            
+            self.animationCell!.container.alpha = 0
+            
+        }, completion: nil)
+        
+        var topviewSizeAnimation = frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(topview.frame.origin.x, topview.frame.origin.y, topview.frame.width, 20)), animatedTarget: topview, bounce: bounce, speed: speed)
+        topview.pop_addAnimation(topviewSizeAnimation, forKey: "FrameSizeAnimation")
+        
+    }
+    
+    func frameSizeAnimationFactory(name:String, toValue:NSValue, animatedTarget:UIView, bounce:CGFloat, speed:CGFloat) -> POPSpringAnimation {
+        
+        // Find animation already exist
+        var popAnimation: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
+        
+        if (popAnimation != nil) {
+            popAnimation!.toValue = toValue
+        }
+        else {
+            popAnimation = POPSpringAnimation(propertyNamed: kPOPViewFrame)
+            popAnimation!.toValue = toValue
+            popAnimation!.springBounciness = bounce
+            popAnimation!.springSpeed = speed
+        }
+        
+        return popAnimation!
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Push Data Here
+        println("Prepare for Segue \(segue.identifier)")
+    }
     
 }
 

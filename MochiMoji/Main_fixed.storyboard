@@ -170,7 +170,7 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uNH-FN-f68" userLabel="TableViewOnsearch">
                                 <rect key="frame" x="0.0" y="80" width="320" height="488"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PBp-iU-BhV">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PBp-iU-BhV">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="488"/>
                                         <color key="backgroundColor" red="0.87834751609999995" green="0.87849199769999997" blue="0.87831676010000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="sectionIndexBackgroundColor" red="0.93059766292572021" green="0.27453014254570007" blue="0.18561521172523499" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -476,10 +476,10 @@
             </objects>
             <point key="canvasLocation" x="1204" y="1202"/>
         </scene>
-        <!--View Controller-->
+        <!--Word View Controller-->
         <scene sceneID="4UB-kk-LoK">
             <objects>
-                <viewController id="2nf-uJ-aKE" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WordViewController" id="2nf-uJ-aKE" userLabel="Word View Controller" customClass="WordViewController" customModule="MochiMoji" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YN1-ki-FfJ"/>
                         <viewControllerLayoutGuide type="bottom" id="dpH-3W-fcr"/>
@@ -499,6 +499,9 @@
                                 <state key="normal" title="Back">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="2nf-uJ-aKE" eventType="touchUpInside" id="cch-C7-hUW"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
