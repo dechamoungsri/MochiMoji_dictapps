@@ -500,7 +500,8 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="backButtonPressed:" destination="2nf-uJ-aKE" eventType="touchUpInside" id="cch-C7-hUW"/>
+                                    <action selector="backButtonPressed:" destination="2nf-uJ-aKE" eventType="touchUpInside" id="XuU-yC-Y5L"/>
+                                    <segue destination="KM5-gQ-Ng2" kind="unwind" unwindAction="sendDataFromChildToParent:" id="7dz-v5-GxV"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -509,6 +510,7 @@
                     <navigationItem key="navigationItem" id="BD3-c5-jIk"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GTr-Iv-4cd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="KM5-gQ-Ng2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1671" y="1202"/>
         </scene>

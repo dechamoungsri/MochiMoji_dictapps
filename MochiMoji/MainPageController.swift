@@ -666,31 +666,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         
         return scaleY!
     }
-    
-    func setCelltranslationY(component:UIView, translateTo:CGFloat){
-        var scaleAnimation = translationYAnimationFactory("translationYAnimation", toValue:translateTo, animatedTarget: component)
-        component.pop_addAnimation(scaleAnimation, forKey: "translationYAnimation")
-    }
-    
-    func translationYAnimationFactory(name:String, toValue:CGFloat, animatedTarget:UIView) -> POPSpringAnimation {
-        var tanslationY: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
-        
-        if (tanslationY != nil) {
-            //println("Not new \(toValue)")
-            tanslationY!.toValue = NSValue(CGPoint: CGPointMake(animatedTarget.center.x, toValue))
-        }
-        else {
-            //println("New \(toValue)")
-            tanslationY = POPSpringAnimation(propertyNamed: kPOPViewCenter)
-            tanslationY!.toValue = NSValue(CGPoint: CGPointMake(animatedTarget.center.x, toValue))
-            tanslationY!.springBounciness = 10.0
-            tanslationY!.springSpeed = 1.0
-            //view.pop_addAnimation(scaleXY, forKey: name)
-        }
-        
-        return tanslationY!
-    }
-    
+
     
     func setCellHeight(component:UIView, sizeTo:CGFloat){
         var heightAnimation = setHeightAnimaionFactory("heightAnimation", toValue:sizeTo, animatedTarget: component)
@@ -807,7 +783,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         animationCell?.layer.zPosition = CGFloat(MAXFLOAT);
         self.view.addSubview(animationCell!)
         
-        var rowFrameSizeAnimation = frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(0, topview.frame.height, tableViewContainer.frame.width, tableViewContainer.frame.height)), animatedTarget:rowContainer , bounce: bounce, speed: speed)
+        var rowFrameSizeAnimation = frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(0, topview.frame.height, tableViewContainer.frame.width, tableViewContainer.frame.height)), animatedTarget:animationCell! , bounce: bounce, speed: speed)
         rowFrameSizeAnimation.completionBlock = {(animation, finished) in
             let controller = self.storyboard?.instantiateViewControllerWithIdentifier("WordViewController") as UIViewController
             self.navigationController?.pushViewController(controller, animated: false)
@@ -820,10 +796,27 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
             
         }, completion: nil)
         
-        var topviewSizeAnimation = frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(topview.frame.origin.x, topview.frame.origin.y, topview.frame.width, 20)), animatedTarget: topview, bounce: bounce, speed: speed)
-        topview.pop_addAnimation(topviewSizeAnimation, forKey: "FrameSizeAnimation")
+//        var scaleTopViewAnimation = scaleYAnimaionFactory("scaleTopViewAnimation", toValue: 0.0, animatedTarget: topview)
+//        topview.pop_addAnimation(scaleTopViewAnimation, forKey: "scaleTopViewAnimation")
+        
+//        var topviewSizeAnimation = frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(topview.frame.origin.x, topview.frame.origin.y, topview.frame.width, 0)), animatedTarget: topview, bounce: bounce, speed: speed)
+//        topview.pop_addAnimation(topviewSizeAnimation, forKey: "FrameSizeAnimation")
         
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Push Data Here
+        println("Prepare for Segue \(segue.identifier)")
+    }
+    
+    // MARK: - Word delegate back
+    
+    @IBAction func sendDataFromChildToParent(segue: UIStoryboardSegue) {
+        let childViewController:WordViewController = segue.sourceViewController as WordViewController;
+        println("Receive data from Child \(segue.identifier)")
+    }
+    
+    // MARK: - Animation Factory
     
     func frameSizeAnimationFactory(name:String, toValue:NSValue, animatedTarget:UIView, bounce:CGFloat, speed:CGFloat) -> POPSpringAnimation {
         
@@ -843,10 +836,78 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         return popAnimation!
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Push Data Here
-        println("Prepare for Segue \(segue.identifier)")
+    func translationYPosition(name:String, toValue:CGFloat, animatedTarget:UIView, bounce:CGFloat, speed:CGFloat) -> POPSpringAnimation {
+        // Find animation already exist
+        var popAnimation: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
+        
+        if (popAnimation != nil) {
+            popAnimation!.toValue = toValue
+        }
+        else {
+            popAnimation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
+            popAnimation!.toValue = toValue
+            popAnimation!.springBounciness = bounce
+            popAnimation!.springSpeed = speed
+            println("translationYPosition")
+        }
+        
+        return popAnimation!
     }
+    
+//    func popAnimationFactory(name:String, toValue:NSValue, animatedTarget:UIView, propertyName:NSString, bounce:CGFloat, speed:CGFloat) -> POPSpringAnimation {
+//        
+//        // Find animation already exist
+//        var popAnimation: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
+//        
+//        if (popAnimation != nil) {
+//            popAnimation!.toValue = toValue
+//        }
+//        else {
+//            popAnimation = POPSpringAnimation(propertyNamed: propertyName)
+//            popAnimation!.toValue = toValue
+//            popAnimation!.springBounciness = bounce
+//            popAnimation!.springSpeed = speed
+//        }
+//        
+//        return popAnimation!
+//    }
+    
+//    // Search view component move in
+//    var translateBackButton = backButton.pop_animationForKey("translateBackButton") as? POPSpringAnimation
+//    if (translateBackButton != nil) {
+//    translateBackButton!.toValue = component_list["backButton.layer.position.x"]
+//    }
+//    else {
+//    translateBackButton = POPSpringAnimation(propertyNamed: kPOPLayerPositionX)
+//    translateBackButton!.toValue = component_list["backButton.layer.position.x"]
+//    translateBackButton!.springBounciness = 5.0
+//    translateBackButton!.springSpeed = 20.0
+//    backButton.pop_addAnimation(translateBackButton, forKey: "translateBackButton")
+//    }
+    
+//    func setCelltranslationY(component:UIView, translateTo:CGFloat){
+//        var scaleAnimation = translationYAnimationFactory("translationYAnimation", toValue:translateTo, animatedTarget: component)
+//        component.pop_addAnimation(scaleAnimation, forKey: "translationYAnimation")
+//    }
+//
+//    func translationYAnimationFactory(name:String, toValue:CGFloat, animatedTarget:UIView) -> POPSpringAnimation {
+//        var tanslationY: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
+//
+//        if (tanslationY != nil) {
+//            //println("Not new \(toValue)")
+//            tanslationY!.toValue = NSValue(CGPoint: CGPointMake(animatedTarget.center.x, toValue))
+//        }
+//        else {
+//            //println("New \(toValue)")
+//            tanslationY = POPSpringAnimation(propertyNamed: kPOPViewCenter)
+//            tanslationY!.toValue = NSValue(CGPoint: CGPointMake(animatedTarget.center.x, toValue))
+//            tanslationY!.springBounciness = 10.0
+//            tanslationY!.springSpeed = 1.0
+//            //view.pop_addAnimation(scaleXY, forKey: name)
+//        }
+//        
+//        return tanslationY!
+//    }
     
 }
 

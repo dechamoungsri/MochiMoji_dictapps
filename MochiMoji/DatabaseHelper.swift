@@ -15,8 +15,12 @@ import Foundation
 
 private let sharedHelperInstance = DatabaseHelper()
 
+
 class DatabaseHelper{
     
+    let DEBUG_THIS_FILE = false
+    let class_name = "DatabaseHelper"
+
     class var sharedInstance: DatabaseHelper {
         return sharedHelperInstance
     }
@@ -26,6 +30,9 @@ class DatabaseHelper{
     }
 
     func queryTextInput(text:String) -> [DummyEntity]{
+        
+        var function_name = "queryTextInput"
+        
         var starttime = NSDate().timeIntervalSince1970
         
         var inputText = textAddingSearchFunction(text)
@@ -43,7 +50,9 @@ class DatabaseHelper{
         
         var endtime = NSDate().timeIntervalSince1970
         //println("CBLQueryEnumeratorToJMEntity Duration : \(endtime-mid) Seconds")
-        println("queryTextInput(text:String) Duration : \(endtime-starttime) Seconds")
+        
+        Utility.debug_println(DEBUG_THIS_FILE, swift_file : class_name, function : function_name, text: "queryTextInput(text:String) Duration : \(endtime-starttime) Seconds")
+        
         
 //        for var i = 0 ; i < output_array.count ; i++ {
 //            var doc = (output_array[i] as DummyEntity).doc
@@ -80,21 +89,19 @@ class DatabaseHelper{
     }
     
     func CBLQueryEnumeratorToJMEntity(queryLists:CBLQueryEnumerator, text:String) -> [DummyEntity]{
+        
+        let function_name = "CBLQueryEnumeratorToJMEntity"
+        
         var starttime = NSDate().timeIntervalSince1970
         var output:[DummyEntity] = []
 
-        println("queryLists \(queryLists.count)")
-//        
+        Utility.debug_println(DEBUG_THIS_FILE, swift_file: class_name, function: function_name, text: "queryLists \(queryLists.count)")
+        
         while let row = queryLists.nextRow() {
             var jmDict = DummyEntity(row: row, dbName:DatabaseInterface.DatabaseName.JMDICT)
-//            if (find(output, jmDict) == nil){
-//                
-//            }
             output.append(jmDict)
         }
         
-//        println("queryLists Removed \(output.count)")
-//        
         var mid = NSDate().timeIntervalSince1970
         output.sort({
             (a:DummyEntity,b:DummyEntity)-> Bool in
@@ -102,9 +109,9 @@ class DatabaseHelper{
         })
         var endtime = NSDate().timeIntervalSince1970
         
-        println("DummayEntity Duration : \(mid-starttime) Seconds")
-        println("output.sort Duration : \(endtime-mid) Seconds")
-//
+        Utility.debug_println(DEBUG_THIS_FILE, swift_file: class_name, function: function_name, text: "DummayEntity Duration : \(mid-starttime) Seconds")
+        Utility.debug_println(DEBUG_THIS_FILE, swift_file: class_name, function: function_name, text: "output.sort Duration : \(endtime-mid) Seconds")
+
         return output
         
     }

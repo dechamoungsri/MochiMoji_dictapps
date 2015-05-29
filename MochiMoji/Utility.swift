@@ -108,4 +108,11 @@ class Utility {
         return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: CGFloat(1))
     }
     
+    class func debug_println(debug:Bool, swift_file:String, function:String, text:String){
+        if debug {
+            println("Class : \(swift_file), Function : \(function), Text : \(text)")
+        }
+        
+    }
+    
 }

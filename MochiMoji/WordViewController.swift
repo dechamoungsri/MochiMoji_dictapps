@@ -19,4 +19,9 @@ class WordViewController: UIViewController {
         println("backButtonPressed")
         self.navigationController?.popViewControllerAnimated(false)
     }
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        println("prepareForSegue backButtonPressed")
+//    }
+    
 }

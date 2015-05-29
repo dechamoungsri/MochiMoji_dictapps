@@ -13,6 +13,9 @@ private let sharedDatabaseInstance = DatabaseInterface()
 
 class DatabaseInterface {
     
+    let DEBUG_THIS_FILE = false
+    let class_name = "DatabaseInterface"
+    
     class var sharedInstance: DatabaseInterface {
         return sharedDatabaseInstance
     }
@@ -45,6 +48,8 @@ class DatabaseInterface {
 
     func queryWordinJMDict(text:String, viewName:JMDictViewName) -> CBLQueryEnumerator {
         
+        let function_name = "queryWordinJMDict"
+        
         var databaseManager = CBLManager.sharedInstance().copy()
         var error :NSError?
         var database = databaseManager.existingDatabaseNamed(DatabaseStringName.JMDICT.rawValue, error: &error)
@@ -60,7 +65,9 @@ class DatabaseInterface {
         let result = query?.run(&error)
 
         var endtime = NSDate().timeIntervalSince1970
-        println("queryWordinJMDict Query Duration : \(endtime-starttime) Seconds")
+
+        Utility.debug_println(DEBUG_THIS_FILE, swift_file : class_name, function : function_name, text: "queryWordinJMDict Query Duration : \(endtime-starttime) Seconds")
+        
         return result!
         
     }
