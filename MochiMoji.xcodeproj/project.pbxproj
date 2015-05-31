@@ -61,6 +61,8 @@
 		BED2270A1ADA5F7D000C0E88 /* JMDictEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED227091ADA5F7D000C0E88 /* JMDictEntity.swift */; };
 		BED711361ACF92B30013E891 /* Main_fixed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED711351ACF92B30013E891 /* Main_fixed.storyboard */; };
 		BEDAF1B21AFC6D4200D4050C /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDAF1B11AFC6D4200D4050C /* WordViewController.swift */; };
+		BEEF7B6A1B1AB73C0088D2AA /* JapaneseEntityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEEF7B691B1AB73C0088D2AA /* JapaneseEntityView.xib */; };
+		BEEF7B6D1B1ADA280088D2AA /* JapaneseEntityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF7B6C1B1ADA280088D2AA /* JapaneseEntityView.swift */; };
 		EF0F3710D0631B57B42F677B /* libPods-MochiMoji.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6FD660FF368BCED3CBD337A /* libPods-MochiMoji.a */; };
 /* End PBXBuildFile section */
 
@@ -151,6 +153,8 @@
 		BED227091ADA5F7D000C0E88 /* JMDictEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMDictEntity.swift; sourceTree = "<group>"; };
 		BED711351ACF92B30013E891 /* Main_fixed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_fixed.storyboard; sourceTree = "<group>"; };
 		BEDAF1B11AFC6D4200D4050C /* WordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
+		BEEF7B691B1AB73C0088D2AA /* JapaneseEntityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JapaneseEntityView.xib; sourceTree = "<group>"; };
+		BEEF7B6C1B1ADA280088D2AA /* JapaneseEntityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JapaneseEntityView.swift; sourceTree = "<group>"; };
 		C24EA031D4D882D492031D2A /* Pods-MochiMoji.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MochiMoji.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MochiMoji/Pods-MochiMoji.debug.xcconfig"; sourceTree = "<group>"; };
 		C6FD660FF368BCED3CBD337A /* libPods-MochiMoji.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MochiMoji.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9A4E166995F0A4E9947417D /* Pods-MochiMoji.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MochiMoji.release.xcconfig"; path = "Pods/Target Support Files/Pods-MochiMoji/Pods-MochiMoji.release.xcconfig"; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 			children = (
 				BED227021AD773B9000C0E88 /* Database */,
 				BED226FA1AD64776000C0E88 /* TableCell */,
+				BEEF7B6B1B1AD9F20088D2AA /* WordViewComponent */,
 				BE7C99D21A74A5C7007E65AD /* AppDelegate.swift */,
 				BE7C99D41A74A5C7007E65AD /* MainPageController.swift */,
 				BEDAF1B11AFC6D4200D4050C /* WordViewController.swift */,
@@ -395,8 +400,17 @@
 		BEEF7B661B1AB68B0088D2AA /* WordViewComponents */ = {
 			isa = PBXGroup;
 			children = (
+				BEEF7B691B1AB73C0088D2AA /* JapaneseEntityView.xib */,
 			);
 			name = WordViewComponents;
+			sourceTree = "<group>";
+		};
+		BEEF7B6B1B1AD9F20088D2AA /* WordViewComponent */ = {
+			isa = PBXGroup;
+			children = (
+				BEEF7B6C1B1ADA280088D2AA /* JapaneseEntityView.swift */,
+			);
+			name = WordViewComponent;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -483,6 +497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE3238D01AF4AB970096A7F9 /* jmdict-30-4-2015-view.cblite in Resources */,
+				BEEF7B6A1B1AB73C0088D2AA /* JapaneseEntityView.xib in Resources */,
 				BED226F71AD637DA000C0E88 /* SearchResultEntityCell.xib in Resources */,
 				BE5192A31A96DDE300F19BEA /* Info.plist in Resources */,
 				BE87F7D51A74DC7400267E85 /* TestCardView.xib in Resources */,
@@ -558,6 +573,7 @@
 				BE5192AE1A96DDE300F19BEA /* SpringTextField.swift in Sources */,
 				BED227061AD773EA000C0E88 /* DatabaseInterface.swift in Sources */,
 				BE5192A51A96DDE300F19BEA /* LoadingView.swift in Sources */,
+				BEEF7B6D1B1ADA280088D2AA /* JapaneseEntityView.swift in Sources */,
 				BED226FE1AD647F4000C0E88 /* SearchResultEntityCell.swift in Sources */,
 				BE5192AD1A96DDE300F19BEA /* SpringLabel.swift in Sources */,
 				BECCEA041AFF7C1D00C661D6 /* UICellForAnimationView.swift in Sources */,

@@ -58,7 +58,6 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         
         var cardView = UIView.loadFromNibNamed("KanjiCardView")!
         cardView.frame = CGRectMake(0, 0, cardContextView.bounds.width, cardContextView.bounds.height)
-        //cardView.frame = CGRectMake(0, 0, 200, 2000)
         cardContextView.addSubview(cardView)
         
         component_list["backButton.layer.position.x"] = 80+backButton.layer.position.x
@@ -799,7 +798,6 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         
         animationCell?.frame = cellRectInTable
         animationCell?.layer.zPosition = CGFloat(MAXFLOAT);
-        self.view.addSubview(animationCell!)
         
         var rowFrameSizeAnimation = frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(0, topview.frame.height, tableViewContainer.frame.width, tableViewContainer.frame.height)), animatedTarget:animationCell! , bounce: bounce, speed: speed)
         rowFrameSizeAnimation.completionBlock = {(animation, finished) in
@@ -813,6 +811,8 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
             self.animationCell!.container.alpha = 0
             
         }, completion: nil)
+        
+        self.view.addSubview(animationCell!)
         
         var scaleTopViewAnimation = scaleYAnimaionFactory("scaleTopViewAnimation", toValue: 0.0, animatedTarget: topview_dummy)
         scaleTopViewAnimation.completionBlock = {

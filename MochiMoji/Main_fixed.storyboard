@@ -561,7 +561,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6af-sd-88M" userLabel="WordViewBody">
                                 <rect key="frame" x="0.0" y="80" width="320" height="488"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.99990516901016235" green="1" blue="0.99987047910690308" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -579,6 +579,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BD3-c5-jIk"/>
+                    <connections>
+                        <outlet property="wordViewBody" destination="6af-sd-88M" id="tsb-2r-I4w"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GTr-Iv-4cd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="KM5-gQ-Ng2" userLabel="Exit" sceneMemberID="exit"/>
