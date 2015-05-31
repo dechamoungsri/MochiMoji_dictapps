@@ -345,6 +345,7 @@
 		BED226F41AD6379B000C0E88 /* ViewResource */ = {
 			isa = PBXGroup;
 			children = (
+				BEEF7B661B1AB68B0088D2AA /* WordViewComponents */,
 				BED226F51AD637B3000C0E88 /* TableView */,
 				BE7C99F71A74C939007E65AD /* CardView */,
 			);
@@ -389,6 +390,13 @@
 				BED227071ADA5F13000C0E88 /* Utility.swift */,
 			);
 			name = Database;
+			sourceTree = "<group>";
+		};
+		BEEF7B661B1AB68B0088D2AA /* WordViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = WordViewComponents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

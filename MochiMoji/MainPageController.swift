@@ -31,7 +31,8 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var topview: UIView!
-
+    @IBOutlet weak var topview_dummy: UIView!
+    
     var isMenuButtonPressed : Bool = false
     var isFliped : Bool = false
     var flashCardCenter : CGPoint!
@@ -40,6 +41,8 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     var screenHeight:CGFloat = UIScreen.mainScreen().bounds.size.height
     
     let entityCellIdentifier = "searchResultEntittyCellidentifier"
+    
+    var topBarIsHide = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +81,21 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         //println("viewWillAppear")
         let stackSize = self.navigationController?.viewControllers.count
         println("Stack Size : \(stackSize)")
+        
+        if topBarIsHide {
+            var scaleTopViewAnimation = scaleYAnimaionFactory("scaleTopViewAnimation", toValue: 1.0, animatedTarget: topview_dummy)
+            scaleTopViewAnimation.completionBlock = {
+                (animation, finished) in
+                self.topBarIsHide = false
+            }
+            topview_dummy.pop_addAnimation(scaleTopViewAnimation, forKey: "scaleTopViewAnimation")
+            
+            if animationCell != nil {
+                var rowFrameSizeAnimation = frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(0, screenHeight, tableViewContainer.frame.width, 0)), animatedTarget:animationCell! , bounce: 10.0, speed: 10.0)
+                animationCell?.pop_addAnimation(rowFrameSizeAnimation, forKey: "FrameSizeAnimation")
+            }
+        }
+        
         super.viewWillAppear(animated)
     }
 
@@ -582,7 +600,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
             var animatedTarget = (cell as SearchResultEntityCell).dummyView
             var shadow = (cell as SearchResultEntityCell).shadowView
             animatedTarget.transform = CGAffineTransformMakeScale(1.0, 0.001)
-            shadow.alpha = 0.2
+            shadow.alpha = 0.0
             
             if row < lastFirstShowedCell {
             
@@ -763,8 +781,8 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func wordControllerAnimation(row:SearchResultEntityCell, indexPath: NSIndexPath){
         
-        var bounce = CGFloat(5.0)
-        var speed = CGFloat(1.0)
+        var bounce = CGFloat(10.0)
+        var speed = CGFloat(10.0)
         
         // Cell enlarge Animation
         
@@ -796,8 +814,12 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
             
         }, completion: nil)
         
-//        var scaleTopViewAnimation = scaleYAnimaionFactory("scaleTopViewAnimation", toValue: 0.0, animatedTarget: topview)
-//        topview.pop_addAnimation(scaleTopViewAnimation, forKey: "scaleTopViewAnimation")
+        var scaleTopViewAnimation = scaleYAnimaionFactory("scaleTopViewAnimation", toValue: 0.0, animatedTarget: topview_dummy)
+        scaleTopViewAnimation.completionBlock = {
+            (animation, finished) in
+            self.topBarIsHide = true
+        }
+        topview_dummy.pop_addAnimation(scaleTopViewAnimation, forKey: "scaleTopViewAnimation")
         
 //        var topviewSizeAnimation = frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(topview.frame.origin.x, topview.frame.origin.y, topview.frame.width, 0)), animatedTarget: topview, bounce: bounce, speed: speed)
 //        topview.pop_addAnimation(topviewSizeAnimation, forKey: "FrameSizeAnimation")
