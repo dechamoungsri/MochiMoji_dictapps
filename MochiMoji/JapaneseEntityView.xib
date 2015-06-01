@@ -77,22 +77,22 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXm-no-Boq" userLabel="bdline">
-                    <rect key="frame" x="0.0" y="329" width="414" height="10"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="8" y="329" width="398" height="1"/>
+                    <color key="backgroundColor" red="0.59209877252578735" green="0.59219890832901001" blue="0.59207743406295776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="10" id="Drs-0i-iOU"/>
+                        <constraint firstAttribute="height" constant="1" id="Drs-0i-iOU"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.33927798271179199" green="0.16467028856277466" blue="0.43445274233818054" alpha="0.69000000000000006" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.33927798271179199" green="0.16467028856277466" blue="0.43445274233818054" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="GXm-no-Boq" firstAttribute="top" secondItem="DU1-AN-pIb" secondAttribute="bottom" constant="16" id="2RY-Ya-pEP"/>
                 <constraint firstAttribute="bottom" secondItem="GXm-no-Boq" secondAttribute="bottom" priority="250" id="7go-4o-16t"/>
                 <constraint firstItem="GXm-no-Boq" firstAttribute="top" secondItem="DU1-AN-pIb" secondAttribute="bottom" constant="16" id="80h-7o-yqL"/>
                 <constraint firstAttribute="trailing" secondItem="DU1-AN-pIb" secondAttribute="trailing" id="ETT-St-im5"/>
                 <constraint firstItem="DU1-AN-pIb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="MV9-5k-YWP"/>
-                <constraint firstItem="GXm-no-Boq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="RIk-VJ-dPA"/>
-                <constraint firstAttribute="trailing" secondItem="GXm-no-Boq" secondAttribute="trailing" id="S2i-5f-pz8"/>
+                <constraint firstItem="GXm-no-Boq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="RIk-VJ-dPA"/>
+                <constraint firstAttribute="trailing" secondItem="GXm-no-Boq" secondAttribute="trailing" constant="8" id="S2i-5f-pz8"/>
                 <constraint firstAttribute="bottom" secondItem="GXm-no-Boq" secondAttribute="bottom" id="bNk-Dz-BWd"/>
                 <constraint firstItem="1HO-fs-4Gu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fgU-oR-0Hw"/>
                 <constraint firstAttribute="trailing" secondItem="1HO-fs-4Gu" secondAttribute="trailing" id="lAa-UQ-deo"/>

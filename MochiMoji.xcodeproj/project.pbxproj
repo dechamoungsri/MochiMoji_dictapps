@@ -51,7 +51,6 @@
 		BEC117BF1AD4DCBC00FB5457 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC117BE1AD4DCBC00FB5457 /* Security.framework */; };
 		BECCEA021AFF7A6A00C661D6 /* TableCellForAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BECCEA011AFF7A6A00C661D6 /* TableCellForAnimationView.xib */; };
 		BECCEA041AFF7C1D00C661D6 /* UICellForAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECCEA031AFF7C1D00C661D6 /* UICellForAnimationView.swift */; };
-		BED05CEA1B1B5C6E00125D35 /* test.xib in Resources */ = {isa = PBXBuildFile; fileRef = BED05CE91B1B5C6E00125D35 /* test.xib */; };
 		BED226F71AD637DA000C0E88 /* SearchResultEntityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BED226F61AD637DA000C0E88 /* SearchResultEntityCell.xib */; };
 		BED226F91AD63A94000C0E88 /* NotoSansCJKjp-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = BED226F81AD63A94000C0E88 /* NotoSansCJKjp-Regular.otf */; };
 		BED226FE1AD647F4000C0E88 /* SearchResultEntityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED226FD1AD647F4000C0E88 /* SearchResultEntityCell.swift */; };
@@ -144,7 +143,6 @@
 		BEC117BE1AD4DCBC00FB5457 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BECCEA011AFF7A6A00C661D6 /* TableCellForAnimationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableCellForAnimationView.xib; sourceTree = "<group>"; };
 		BECCEA031AFF7C1D00C661D6 /* UICellForAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICellForAnimationView.swift; sourceTree = "<group>"; };
-		BED05CE91B1B5C6E00125D35 /* test.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = test.xib; sourceTree = "<group>"; };
 		BED226F61AD637DA000C0E88 /* SearchResultEntityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultEntityCell.xib; sourceTree = "<group>"; };
 		BED226F81AD63A94000C0E88 /* NotoSansCJKjp-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKjp-Regular.otf"; sourceTree = "<group>"; };
 		BED226FD1AD647F4000C0E88 /* SearchResultEntityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultEntityCell.swift; path = MochiMoji/SearchResultEntityCell.swift; sourceTree = SOURCE_ROOT; };
@@ -403,7 +401,6 @@
 			isa = PBXGroup;
 			children = (
 				BEEF7B691B1AB73C0088D2AA /* JapaneseEntityView.xib */,
-				BED05CE91B1B5C6E00125D35 /* test.xib */,
 			);
 			name = WordViewComponents;
 			sourceTree = "<group>";
@@ -504,7 +501,6 @@
 				BED226F71AD637DA000C0E88 /* SearchResultEntityCell.xib in Resources */,
 				BE5192A31A96DDE300F19BEA /* Info.plist in Resources */,
 				BE87F7D51A74DC7400267E85 /* TestCardView.xib in Resources */,
-				BED05CEA1B1B5C6E00125D35 /* test.xib in Resources */,
 				BECCEA021AFF7A6A00C661D6 /* TableCellForAnimationView.xib in Resources */,
 				BE7C99DD1A74A5C8007E65AD /* LaunchScreen.xib in Resources */,
 				BE7C99F41A74C313007E65AD /* Roboto-Regular.ttf in Resources */,

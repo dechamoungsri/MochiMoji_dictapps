@@ -24,58 +24,36 @@ class WordViewController: UIViewController {
         let stackSize = self.navigationController?.viewControllers.count
         println("Stack Size : \(stackSize)")
         
-        var v1 = UIView(frame: CGRectMake(0, 0, screenWidth, screenHeight*2))
-        v1.backgroundColor = UIColor.redColor()
-        var v2 = UIView(frame: CGRectMake(0, screenHeight, screenWidth, screenHeight*2))
-        v2.backgroundColor = UIColor.blueColor()
-
-        
-//        scrollview.contentSize = CGSizeMake(screenWidth, screenHeight*3)
-//        scrollview.addSubview(v1)
-//        scrollview.addSubview(v2)
+        var scrollviewDummy = UIScrollView(frame: CGRectMake(0, 0, screenWidth, screenHeight-80))
         
         japaneseEntityView = UIView.loadFromNibNamed("JapaneseEntityView")! as JapaneseEntityView
-        
-        //japaneseEntityView.frame = CGRectMake(0, 0, wordViewBody.frame.width, 1000)
-        
-        wordViewBody.addSubview(japaneseEntityView)
-        
-        japaneseEntityView.frame.size.width = wordViewBody.frame.width
+        scrollviewDummy.addSubview(japaneseEntityView)
+        japaneseEntityView.frame.size.width = scrollviewDummy.frame.width
         japaneseEntityView.setData()
-        
-//        japaneseEntityView.frame = CGRectMake(0, 0, wordViewBody.frame.width, japaneseEntityView.borderline.frame.origin.y + japaneseEntityView.borderline.frame.height)
-//        japaneseEntityView.layoutIfNeeded()
-//        
-//        println("\(screenWidth) \(screenHeight)")
-//        
-//        println("viewDidLoad \(japaneseEntityView.frame)")
-//        println(japaneseEntityView.frame)
-//        println(japaneseEntityView.borderline.frame)
-        //println(japaneseEntityView.heightDeterminer.frame)
-        
+
         var jap2 = UIView.loadFromNibNamed("JapaneseEntityView")! as JapaneseEntityView
-        wordViewBody.addSubview(jap2)
-        jap2.frame.size.width = wordViewBody.frame.width
+        scrollviewDummy.addSubview(jap2)
+        jap2.frame.size.width = scrollviewDummy.frame.width
         jap2.setData()
         jap2.layoutIfNeeded()
-        jap2.frame = CGRectMake(0, japaneseEntityView.borderline.frame.origin.y + japaneseEntityView.borderline.frame.height, wordViewBody.frame.width, jap2.borderline.frame.origin.y + jap2.borderline.frame.height)
+        jap2.frame = CGRectMake(0, japaneseEntityView.getHeight(), scrollviewDummy.frame.width, jap2.borderline.frame.origin.y + jap2.borderline.frame.height)
         jap2.layoutIfNeeded()
+        
+        scrollviewDummy.contentSize = CGSizeMake(screenWidth, japaneseEntityView.getHeight()*2)
+        wordViewBody.addSubview(scrollviewDummy)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        //scrollview.contentSize = CGSizeMake(wordViewBody.frame.width, 2000)
+        //println("viewDidLayoutSubviews \(japaneseEntityView.frame)")
     }
     
     override func viewWillAppear(animated: Bool) {
-//        println("\(screenWidth) \(screenHeight)")
-//        
         println("viewWillAppear \(japaneseEntityView.frame)")
-//        println(japaneseEntityView.borderline.frame)
-        //println(japaneseEntityView.heightDeterminer.frame)
     }
     
     override func viewDidAppear(animated: Bool) {
         println("viewDidAppear \(japaneseEntityView.frame)")
-        
-//        japaneseEntityView.frame = CGRectMake(0, 0, wordViewBody.frame.width, 300)
-//        japaneseEntityView.layoutIfNeeded()
-
     }
     
     @IBAction func backButtonPressed(sender: UIButton) {

@@ -30,29 +30,11 @@ class JapaneseEntityView : UIView {
     func setData(){
         japaneseEntity.text = "食べる食べる食べる食べる食べる食べる食べる食べる食べる食べる食べる"
         ui_romajiEntityLabel.text = "tatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatata"
-        //ui_romajiEntityLabel.sizeToFit()
         self.layoutIfNeeded()
     }
     
-    func setHeight(){
-        resizeToFitSubviews(self)
-    }
-    
-    func resizeToFitSubviews(view:UIView) {
-        var h:CGFloat = 0
-        if view.subviews.count == 0 {
-            return
-        }
-        for var i = 0 ; i < view.subviews.count ; i++ {
-            let v = view.subviews[i] as UIView
-            var fh = v.frame.origin.y + v.frame.size.height
-//            println("height : \(v.frame.origin.y) \(v.frame.size.height) \(v.tag)")
-//            println("Max height : \(fh) \(h)")
-            h = max(fh, h)
-            
-        }
-        println(h)
-        view.frame = CGRectMake(0, 0, view.frame.width, h)
+    func getHeight() -> CGFloat{
+        return borderline.frame.origin.y + borderline.frame.height
     }
     
 }
