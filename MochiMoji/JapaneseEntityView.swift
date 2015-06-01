@@ -18,9 +18,7 @@ class JapaneseEntityView : UIView {
     @IBOutlet weak var ui_romajiEntityLabel: UILabel!
     
     @IBOutlet weak var borderline: UIView!
-    
-    @IBOutlet weak var heightDeterminer: UIView!
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -31,7 +29,8 @@ class JapaneseEntityView : UIView {
     
     func setData(){
         japaneseEntity.text = "食べる食べる食べる食べる食べる食べる食べる食べる食べる食べる食べる"
-        ui_romajiEntityLabel.text = "ta"
+        ui_romajiEntityLabel.text = "tatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatata"
+        //ui_romajiEntityLabel.sizeToFit()
         self.layoutIfNeeded()
     }
     
