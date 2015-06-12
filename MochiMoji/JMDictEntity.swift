@@ -41,14 +41,14 @@ class JMDictEntity: Entity {
     convenience init(entity:DummyEntity){
         self.init()
         
-        var doc = entity.doc?
+        var doc = entity.doc
         if doc == nil {
             return
         }
         
         self.document = doc!
         
-        var unique:String = (self.document!.properties as NSDictionary).valueForKey("ent_seq") as String
+        var unique:String = (self.document!.properties as NSDictionary).valueForKey("ent_seq") as! String
         self.unique_id = unique.toInt()!
         //println(unique)
         
@@ -66,7 +66,7 @@ class JMDictEntity: Entity {
         var r_ele_Key = "r_ele"
         if let d = Utility.getArrayForKey(doc.properties, keyString: r_ele_Key) {
             for var i = 0; i < d.count ; i++ {
-                readingEntityList.append(d[i] as NSDictionary)
+                readingEntityList.append(d[i] as! NSDictionary)
             }
         }
     }
@@ -75,7 +75,7 @@ class JMDictEntity: Entity {
         var k_ele_Key = "k_ele"
         if let d = Utility.getArrayForKey(doc.properties, keyString: k_ele_Key) {
             for var i = 0; i < d.count ; i++ {
-                japaneseEntityList.append(d[i] as NSDictionary)
+                japaneseEntityList.append(d[i] as! NSDictionary)
             }
             self.japaneseEntity = jpListTojpString(self.japaneseEntityList)
             //println("Japanese Entity : \(self.japaneseEntity)")
@@ -95,7 +95,7 @@ class JMDictEntity: Entity {
         
         if let senses = Utility.getArrayForKey(doc.properties, keyString: senseKey) {
             for var i = 0; i < senses.count ; i++ {
-                let dictionary = senses[i] as NSDictionary
+                let dictionary = senses[i] as! NSDictionary
                 
                 // Gloss Extraction
                 var meaning_list = Array<Dictionary<String,String>>()
@@ -122,7 +122,7 @@ class JMDictEntity: Entity {
                 if let poses = Utility.getArrayForKey(dictionary, keyString: posKey) {
                     for var j = 0 ; j < poses.count ; j++ {
                         //println("Pos : \(poses[j])")
-                        pos_list.append(poses[j] as String)
+                        pos_list.append(poses[j] as! String)
                     }
                 }
                 // End Part of speech Extraction
@@ -144,7 +144,7 @@ class JMDictEntity: Entity {
         var out = ""
         for var i=0; i < jplist.count ; i++ {
             if jplist[i].valueForKey("keb") != nil {
-                out = out + (jplist[i].valueForKey("keb") as String)
+                out = out + (jplist[i].valueForKey("keb") as! String)
                 if i != (jplist.count-1) {
                     out = out + ", "
                 }
@@ -165,7 +165,7 @@ class JMDictEntity: Entity {
         
         self.document = doc
         
-        var unique:String = (doc.properties as NSDictionary).valueForKey("ent_seq") as String
+        var unique:String = (doc.properties as NSDictionary).valueForKey("ent_seq") as! String
         self.unique_id = unique.toInt()!
         //println(unique)
         

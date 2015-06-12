@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		BE1B667E1AE9D1D10041D065 /* DummyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1B667D1AE9D1D10041D065 /* DummyEntity.swift */; };
 		BE3238D01AF4AB970096A7F9 /* jmdict-30-4-2015-view.cblite in Resources */ = {isa = PBXBuildFile; fileRef = BE3238CF1AF4AB970096A7F9 /* jmdict-30-4-2015-view.cblite */; };
+		BE43A6A41B22C0EE00A61169 /* MeaningEntityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE43A6A31B22C0EE00A61169 /* MeaningEntityView.xib */; };
+		BE43A6A61B22C57300A61169 /* MeaningEntityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE43A6A51B22C57300A61169 /* MeaningEntityView.swift */; };
+		BE468E4F1B24472C00A76032 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE468E4E1B24472C00A76032 /* CouchbaseLite.framework */; };
 		BE51929A1A96DDE300F19BEA /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE51927F1A96DDE300F19BEA /* BlurView.swift */; };
 		BE51929B1A96DDE300F19BEA /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5192801A96DDE300F19BEA /* DesignableButton.swift */; };
 		BE51929C1A96DDE300F19BEA /* DesignableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5192811A96DDE300F19BEA /* DesignableImageView.swift */; };
@@ -43,7 +46,8 @@
 		BE7C99F41A74C313007E65AD /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE7C99F31A74C313007E65AD /* Roboto-Regular.ttf */; };
 		BE87F7D51A74DC7400267E85 /* TestCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE87F7D41A74DC7400267E85 /* TestCardView.xib */; };
 		BE87F7D71A74DF6100267E85 /* KanjiCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE87F7D61A74DF6100267E85 /* KanjiCardView.xib */; };
-		BEC117B51AD4DC7400FB5457 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC117B41AD4DC7400FB5457 /* CouchbaseLite.framework */; };
+		BE90C1D51B23F52400510AD0 /* MeaningTableRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE90C1D41B23F52400510AD0 /* MeaningTableRowCell.xib */; };
+		BE90C1D71B23F9D200510AD0 /* MeaningTableSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE90C1D61B23F9D200510AD0 /* MeaningTableSectionCell.xib */; };
 		BEC117B71AD4DC9800FB5457 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC117B61AD4DC9800FB5457 /* libz.dylib */; };
 		BEC117B91AD4DC9F00FB5457 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC117B81AD4DC9F00FB5457 /* libsqlite3.dylib */; };
 		BEC117BB1AD4DCAE00FB5457 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC117BA1AD4DCAE00FB5457 /* SystemConfiguration.framework */; };
@@ -95,6 +99,10 @@
 		9E55323F697205746F1FD91E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		BE1B667D1AE9D1D10041D065 /* DummyEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyEntity.swift; sourceTree = "<group>"; };
 		BE3238CF1AF4AB970096A7F9 /* jmdict-30-4-2015-view.cblite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "jmdict-30-4-2015-view.cblite"; sourceTree = "<group>"; };
+		BE43A6A31B22C0EE00A61169 /* MeaningEntityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeaningEntityView.xib; sourceTree = "<group>"; };
+		BE43A6A51B22C57300A61169 /* MeaningEntityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeaningEntityView.swift; sourceTree = "<group>"; };
+		BE468E4E1B24472C00A76032 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = "../../github/couchbase-lite-ios/build/Debug-iphoneos/CouchbaseLite.framework"; sourceTree = "<group>"; };
+		BE4F6A7F1B22BDB7003180F6 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = "<group>"; };
 		BE51927F1A96DDE300F19BEA /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		BE5192801A96DDE300F19BEA /* DesignableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
 		BE5192811A96DDE300F19BEA /* DesignableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableImageView.swift; sourceTree = "<group>"; };
@@ -134,6 +142,8 @@
 		BE7C99F31A74C313007E65AD /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		BE87F7D41A74DC7400267E85 /* TestCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestCardView.xib; sourceTree = "<group>"; };
 		BE87F7D61A74DF6100267E85 /* KanjiCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KanjiCardView.xib; sourceTree = "<group>"; };
+		BE90C1D41B23F52400510AD0 /* MeaningTableRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeaningTableRowCell.xib; sourceTree = "<group>"; };
+		BE90C1D61B23F9D200510AD0 /* MeaningTableSectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeaningTableSectionCell.xib; sourceTree = "<group>"; };
 		BEB8067D1A751B190096E790 /* MochiMoji-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MochiMoji-Bridging-Header.h"; sourceTree = "<group>"; };
 		BEC117B41AD4DC7400FB5457 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = ../../Desktop/CouchbaseLite.framework; sourceTree = "<group>"; };
 		BEC117B61AD4DC9800FB5457 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -165,12 +175,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE468E4F1B24472C00A76032 /* CouchbaseLite.framework in Frameworks */,
 				BEC117BF1AD4DCBC00FB5457 /* Security.framework in Frameworks */,
 				BEC117BD1AD4DCB200FB5457 /* CFNetwork.framework in Frameworks */,
 				BEC117BB1AD4DCAE00FB5457 /* SystemConfiguration.framework in Frameworks */,
 				BEC117B91AD4DC9F00FB5457 /* libsqlite3.dylib in Frameworks */,
 				BEC117B71AD4DC9800FB5457 /* libz.dylib in Frameworks */,
-				BEC117B51AD4DC7400FB5457 /* CouchbaseLite.framework in Frameworks */,
 				EF0F3710D0631B57B42F677B /* libPods-MochiMoji.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,6 +198,7 @@
 		7F25BFAB90101EAA2A72885F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE468E4E1B24472C00A76032 /* CouchbaseLite.framework */,
 				BEC117BE1AD4DCBC00FB5457 /* Security.framework */,
 				BEC117BC1AD4DCB200FB5457 /* CFNetwork.framework */,
 				BEC117BA1AD4DCAE00FB5457 /* SystemConfiguration.framework */,
@@ -209,6 +220,15 @@
 				E9A4E166995F0A4E9947417D /* Pods-MochiMoji.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		BE43A6A71B22E39600A61169 /* MeaningTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				BE90C1D61B23F9D200510AD0 /* MeaningTableSectionCell.xib */,
+				BE90C1D41B23F52400510AD0 /* MeaningTableRowCell.xib */,
+			);
+			name = MeaningTableViewCell;
 			sourceTree = "<group>";
 		};
 		BE51927E1A96DDE300F19BEA /* Spring */ = {
@@ -255,6 +275,7 @@
 				8A1C0E72D3313A87A310D1B1 /* Pods */,
 				7F25BFAB90101EAA2A72885F /* Frameworks */,
 				BEC117B01AD4DC1000FB5457 /* CouchbaseLite */,
+				BE4F6A7F1B22BDB7003180F6 /* CouchbaseLite.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -400,7 +421,9 @@
 		BEEF7B661B1AB68B0088D2AA /* WordViewComponents */ = {
 			isa = PBXGroup;
 			children = (
+				BE43A6A71B22E39600A61169 /* MeaningTableViewCell */,
 				BEEF7B691B1AB73C0088D2AA /* JapaneseEntityView.xib */,
+				BE43A6A31B22C0EE00A61169 /* MeaningEntityView.xib */,
 			);
 			name = WordViewComponents;
 			sourceTree = "<group>";
@@ -409,6 +432,7 @@
 			isa = PBXGroup;
 			children = (
 				BEEF7B6C1B1ADA280088D2AA /* JapaneseEntityView.swift */,
+				BE43A6A51B22C57300A61169 /* MeaningEntityView.swift */,
 			);
 			name = WordViewComponent;
 			sourceTree = "<group>";
@@ -499,16 +523,19 @@
 				BE3238D01AF4AB970096A7F9 /* jmdict-30-4-2015-view.cblite in Resources */,
 				BEEF7B6A1B1AB73C0088D2AA /* JapaneseEntityView.xib in Resources */,
 				BED226F71AD637DA000C0E88 /* SearchResultEntityCell.xib in Resources */,
+				BE90C1D51B23F52400510AD0 /* MeaningTableRowCell.xib in Resources */,
 				BE5192A31A96DDE300F19BEA /* Info.plist in Resources */,
 				BE87F7D51A74DC7400267E85 /* TestCardView.xib in Resources */,
 				BECCEA021AFF7A6A00C661D6 /* TableCellForAnimationView.xib in Resources */,
 				BE7C99DD1A74A5C8007E65AD /* LaunchScreen.xib in Resources */,
+				BE90C1D71B23F9D200510AD0 /* MeaningTableSectionCell.xib in Resources */,
 				BE7C99F41A74C313007E65AD /* Roboto-Regular.ttf in Resources */,
 				BE87F7D71A74DF6100267E85 /* KanjiCardView.xib in Resources */,
 				BED226F91AD63A94000C0E88 /* NotoSansCJKjp-Regular.otf in Resources */,
 				BED711361ACF92B30013E891 /* Main_fixed.storyboard in Resources */,
 				BE5192A61A96DDE300F19BEA /* LoadingView.xib in Resources */,
 				BE7C99DA1A74A5C8007E65AD /* Images.xcassets in Resources */,
+				BE43A6A41B22C0EE00A61169 /* MeaningEntityView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,6 +605,7 @@
 				BE5192AD1A96DDE300F19BEA /* SpringLabel.swift in Sources */,
 				BECCEA041AFF7C1D00C661D6 /* UICellForAnimationView.swift in Sources */,
 				BE5192A11A96DDE300F19BEA /* DesignableView.swift in Sources */,
+				BE43A6A61B22C57300A61169 /* MeaningEntityView.swift in Sources */,
 				BE51929E1A96DDE300F19BEA /* DesignableTabBarController.swift in Sources */,
 				BEDAF1B21AFC6D4200D4050C /* WordViewController.swift in Sources */,
 				BED227041AD773DC000C0E88 /* DatabaseHelper.swift in Sources */,
@@ -715,12 +743,15 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/dechamoungsri/Desktop,
+					"$(PROJECT_DIR)",
+					"/Users/dechamoungsri/github/couchbase-lite-ios/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = MochiMoji/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MochiMoji/MochiMoji-Bridging-Header.h";
+				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
 			};
 			name = Debug;
 		};
@@ -732,12 +763,15 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/dechamoungsri/Desktop,
+					"$(PROJECT_DIR)",
+					"/Users/dechamoungsri/github/couchbase-lite-ios/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = MochiMoji/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MochiMoji/MochiMoji-Bridging-Header.h";
+				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
 			};
 			name = Release;
 		};

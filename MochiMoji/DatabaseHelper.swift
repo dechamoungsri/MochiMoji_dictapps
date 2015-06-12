@@ -33,6 +33,8 @@ class DatabaseHelper{
         
         var function_name = "queryTextInput"
         
+        Utility.debug_println(DEBUG_THIS_FILE, swift_file : class_name, function : function_name, text: "\n Text input : \(text) \n")
+        
         var starttime = NSDate().timeIntervalSince1970
         
         var inputText = textAddingSearchFunction(text)
@@ -45,14 +47,15 @@ class DatabaseHelper{
         
         var mid = NSDate().timeIntervalSince1970
         
+//        Utility.debug_println(DEBUG_THIS_FILE, swift_file : class_name, function : function_name, text: "\n Query Time : \(mid-starttime) Seconds \n")
+        
         var wordList = CBLQueryEnumeratorToJMEntity(results, text: text)
         output_array = output_array + wordList
         
         var endtime = NSDate().timeIntervalSince1970
         //println("CBLQueryEnumeratorToJMEntity Duration : \(endtime-mid) Seconds")
         
-        Utility.debug_println(DEBUG_THIS_FILE, swift_file : class_name, function : function_name, text: "queryTextInput(text:String) Duration : \(endtime-starttime) Seconds")
-        
+        Utility.debug_println(DEBUG_THIS_FILE, swift_file : class_name, function : function_name, text: "\n queryTextInput(text:String) Duration : \(endtime-starttime) Seconds \n")
         
 //        for var i = 0 ; i < output_array.count ; i++ {
 //            var doc = (output_array[i] as DummyEntity).doc
@@ -78,11 +81,11 @@ class DatabaseHelper{
     
     func textAddingSearchFunction(text:String) -> String{
         
-        for tempChar in text.unicodeScalars {
-            if !tempChar.isASCII() {
-                return text + "*"
-            }
-        }
+//        for tempChar in text.unicodeScalars {
+//            if !tempChar.isASCII() {
+//                return text + "*"
+//            }
+//        }
         
         return text
         
@@ -95,12 +98,21 @@ class DatabaseHelper{
         var starttime = NSDate().timeIntervalSince1970
         var output:[DummyEntity] = []
 
-        Utility.debug_println(DEBUG_THIS_FILE, swift_file: class_name, function: function_name, text: "queryLists \(queryLists.count)")
+        Utility.debug_println(DEBUG_THIS_FILE, swift_file: class_name, function: function_name, text: "\n  queryLists \(queryLists.count) \n")
+        
+        var set = [Int]()
         
         while let row = queryLists.nextRow() {
             var jmDict = DummyEntity(row: row, dbName:DatabaseInterface.DatabaseName.JMDICT)
-            output.append(jmDict)
+            
+//            if !contains(set, jmDict.unique){
+                output.append(jmDict)
+//                set.append(jmDict.unique)
+//            }
+            
         }
+        
+        Utility.debug_println(DEBUG_THIS_FILE, swift_file: class_name, function: function_name, text: "\n  output \(output.count) \n")
         
         var mid = NSDate().timeIntervalSince1970
         output.sort({
@@ -109,8 +121,8 @@ class DatabaseHelper{
         })
         var endtime = NSDate().timeIntervalSince1970
         
-        Utility.debug_println(DEBUG_THIS_FILE, swift_file: class_name, function: function_name, text: "DummayEntity Duration : \(mid-starttime) Seconds")
-        Utility.debug_println(DEBUG_THIS_FILE, swift_file: class_name, function: function_name, text: "output.sort Duration : \(endtime-mid) Seconds")
+//        Utility.debug_println(DEBUG_THIS_FILE, swift_file: class_name, function: function_name, text: "DummayEntity Duration : \(mid-starttime) Seconds")
+//        Utility.debug_println(DEBUG_THIS_FILE, swift_file: class_name, function: function_name, text: "output.sort Duration : \(endtime-mid) Seconds")
 
         return output
         

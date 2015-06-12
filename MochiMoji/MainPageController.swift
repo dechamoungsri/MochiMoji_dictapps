@@ -405,7 +405,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
             cString = (cString as NSString).substringFromIndex(1)
         }
         
-        if (countElements(cString) != 6) {
+        if (count(cString) != 6) {
             return UIColor.grayColor()
         }
         
@@ -549,7 +549,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         let row = indexPath.row
         println("didSelectRowAtIndexPath \(row)")
         searchTextField.resignFirstResponder()
-        wordControllerAnimation(tableView.cellForRowAtIndexPath(indexPath) as SearchResultEntityCell, indexPath:indexPath)
+        wordControllerAnimation(tableView.cellForRowAtIndexPath(indexPath) as! SearchResultEntityCell, indexPath:indexPath)
 
     }
     
@@ -568,7 +568,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(entityCellIdentifier, forIndexPath: indexPath) as SearchResultEntityCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(entityCellIdentifier, forIndexPath: indexPath) as! SearchResultEntityCell
         
         let row = indexPath.row
         cell.cellEntityFromDummyEntity(cellsEntity[row], text: searchTextField.text)
@@ -596,8 +596,8 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
 //        println("Last First Cell \(lastFirstShowedCell)")
         
         if !cellsEntity[row].isShow {
-            var animatedTarget = (cell as SearchResultEntityCell).dummyView
-            var shadow = (cell as SearchResultEntityCell).shadowView
+            var animatedTarget = (cell as! SearchResultEntityCell).dummyView
+            var shadow = (cell as! SearchResultEntityCell).shadowView
             animatedTarget.transform = CGAffineTransformMakeScale(1.0, 0.001)
             shadow.alpha = 0.0
             
@@ -735,8 +735,8 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) {
             var result = self.searchProcessing(inputText)
             dispatch_async(dispatch_get_main_queue()) { // 2
-                if result.valueForKey(self.INPUTTEXT_KEY) as String == self.mem_Text {
-                    self.cellsEntity = result.valueForKey(self.ENTITY_KEY) as [DummyEntity]
+                if result.valueForKey(self.INPUTTEXT_KEY) as! String == self.mem_Text {
+                    self.cellsEntity = result.valueForKey(self.ENTITY_KEY) as! [DummyEntity]
                     println("Reload Data")
                     
                     if self.animationCell != nil {
@@ -801,7 +801,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         
         var rowFrameSizeAnimation = frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(0, topview.frame.height, tableViewContainer.frame.width, tableViewContainer.frame.height)), animatedTarget:animationCell! , bounce: bounce, speed: speed)
         rowFrameSizeAnimation.completionBlock = {(animation, finished) in
-            let controller = self.storyboard?.instantiateViewControllerWithIdentifier("WordViewController") as UIViewController
+            let controller = self.storyboard?.instantiateViewControllerWithIdentifier("WordViewController") as! UIViewController
             self.navigationController?.pushViewController(controller, animated: false)
         }
         animationCell?.pop_addAnimation(rowFrameSizeAnimation, forKey: "FrameSizeAnimation")
@@ -834,7 +834,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - Word delegate back
     
     @IBAction func sendDataFromChildToParent(segue: UIStoryboardSegue) {
-        let childViewController:WordViewController = segue.sourceViewController as WordViewController;
+        let childViewController:WordViewController = segue.sourceViewController as! WordViewController;
         println("Receive data from Child \(segue.identifier)")
     }
     

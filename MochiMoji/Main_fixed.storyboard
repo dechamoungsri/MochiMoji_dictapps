@@ -565,7 +565,7 @@
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Z2-Mw-kxi" userLabel="scrollView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="488"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j8G-Sp-jl1">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j8G-Sp-jl1">
                                                 <subviews>
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zyM-AW-HXz" userLabel="scrollViewContainer">
                                                         <rect key="frame" x="41" y="5" width="36" height="32"/>

@@ -69,7 +69,7 @@ class SearchResultEntityCell: UITableViewCell {
         lastseenLabel.text = ""
         switch entity.databaseName {
         case DatabaseInterface.DatabaseName.JMDICT:
-            cellEntityFromJMDict(entity as JMDictEntity,text: text)
+            cellEntityFromJMDict(entity as! JMDictEntity,text: text)
         default:
             return
         }
@@ -82,7 +82,7 @@ class SearchResultEntityCell: UITableViewCell {
         readingLabel.text = ""
         lastseenLabel.text = ""
         self.entity = JMDictEntity(entity: entity)
-        cellEntityFromJMDict(self.entity as JMDictEntity, text: text)
+        cellEntityFromJMDict(self.entity as! JMDictEntity, text: text)
     }
     
     func cellEntityFromJMDict(entity:JMDictEntity, text:String){
@@ -99,7 +99,7 @@ class SearchResultEntityCell: UITableViewCell {
         var readingList = entity.readingEntityList
         for var i = 0 ; i < readingList.count ; i++ {
             var read = (readingList[i] as NSDictionary)
-            var str = read["reb"] as String
+            var str = read["reb"] as! String
             read_out = read_out + str
             if i != (readingList.count-1) {
                 read_out = read_out + ", "
@@ -114,7 +114,7 @@ class SearchResultEntityCell: UITableViewCell {
         var pos_list = [String]()
         var senses = entity.englishEntityList
         for var i = 0; i < senses.count ; i++ {
-            var pos = senses[i][JM_DICT_PART_OF_SPEECH_KEY] as [String]
+            var pos = senses[i][JM_DICT_PART_OF_SPEECH_KEY] as! [String]
             for var j = 0; j < pos.count ; j++ {
                 
                 var pos_array_list = PART_OF_SPEECH_INFO.Pos_List
@@ -187,7 +187,7 @@ class SearchResultEntityCell: UITableViewCell {
     func assignJapaneseEntityFromJMDict(entity:JMDictEntity, text:String) {
         
         for var i = 0; i < entity.japaneseEntityList.count ; i++ {
-            var kanji = entity.japaneseEntityList[i]["keb"] as String
+            var kanji = entity.japaneseEntityList[i]["keb"] as! String
             
             if i == 0 {
                 japaneseEntityLabel.text = kanji

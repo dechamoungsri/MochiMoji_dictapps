@@ -35,9 +35,9 @@ class DummyEntity: Equatable {
         //ent_seq
         self.doc = doc
         //self.unique = 0
-        self.unique = ((doc.properties as NSDictionary).valueForKey("ent_seq") as String).toInt()!
+        self.unique = ((doc.properties as NSDictionary).valueForKey("ent_seq") as! String).toInt()!
         
-        self.frequency = ((doc.properties as NSDictionary).valueForKey("frequency") as Int)
+        self.frequency = ((doc.properties as NSDictionary).valueForKey("frequency") as! Int)
         
         self.databaseName = dbName
     }

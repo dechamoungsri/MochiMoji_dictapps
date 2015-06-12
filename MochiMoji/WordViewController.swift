@@ -15,6 +15,7 @@ class WordViewController: UIViewController {
     @IBOutlet weak var scrollViewContainer: UIView!
     
     var japaneseEntityView: JapaneseEntityView!
+    var meaningEntityView: MeaningEntityView!
     
     var screenWidth:CGFloat = UIScreen.mainScreen().bounds.size.width
     var screenHeight:CGFloat = UIScreen.mainScreen().bounds.size.height
@@ -26,18 +27,18 @@ class WordViewController: UIViewController {
         
         var scrollviewDummy = UIScrollView(frame: CGRectMake(0, 0, screenWidth, screenHeight-80))
         
-        japaneseEntityView = UIView.loadFromNibNamed("JapaneseEntityView")! as JapaneseEntityView
+        japaneseEntityView = UIView.loadFromNibNamed("JapaneseEntityView") as! JapaneseEntityView
         scrollviewDummy.addSubview(japaneseEntityView)
         japaneseEntityView.frame.size.width = scrollviewDummy.frame.width
         japaneseEntityView.setData()
 
-        var jap2 = UIView.loadFromNibNamed("JapaneseEntityView")! as JapaneseEntityView
-        scrollviewDummy.addSubview(jap2)
-        jap2.frame.size.width = scrollviewDummy.frame.width
-        jap2.setData()
-        jap2.layoutIfNeeded()
-        jap2.frame = CGRectMake(0, japaneseEntityView.getHeight(), scrollviewDummy.frame.width, jap2.borderline.frame.origin.y + jap2.borderline.frame.height)
-        jap2.layoutIfNeeded()
+        meaningEntityView = UIView.loadFromNibNamed("MeaningEntityView") as! MeaningEntityView
+        scrollviewDummy.addSubview(meaningEntityView)
+        meaningEntityView.setTableSize()
+        meaningEntityView.frame.size.width = scrollviewDummy.frame.width
+        meaningEntityView.layoutIfNeeded()
+        meaningEntityView.frame = CGRectMake(0, japaneseEntityView.getHeight(), scrollviewDummy.frame.width, meaningEntityView.getHeight())
+        meaningEntityView.layoutIfNeeded()
         
         scrollviewDummy.contentSize = CGSizeMake(screenWidth, japaneseEntityView.getHeight()*2)
         wordViewBody.addSubview(scrollviewDummy)

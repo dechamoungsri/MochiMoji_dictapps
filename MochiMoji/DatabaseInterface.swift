@@ -55,18 +55,23 @@ class DatabaseInterface {
         var database = databaseManager.existingDatabaseNamed(DatabaseStringName.JMDICT.rawValue, error: &error)
         
         var starttime = NSDate().timeIntervalSince1970
-        //let query = databases[DatabaseName.JMDICT]?.viewNamed("wordsViewDidAppear").createQuery()
         
+        Utility.debug_println(DEBUG_THIS_FILE, swift_file: class_name, function: function_name, text: "\n Input : \(text)\n")
+        
+//        let query = databases[DatabaseName.JMDICT]?.viewNamed("wordsViewDidAppear").createQuery()
 //        let query = database.viewNamed("wordsViewDidAppear").createQuery()
         let query = database.viewNamed(viewName.rawValue).createQuery()
         
         query?.limit = 500
-        query?.fullTextQuery = text
+        query?.startKey = text
+        query?.endKey = text + "\u{FFFF}"
+        
+        //query?.fullTextQuery = text
         let result = query?.run(&error)
 
         var endtime = NSDate().timeIntervalSince1970
 
-        Utility.debug_println(DEBUG_THIS_FILE, swift_file : class_name, function : function_name, text: "queryWordinJMDict Query Duration : \(endtime-starttime) Seconds")
+//        Utility.debug_println(DEBUG_THIS_FILE, swift_file : class_name, function : function_name, text: "\n Run queryWordinJMDict Query Duration : \(endtime-starttime) Seconds \n")
         
         return result!
         
@@ -90,62 +95,31 @@ class DatabaseInterface {
                 if let d = (doc as NSDictionary).objectForKey(self.kanji_element_key) as? NSArray {
                     var str_all = ""
                     for var i = 0; i < d.count ; i++ {
-                        if ((d[i] as NSDictionary)[self.kanji_entity] != nil) {
-                            let str = (d[i] as NSDictionary)[self.kanji_entity] as String
+                        if ((d[i] as! NSDictionary)[self.kanji_entity] != nil) {
+                            let str = (d[i] as! NSDictionary)[self.kanji_entity] as! String
                             str_all = str_all + " " + str
+                            //emit(CBLTextKey(str),nil)
+                            emit(str,nil)
                         }
                     }
-                    //emit(CBLTextKey(str_all),nil)
                     emitting_string = emitting_string + " " + str_all
                 }
                 else {
-                    let d:NSDictionary = (doc as NSDictionary).objectForKey(self.kanji_element_key) as NSDictionary!
+                    let d:NSDictionary = (doc as NSDictionary).objectForKey(self.kanji_element_key) as! NSDictionary!
                     if (d[self.kanji_entity] != nil) {
-                        let str = d[self.kanji_entity] as String
+                        let str = d[self.kanji_entity] as! String
                         //emit(CBLTextKey(str),nil)
+                        emit(str,nil)
                         emitting_string = emitting_string + " " + str
                     }
                 }
                 
             }
             
-            emit(CBLTextKey(emitting_string),nil)
+            //emit(CBLTextKey(emitting_string),nil)
             
-        }, version: "1")
+        }, version: "2")
         
-//        let wordView = database.viewNamed(JMDictViewName.KANJI_VIEW.rawValue)
-//        wordView?.setMapBlock({ (doc, emit) in
-//            
-//            var emitting_string = ""
-//            
-//            if doc[self.kanji_element_key] != nil {
-//                
-//                if let d = (doc as NSDictionary).objectForKey(self.kanji_element_key) as? NSArray {
-//                    var str_all = ""
-//                    for var i = 0; i < d.count ; i++ {
-//                        if ((d[i] as NSDictionary)[self.kanji_entity] != nil) {
-//                            let str = (d[i] as NSDictionary)[self.kanji_entity] as String
-//                            str_all = str_all + " " + str
-//                            emit(CBLTextKey(str),nil)
-//                        }
-//                    }
-//                    //emit(CBLTextKey(str_all),nil)
-//                    emitting_string = emitting_string + " " + str_all
-//                }
-//                else {
-//                    let d:NSDictionary = (doc as NSDictionary).objectForKey(self.kanji_element_key) as NSDictionary!
-//                    if (d[self.kanji_entity] != nil) {
-//                        let str = d[self.kanji_entity] as String
-//                        emit(CBLTextKey(str),nil)
-//                        emitting_string = emitting_string + " " + str
-//                    }
-//                }
-//                
-//            }
-//            
-//            //emit(CBLTextKey(emitting_string),nil)
-//            
-//        }, version: "6")
 
         let englishWordView = database.viewNamed(JMDictViewName.ENGLISH_VIEW.rawValue)
         englishWordView?.setMapBlock({ (doc, emit) in
@@ -156,7 +130,7 @@ class DatabaseInterface {
 
             if let senses = Utility.getArrayForKey(doc, keyString: self.senseKey) {
                 for var i = 0; i < senses.count ; i++ {
-                    let dictionary = senses[i] as NSDictionary
+                    let dictionary = senses[i] as! NSDictionary
 
                     // Gloss Extraction
                     var meaning_list = Array<Dictionary<String,String>>()
@@ -165,6 +139,7 @@ class DatabaseInterface {
                             if let gloss = glosses[j] as? String {
                                 //println("Eng : \(gloss)")
                                 meaning = meaning + " | " + gloss
+                                emit(gloss,nil)
                             }
                         }
                     }
@@ -176,43 +151,9 @@ class DatabaseInterface {
             
             emitting_string = emitting_string + " " + meaning
             //println(emitting_string)
-            emit(CBLTextKey(emitting_string),nil)
+            //emit(CBLTextKey(emitting_string),nil)
             
-        }, version: "1")
-        
-//        let englishWordView = database.viewNamed(JMDictViewName.ENGLISH_VIEW.rawValue)
-//        englishWordView?.setMapBlock({ (doc, emit) in
-//            
-//            var emitting_string = ""
-//            
-//            var meaning = ""
-//            
-//            if let senses = Utility.getArrayForKey(doc, keyString: self.senseKey) {
-//                for var i = 0; i < senses.count ; i++ {
-//                    let dictionary = senses[i] as NSDictionary
-//                    
-//                    // Gloss Extraction
-//                    var meaning_list = Array<Dictionary<String,String>>()
-//                    if let glosses = Utility.getArrayForKey(dictionary, keyString: self.glossKey) {
-//                        for var j = 0; j < glosses.count ; j++ {
-//                            if let gloss = glosses[j] as? String {
-//                                //println("Eng : \(gloss)")
-//                                meaning = meaning + " | " + gloss
-//                                emit(CBLTextKey(gloss),nil)
-//                            }
-//                        }
-//                    }
-//                    // End Gloss Extraction
-//                    
-//                }
-//                
-//            }
-//            
-//            emitting_string = emitting_string + " " + meaning
-//            //println(emitting_string)
-//            //emit(CBLTextKey(emitting_string),nil)
-//            
-//        }, version: "6")
+        }, version: "2")
         
     }
 

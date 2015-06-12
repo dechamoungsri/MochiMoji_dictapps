@@ -12,7 +12,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let debug_appdelegate = true
+    let fileName = "AppDelegate"
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -50,10 +51,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var error :NSError?
         var database = dbManager.existingDatabaseNamed(dbname, error: &error)
         if database == nil {
+            
+            Utility.debug_println(debug_appdelegate, swift_file: fileName, function: "databaseConnection", text: "database == nil : Trying to copying")
+            
             let cannedDbPath = NSBundle.mainBundle().pathForResource(dbname, ofType: "cblite")
             //println(cannedDbPath)
             let cannedAttPath = NSBundle.mainBundle().pathForResource("CouchbaseLite/jmdict attachments", ofType: "")
-            dbManager.replaceDatabaseNamed(dbname, withDatabaseFile: cannedDbPath, withAttachments: cannedAttPath, error: &error)
+            dbManager.replaceDatabaseNamed(dbname, withDatabaseFile: cannedDbPath!, withAttachments: cannedAttPath, error: &error)
             database = dbManager.existingDatabaseNamed(dbname, error: &error)
             if error != nil {
                 //self.handleError(error)

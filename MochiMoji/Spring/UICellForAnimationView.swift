@@ -20,9 +20,9 @@ class UICellForAnimationView : UIView {
     @IBOutlet weak var pos4: UILabel!
     
     
-    init(tableCell:SearchResultEntityCell){
-        super.init()
-    }
+//    init(tableCell:SearchResultEntityCell){
+//        super.init()
+//    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

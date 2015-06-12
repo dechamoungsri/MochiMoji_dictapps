@@ -19,7 +19,7 @@ class Utility {
     class func nsobjectToString(anyObject:AnyObject) -> String{
         var error :NSError?
         let jsData = NSJSONSerialization.dataWithJSONObject(anyObject, options: NSJSONWritingOptions.allZeros, error: &error)
-        let nsJson = NSString(data: jsData!, encoding: NSUTF8StringEncoding) as String
+        let nsJson = NSString(data: jsData!, encoding: NSUTF8StringEncoding) as! String
         return nsJson
     }
 
@@ -42,7 +42,7 @@ class Utility {
             }
             return d_array
         case .ARRAY:
-            var d = dictionary.objectForKey(keyString) as NSArray
+            var d = dictionary.objectForKey(keyString) as! NSArray
             var d_array = [Any]()
             for var i = 0 ; i < d.count ; i++ {
                 if let dict = d[i] as? NSDictionary {
@@ -92,7 +92,7 @@ class Utility {
             cString = (cString as NSString).substringFromIndex(1)
         }
         
-        if (countElements(cString) != 6) {
+        if count(cString) != 6 {
             return UIColor.grayColor()
         }
         
