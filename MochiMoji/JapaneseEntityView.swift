@@ -27,9 +27,14 @@ class JapaneseEntityView : UIView {
         super.init(coder: aDecoder)
     }
     
-    func setData(){
-        japaneseEntity.text = "食べる食べる食べる食べる食べる食べる食べる食べる食べる食べる食べる"
-        ui_romajiEntityLabel.text = "tatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatata"
+    func setData(entity:Entity){
+        
+        // TODO: Cast to JMDict
+        var jmDict = entity as! JMDictEntity
+        
+        // FIXME: Correct it
+        japaneseEntity.text = jmDict.japaneseEntity
+        ui_romajiEntityLabel.text = ((jmDict.readingEntityList[0] as NSDictionary)["reb"] as! String)
         self.layoutIfNeeded()
     }
     

@@ -37,12 +37,14 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     var isFliped : Bool = false
     var flashCardCenter : CGPoint!
     
-    var screenWidth:CGFloat = UIScreen.mainScreen().bounds.size.width
-    var screenHeight:CGFloat = UIScreen.mainScreen().bounds.size.height
+    let screenWidth:CGFloat = UIScreen.mainScreen().bounds.size.width
+    let screenHeight:CGFloat = UIScreen.mainScreen().bounds.size.height
     
     let entityCellIdentifier = "searchResultEntittyCellidentifier"
     
     var topBarIsHide = false
+    
+    var dummyCell_animator: UIDynamicAnimator!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,8 +55,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         self.searchTextField.leftViewMode = UITextFieldViewMode.Always
         
         animator = UIDynamicAnimator(referenceView: view)
-        
-        //var flashCardCenterX = view.constraints().
+        dummyCell_animator = UIDynamicAnimator(referenceView: view)
         
         var cardView = UIView.loadFromNibNamed("KanjiCardView")!
         cardView.frame = CGRectMake(0, 0, cardContextView.bounds.width, cardContextView.bounds.height)
@@ -81,6 +82,8 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         let stackSize = self.navigationController?.viewControllers.count
         println("Stack Size : \(stackSize)")
         
+        // TODO: Implement Call back from Child
+        
         if topBarIsHide {
             var scaleTopViewAnimation = scaleYAnimaionFactory("scaleTopViewAnimation", toValue: 1.0, animatedTarget: topview_dummy)
             scaleTopViewAnimation.completionBlock = {
@@ -92,6 +95,21 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
             if animationCell != nil {
                 var rowFrameSizeAnimation = frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(0, screenHeight, tableViewContainer.frame.width, 0)), animatedTarget:animationCell! , bounce: 10.0, speed: 10.0)
                 animationCell?.pop_addAnimation(rowFrameSizeAnimation, forKey: "FrameSizeAnimation")
+                
+//                var rotate = POPSpringAnimation(propertyNamed: kPOPLayerRotation)
+//                rotate.toValue = M_PI/4
+//                animationCell?.layer.pop_addAnimation(rotate, forKey: "rotate")
+//                
+//                dummyCell_animator.removeAllBehaviors()
+//                
+//                var gravity = UIGravityBehavior(items: [animationCell!])
+//                gravity.gravityDirection = CGVectorMake(0, 10)
+//                dummyCell_animator.addBehavior(gravity)
+                
+//                delay(0.3) {
+//                    self.dummyCell_animator.removeAllBehaviors()
+//                }
+                
             }
         }
         
@@ -140,8 +158,6 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         Animation tranform to search view
     */
     var component_list = Dictionary<String, CGFloat>()
-//    var finish_check_list:[Bool] = []
-//    let max_anim = 4
     @IBAction func searchAreaTouchUpInside(sender: UIButton) {
         //println("Touch Up")
         //finish_check_list = []
@@ -246,11 +262,6 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         
         return scaleXY!
     }
-
-//    override func segueForUnwindingToViewController(toViewController: UIViewController, fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue {
-//        println("dog")
-//        return UIStoryboardSegue(identifier: identifier, source: fromViewController, destination: toViewController)
-//    }
     
     
     /*
@@ -545,10 +556,12 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var cellsEntity = [DummyEntity]()
     
+    // TODO: OnClick Cell is here
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let row = indexPath.row
         println("didSelectRowAtIndexPath \(row)")
         searchTextField.resignFirstResponder()
+        dummyCell_animator.removeAllBehaviors()
         wordControllerAnimation(tableView.cellForRowAtIndexPath(indexPath) as! SearchResultEntityCell, indexPath:indexPath)
 
     }
@@ -568,6 +581,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCellWithIdentifier(entityCellIdentifier, forIndexPath: indexPath) as! SearchResultEntityCell
         
         let row = indexPath.row
@@ -780,7 +794,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func wordControllerAnimation(row:SearchResultEntityCell, indexPath: NSIndexPath){
         
-        var bounce = CGFloat(10.0)
+        var bounce = CGFloat(5.0)
         var speed = CGFloat(10.0)
         
         // Cell enlarge Animation
@@ -801,7 +815,8 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         
         var rowFrameSizeAnimation = frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(0, topview.frame.height, tableViewContainer.frame.width, tableViewContainer.frame.height)), animatedTarget:animationCell! , bounce: bounce, speed: speed)
         rowFrameSizeAnimation.completionBlock = {(animation, finished) in
-            let controller = self.storyboard?.instantiateViewControllerWithIdentifier("WordViewController") as! UIViewController
+            var controller = self.storyboard?.instantiateViewControllerWithIdentifier("WordViewController") as! WordViewController
+            controller.entityObject = JMDictEntity(entity: self.cellsEntity[indexPath.row])
             self.navigationController?.pushViewController(controller, animated: false)
         }
         animationCell?.pop_addAnimation(rowFrameSizeAnimation, forKey: "FrameSizeAnimation")
@@ -876,60 +891,6 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         return popAnimation!
     }
     
-//    func popAnimationFactory(name:String, toValue:NSValue, animatedTarget:UIView, propertyName:NSString, bounce:CGFloat, speed:CGFloat) -> POPSpringAnimation {
-//        
-//        // Find animation already exist
-//        var popAnimation: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
-//        
-//        if (popAnimation != nil) {
-//            popAnimation!.toValue = toValue
-//        }
-//        else {
-//            popAnimation = POPSpringAnimation(propertyNamed: propertyName)
-//            popAnimation!.toValue = toValue
-//            popAnimation!.springBounciness = bounce
-//            popAnimation!.springSpeed = speed
-//        }
-//        
-//        return popAnimation!
-//    }
-    
-//    // Search view component move in
-//    var translateBackButton = backButton.pop_animationForKey("translateBackButton") as? POPSpringAnimation
-//    if (translateBackButton != nil) {
-//    translateBackButton!.toValue = component_list["backButton.layer.position.x"]
-//    }
-//    else {
-//    translateBackButton = POPSpringAnimation(propertyNamed: kPOPLayerPositionX)
-//    translateBackButton!.toValue = component_list["backButton.layer.position.x"]
-//    translateBackButton!.springBounciness = 5.0
-//    translateBackButton!.springSpeed = 20.0
-//    backButton.pop_addAnimation(translateBackButton, forKey: "translateBackButton")
-//    }
-    
-//    func setCelltranslationY(component:UIView, translateTo:CGFloat){
-//        var scaleAnimation = translationYAnimationFactory("translationYAnimation", toValue:translateTo, animatedTarget: component)
-//        component.pop_addAnimation(scaleAnimation, forKey: "translationYAnimation")
-//    }
-//
-//    func translationYAnimationFactory(name:String, toValue:CGFloat, animatedTarget:UIView) -> POPSpringAnimation {
-//        var tanslationY: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
-//
-//        if (tanslationY != nil) {
-//            //println("Not new \(toValue)")
-//            tanslationY!.toValue = NSValue(CGPoint: CGPointMake(animatedTarget.center.x, toValue))
-//        }
-//        else {
-//            //println("New \(toValue)")
-//            tanslationY = POPSpringAnimation(propertyNamed: kPOPViewCenter)
-//            tanslationY!.toValue = NSValue(CGPoint: CGPointMake(animatedTarget.center.x, toValue))
-//            tanslationY!.springBounciness = 10.0
-//            tanslationY!.springSpeed = 1.0
-//            //view.pop_addAnimation(scaleXY, forKey: name)
-//        }
-//        
-//        return tanslationY!
-//    }
     
 }
 

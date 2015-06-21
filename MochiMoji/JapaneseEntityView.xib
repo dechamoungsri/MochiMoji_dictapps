@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="NotoSansCJKjp-Regular.otf">
@@ -23,15 +23,15 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="食べる食べる食べる食べる食べ食べる食べる食べる食べる食べ食べる食べる食べる食べる食べ食べる食べる食べる食べる食べ" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apd-sE-oEC" userLabel="JapaneseEntity">
-                            <rect key="frame" x="16" y="32" width="382" height="96"/>
-                            <fontDescription key="fontDescription" name="NotoSansCJKjp-Regular" family="Noto Sans CJK JP" pointSize="24"/>
+                            <rect key="frame" x="16" y="24" width="382" height="104"/>
+                            <fontDescription key="fontDescription" name="NotoSansCJKjp-Regular" family="Noto Sans CJK JP" pointSize="26"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="apd-sE-oEC" firstAttribute="top" secondItem="1HO-fs-4Gu" secondAttribute="top" constant="32" id="Tj6-mo-FwW"/>
+                        <constraint firstItem="apd-sE-oEC" firstAttribute="top" secondItem="1HO-fs-4Gu" secondAttribute="top" constant="24" id="Tj6-mo-FwW"/>
                         <constraint firstAttribute="bottom" secondItem="apd-sE-oEC" secondAttribute="bottom" id="jIH-GR-Gtt"/>
                         <constraint firstAttribute="trailing" secondItem="apd-sE-oEC" secondAttribute="trailing" constant="16" id="l9x-eU-Y56"/>
                         <constraint firstItem="apd-sE-oEC" firstAttribute="leading" secondItem="1HO-fs-4Gu" secondAttribute="leading" constant="16" id="pH7-Qq-syd"/>
@@ -44,13 +44,13 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="169"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ROMAJI" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8E-A2-c0P">
-                                    <rect key="frame" x="16" y="2" width="57" height="18"/>
-                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                    <rect key="frame" x="16" y="2" width="60" height="19"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                     <color key="textColor" red="0.23506200313568115" green="0.66936302185058594" blue="0.94295048713684082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPO-pZ-vBh" userLabel="RomajiEntity">
-                                    <rect key="frame" x="105" y="0.0" width="293" height="169"/>
+                                    <rect key="frame" x="108" y="0.0" width="289.5" height="169"/>
                                     <string key="text">taberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberutaberu</string>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                     <color key="textColor" red="0.12939518690109253" green="0.12942373752593994" blue="0.12938910722732544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -10,9 +10,14 @@ import Foundation
 
 class WordViewController: UIViewController {
     
+    let debug = true
+    let filename = "WordViewController"
+    
     @IBOutlet weak var wordViewBody: UIView!
     @IBOutlet weak var scrollview: UIScrollView!
     @IBOutlet weak var scrollViewContainer: UIView!
+    
+    var entityObject:Entity!
     
     var japaneseEntityView: JapaneseEntityView!
     var meaningEntityView: MeaningEntityView!
@@ -22,6 +27,12 @@ class WordViewController: UIViewController {
     
     override func viewDidLoad() {
         
+        let functionName = "viewDidLoad"
+        
+        // TODO: Assume it is JMDict
+        var jmDict = entityObject as! JMDictEntity
+        Utility.debug_println(debug, swift_file: filename, function: functionName, text: "Id : \(jmDict.unique_id)")
+        
         let stackSize = self.navigationController?.viewControllers.count
         println("Stack Size : \(stackSize)")
         
@@ -30,17 +41,21 @@ class WordViewController: UIViewController {
         japaneseEntityView = UIView.loadFromNibNamed("JapaneseEntityView") as! JapaneseEntityView
         scrollviewDummy.addSubview(japaneseEntityView)
         japaneseEntityView.frame.size.width = scrollviewDummy.frame.width
-        japaneseEntityView.setData()
+        japaneseEntityView.setData(jmDict)
 
         meaningEntityView = UIView.loadFromNibNamed("MeaningEntityView") as! MeaningEntityView
+        meaningEntityView.loadTable()
+        meaningEntityView.setData(jmDict)
         scrollviewDummy.addSubview(meaningEntityView)
-        meaningEntityView.setTableSize()
         meaningEntityView.frame.size.width = scrollviewDummy.frame.width
         meaningEntityView.layoutIfNeeded()
+        
         meaningEntityView.frame = CGRectMake(0, japaneseEntityView.getHeight(), scrollviewDummy.frame.width, meaningEntityView.getHeight())
         meaningEntityView.layoutIfNeeded()
         
-        scrollviewDummy.contentSize = CGSizeMake(screenWidth, japaneseEntityView.getHeight()*2)
+        scrollviewDummy.contentSize = CGSizeMake(screenWidth,
+                japaneseEntityView.getHeight() +
+                meaningEntityView.getHeight())
         wordViewBody.addSubview(scrollviewDummy)
     }
     
@@ -50,11 +65,11 @@ class WordViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        println("viewWillAppear \(japaneseEntityView.frame)")
+        //println("viewWillAppear \(japaneseEntityView.frame)")
     }
     
     override func viewDidAppear(animated: Bool) {
-        println("viewDidAppear \(japaneseEntityView.frame)")
+        //println("viewDidAppear \(japaneseEntityView.frame)")
     }
     
     @IBAction func backButtonPressed(sender: UIButton) {

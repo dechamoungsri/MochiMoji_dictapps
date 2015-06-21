@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -215,6 +215,9 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.93059766292572021" green="0.27453014254570007" blue="0.18561521172523499" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="contentView.preservesSuperviewLayoutMargins" value="NO"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="cellContainer" destination="kxn-c5-UtB" id="GnE-e6-CN1"/>
                 <outlet property="dummyView" destination="rbw-iO-bO3" id="NL3-0Z-G7z"/>

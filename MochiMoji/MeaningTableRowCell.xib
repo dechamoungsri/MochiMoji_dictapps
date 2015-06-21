@@ -13,32 +13,47 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="24" id="XlT-Zq-7wl">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="24"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="meaningCellIdentifier" rowHeight="79" id="XlT-Zq-7wl" customClass="MeaningTableRowCell" customModule="MochiMoji" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XlT-Zq-7wl" id="35D-ed-UI5">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0x-56-s0k">
-                        <rect key="frame" x="16" y="-2.5" width="8.5" height="28.5"/>
-                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="24"/>
+                        <rect key="frame" x="16" y="0.0" width="9.5" height="33"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="28"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to eat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8IU-p0-dgC">
-                        <rect key="frame" x="32" y="0.0" width="50.5" height="23.5"/>
-                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to eat fjsa;dfh sadfsad;flkasdh f;sadfas\" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8IU-p0-dgC">
+                        <rect key="frame" x="32" y="0.0" width="252.5" height="52"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="22"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="8IU-p0-dgC" secondAttribute="trailing" constant="8" id="1zI-cg-NLZ"/>
                     <constraint firstItem="8IU-p0-dgC" firstAttribute="leading" secondItem="l0x-56-s0k" secondAttribute="trailing" constant="8" id="Ezi-eG-IsM"/>
+                    <constraint firstItem="8IU-p0-dgC" firstAttribute="leading" secondItem="35D-ed-UI5" secondAttribute="leadingMargin" constant="24" id="MKW-Vz-8eB"/>
                     <constraint firstItem="l0x-56-s0k" firstAttribute="leading" secondItem="35D-ed-UI5" secondAttribute="leadingMargin" constant="8" id="VZ9-fE-0wC"/>
                     <constraint firstAttribute="centerY" secondItem="l0x-56-s0k" secondAttribute="centerY" id="X38-3Z-Ufr"/>
                     <constraint firstItem="8IU-p0-dgC" firstAttribute="centerY" secondItem="l0x-56-s0k" secondAttribute="centerY" id="Xpa-Kn-KBX"/>
+                    <constraint firstItem="l0x-56-s0k" firstAttribute="top" secondItem="35D-ed-UI5" secondAttribute="topMargin" constant="-8" id="ln5-ob-urs"/>
+                    <constraint firstItem="8IU-p0-dgC" firstAttribute="top" secondItem="35D-ed-UI5" secondAttribute="topMargin" constant="-8" id="pcw-G6-iwk"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="X38-3Z-Ufr"/>
+                        <exclude reference="Ezi-eG-IsM"/>
+                        <exclude reference="Xpa-Kn-KBX"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="meaningLabel" destination="8IU-p0-dgC" id="3jD-zM-J6b"/>
+            </connections>
+            <point key="canvasLocation" x="276" y="286.5"/>
         </tableViewCell>
     </objects>
 </document>

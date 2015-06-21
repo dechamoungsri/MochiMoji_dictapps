@@ -114,7 +114,7 @@ class SearchResultEntityCell: UITableViewCell {
         var pos_list = [String]()
         var senses = entity.englishEntityList
         for var i = 0; i < senses.count ; i++ {
-            var pos = senses[i][JM_DICT_PART_OF_SPEECH_KEY] as! [String]
+            var pos = senses[i][JMDictEntity.KEY.posKey.rawValue] as! [String]
             for var j = 0; j < pos.count ; j++ {
                 
                 var pos_array_list = PART_OF_SPEECH_INFO.Pos_List

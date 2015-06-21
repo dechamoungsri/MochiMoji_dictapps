@@ -8,30 +8,29 @@
 
 import Foundation
 
-let JM_DICT_PART_OF_SPEECH_KEY = "pos"
-
-extension String {
-    
-    subscript (i: Int) -> Character {
-        return self[advance(self.startIndex, i)]
-    }
-    
-    subscript (i: Int) -> String {
-        return String(self[i] as Character)
-    }
-    
-    subscript (r: Range<Int>) -> String {
-        return substringWithRange(Range(start: advance(startIndex, r.startIndex), end: advance(startIndex, r.endIndex)))
-    }
-}
-
 class JMDictEntity: Entity {
     
     var japaneseEntityList = [NSDictionary]()
-    var englishEntityList = [NSDictionary]()
+    var englishEntityList = [NSDictionary]() //Sense List
     var readingEntityList = [NSDictionary]()
     var document: CBLDocument?
     var unique_id: Int = 0
+    
+    enum KEY: String {
+        case senseKey = "sense"
+        case glossKey = "gloss"
+        case posKey = "pos"
+        case languageKey = "language"
+        case meaningKey = "meaning"
+        case englishValue = "eng"
+    }
+    
+    var senseKey = KEY.senseKey.rawValue
+    var glossKey = KEY.glossKey.rawValue
+    var posKey = KEY.posKey.rawValue
+    var languageKey = KEY.languageKey.rawValue
+    var meaningKey = KEY.meaningKey.rawValue
+    var englishValue = KEY.englishValue.rawValue
     
     override init(){
         self.document = nil
@@ -83,11 +82,6 @@ class JMDictEntity: Entity {
     }
     
     func assignEnglishEntity(doc: CBLDocument) {
-        var senseKey = "sense"
-        var glossKey = "gloss"
-        var posKey = JM_DICT_PART_OF_SPEECH_KEY
-        var languageKey = "language"
-        var meaningKey = "meaning"
         
         var englishList = [NSDictionary]()
         
@@ -103,7 +97,7 @@ class JMDictEntity: Entity {
                     for var j = 0; j < glosses.count ; j++ {
                         if let gloss = glosses[j] as? String {
                             //println("Eng : \(gloss)")
-                            var dict = [languageKey: "eng", meaningKey: gloss]
+                            var dict = [languageKey: englishValue, meaningKey: gloss]
                             meaning_list.append(dict)
                             meaningEntity += gloss + ", "
                         }

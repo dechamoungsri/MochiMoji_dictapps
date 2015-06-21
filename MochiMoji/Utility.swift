@@ -8,6 +8,21 @@
 
 import Foundation
 
+extension String {
+    
+    subscript (i: Int) -> Character {
+        return self[advance(self.startIndex, i)]
+    }
+    
+    subscript (i: Int) -> String {
+        return String(self[i] as Character)
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        return substringWithRange(Range(start: advance(startIndex, r.startIndex), end: advance(startIndex, r.endIndex)))
+    }
+}
+
 class Utility {
 
     enum ElementStatus {
@@ -110,7 +125,7 @@ class Utility {
     
     class func debug_println(debug:Bool, swift_file:String, function:String, text:String){
         if debug {
-            println("Class : \(swift_file), Function : \(function), Text : \(text)")
+            println("\n Debug\n\t Class : \(swift_file)\n\t Function : \(function)\n\t Text : \(text)\n")
         }
         
     }

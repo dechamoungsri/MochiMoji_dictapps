@@ -48,6 +48,8 @@
 		BE87F7D71A74DF6100267E85 /* KanjiCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE87F7D61A74DF6100267E85 /* KanjiCardView.xib */; };
 		BE90C1D51B23F52400510AD0 /* MeaningTableRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE90C1D41B23F52400510AD0 /* MeaningTableRowCell.xib */; };
 		BE90C1D71B23F9D200510AD0 /* MeaningTableSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE90C1D61B23F9D200510AD0 /* MeaningTableSectionCell.xib */; };
+		BEB3F10D1B2AC1AB00D6381F /* MeaningTableRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB3F10C1B2AC1AB00D6381F /* MeaningTableRowCell.swift */; };
+		BEB3F10F1B2AC22000D6381F /* MeaningTableSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB3F10E1B2AC22000D6381F /* MeaningTableSectionCell.swift */; };
 		BEC117B71AD4DC9800FB5457 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC117B61AD4DC9800FB5457 /* libz.dylib */; };
 		BEC117B91AD4DC9F00FB5457 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC117B81AD4DC9F00FB5457 /* libsqlite3.dylib */; };
 		BEC117BB1AD4DCAE00FB5457 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC117BA1AD4DCAE00FB5457 /* SystemConfiguration.framework */; };
@@ -144,6 +146,8 @@
 		BE87F7D61A74DF6100267E85 /* KanjiCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KanjiCardView.xib; sourceTree = "<group>"; };
 		BE90C1D41B23F52400510AD0 /* MeaningTableRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeaningTableRowCell.xib; sourceTree = "<group>"; };
 		BE90C1D61B23F9D200510AD0 /* MeaningTableSectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeaningTableSectionCell.xib; sourceTree = "<group>"; };
+		BEB3F10C1B2AC1AB00D6381F /* MeaningTableRowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeaningTableRowCell.swift; sourceTree = "<group>"; };
+		BEB3F10E1B2AC22000D6381F /* MeaningTableSectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeaningTableSectionCell.swift; sourceTree = "<group>"; };
 		BEB8067D1A751B190096E790 /* MochiMoji-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MochiMoji-Bridging-Header.h"; sourceTree = "<group>"; };
 		BEC117B41AD4DC7400FB5457 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = ../../Desktop/CouchbaseLite.framework; sourceTree = "<group>"; };
 		BEC117B61AD4DC9800FB5457 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -352,6 +356,15 @@
 			name = CardView;
 			sourceTree = "<group>";
 		};
+		BEB3F10B1B2ABF0F00D6381F /* MeaningTableComponent */ = {
+			isa = PBXGroup;
+			children = (
+				BEB3F10C1B2AC1AB00D6381F /* MeaningTableRowCell.swift */,
+				BEB3F10E1B2AC22000D6381F /* MeaningTableSectionCell.swift */,
+			);
+			name = MeaningTableComponent;
+			sourceTree = "<group>";
+		};
 		BEC117B01AD4DC1000FB5457 /* CouchbaseLite */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,6 +444,7 @@
 		BEEF7B6B1B1AD9F20088D2AA /* WordViewComponent */ = {
 			isa = PBXGroup;
 			children = (
+				BEB3F10B1B2ABF0F00D6381F /* MeaningTableComponent */,
 				BEEF7B6C1B1ADA280088D2AA /* JapaneseEntityView.swift */,
 				BE43A6A51B22C57300A61169 /* MeaningEntityView.swift */,
 			);
@@ -612,6 +626,7 @@
 				BE7C99D31A74A5C7007E65AD /* AppDelegate.swift in Sources */,
 				BE51929B1A96DDE300F19BEA /* DesignableButton.swift in Sources */,
 				BE1B667E1AE9D1D10041D065 /* DummyEntity.swift in Sources */,
+				BEB3F10F1B2AC22000D6381F /* MeaningTableSectionCell.swift in Sources */,
 				BE5192AF1A96DDE300F19BEA /* SpringTextView.swift in Sources */,
 				BE5192B11A96DDE300F19BEA /* TransitionManager.swift in Sources */,
 				BE5192A91A96DDE300F19BEA /* Spring.swift in Sources */,
@@ -623,6 +638,7 @@
 				BED227081ADA5F13000C0E88 /* Utility.swift in Sources */,
 				BE5192AC1A96DDE300F19BEA /* SpringImageView.swift in Sources */,
 				BE51929D1A96DDE300F19BEA /* DesignableLabel.swift in Sources */,
+				BEB3F10D1B2AC1AB00D6381F /* MeaningTableRowCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
