@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F0D85BA8C264C524DEE7A27 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 763DAF4BC3171D37A88242DD /* libPods.a */; };
 		BE1B667E1AE9D1D10041D065 /* DummyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1B667D1AE9D1D10041D065 /* DummyEntity.swift */; };
 		BE3238D01AF4AB970096A7F9 /* jmdict-30-4-2015-view.cblite in Resources */ = {isa = PBXBuildFile; fileRef = BE3238CF1AF4AB970096A7F9 /* jmdict-30-4-2015-view.cblite */; };
 		BE43A6A41B22C0EE00A61169 /* MeaningEntityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE43A6A31B22C0EE00A61169 /* MeaningEntityView.xib */; };
 		BE43A6A61B22C57300A61169 /* MeaningEntityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE43A6A51B22C57300A61169 /* MeaningEntityView.swift */; };
-		BE468E4F1B24472C00A76032 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE468E4E1B24472C00A76032 /* CouchbaseLite.framework */; };
 		BE51929A1A96DDE300F19BEA /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE51927F1A96DDE300F19BEA /* BlurView.swift */; };
 		BE51929B1A96DDE300F19BEA /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5192801A96DDE300F19BEA /* DesignableButton.swift */; };
 		BE51929C1A96DDE300F19BEA /* DesignableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5192811A96DDE300F19BEA /* DesignableImageView.swift */; };
@@ -48,6 +48,7 @@
 		BE87F7D71A74DF6100267E85 /* KanjiCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE87F7D61A74DF6100267E85 /* KanjiCardView.xib */; };
 		BE90C1D51B23F52400510AD0 /* MeaningTableRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE90C1D41B23F52400510AD0 /* MeaningTableRowCell.xib */; };
 		BE90C1D71B23F9D200510AD0 /* MeaningTableSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE90C1D61B23F9D200510AD0 /* MeaningTableSectionCell.xib */; };
+		BE999EE11B4D4BDD008A5C3D /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE4F6A7F1B22BDB7003180F6 /* CouchbaseLite.framework */; };
 		BEB3F10D1B2AC1AB00D6381F /* MeaningTableRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB3F10C1B2AC1AB00D6381F /* MeaningTableRowCell.swift */; };
 		BEB3F10F1B2AC22000D6381F /* MeaningTableSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB3F10E1B2AC22000D6381F /* MeaningTableSectionCell.swift */; };
 		BEC117B71AD4DC9800FB5457 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC117B61AD4DC9800FB5457 /* libz.dylib */; };
@@ -69,7 +70,6 @@
 		BEDAF1B21AFC6D4200D4050C /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDAF1B11AFC6D4200D4050C /* WordViewController.swift */; };
 		BEEF7B6A1B1AB73C0088D2AA /* JapaneseEntityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEEF7B691B1AB73C0088D2AA /* JapaneseEntityView.xib */; };
 		BEEF7B6D1B1ADA280088D2AA /* JapaneseEntityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF7B6C1B1ADA280088D2AA /* JapaneseEntityView.swift */; };
-		EF0F3710D0631B57B42F677B /* libPods-MochiMoji.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6FD660FF368BCED3CBD337A /* libPods-MochiMoji.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,13 +179,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE468E4F1B24472C00A76032 /* CouchbaseLite.framework in Frameworks */,
+				BE999EE11B4D4BDD008A5C3D /* CouchbaseLite.framework in Frameworks */,
 				BEC117BF1AD4DCBC00FB5457 /* Security.framework in Frameworks */,
 				BEC117BD1AD4DCB200FB5457 /* CFNetwork.framework in Frameworks */,
 				BEC117BB1AD4DCAE00FB5457 /* SystemConfiguration.framework in Frameworks */,
 				BEC117B91AD4DC9F00FB5457 /* libsqlite3.dylib in Frameworks */,
 				BEC117B71AD4DC9800FB5457 /* libz.dylib in Frameworks */,
-				EF0F3710D0631B57B42F677B /* libPods-MochiMoji.a in Frameworks */,
+				7F0D85BA8C264C524DEE7A27 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,7 +590,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MochiMoji/Pods-MochiMoji-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -753,7 +753,7 @@
 		};
 		BE7C99ED1A74A5C8007E65AD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C24EA031D4D882D492031D2A /* Pods-MochiMoji.debug.xcconfig */;
+			baseConfigurationReference = 9E55323F697205746F1FD91E /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -773,7 +773,7 @@
 		};
 		BE7C99EE1A74A5C8007E65AD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E9A4E166995F0A4E9947417D /* Pods-MochiMoji.release.xcconfig */;
+			baseConfigurationReference = 5DE0274CDEF855A992DD8D5A /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
