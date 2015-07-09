@@ -17,7 +17,7 @@ extension UIView {
     }
 }
 
-class MainPageController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
+class MainPageController: UIViewController {
 
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var lastSeenReportUILabel: UILabel!
@@ -33,6 +33,10 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var topview: UIView!
     @IBOutlet weak var topview_dummy: UIView!
     
+    @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewContainer: UIView!
+    
     var isMenuButtonPressed : Bool = false
     var isFliped : Bool = false
     var flashCardCenter : CGPoint!
@@ -45,6 +49,10 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     var topBarIsHide = false
     
     var dummyCell_animator: UIDynamicAnimator!
+    
+    var cellsEntity = [DummyEntity]()
+    
+    var tableViewDelegate:SearchTableViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +83,10 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableView.registerNib(nibName, forCellReuseIdentifier: entityCellIdentifier)
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
+        tableViewDelegate = SearchTableViewDelegate(mainController: self)
+        self.tableView.delegate = tableViewDelegate
+        self.tableView.dataSource = tableViewDelegate
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -85,7 +97,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         // TODO: Implement Call back from Child
         
         if topBarIsHide {
-            var scaleTopViewAnimation = scaleYAnimaionFactory("scaleTopViewAnimation", toValue: 1.0, animatedTarget: topview_dummy)
+            var scaleTopViewAnimation = AnimationFactory.scaleYAnimaionFactory("scaleTopViewAnimation", toValue: 1.0, animatedTarget: topview_dummy)
             scaleTopViewAnimation.completionBlock = {
                 (animation, finished) in
                 self.topBarIsHide = false
@@ -93,22 +105,8 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
             topview_dummy.pop_addAnimation(scaleTopViewAnimation, forKey: "scaleTopViewAnimation")
             
             if animationCell != nil {
-                var rowFrameSizeAnimation = frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(0, screenHeight, tableViewContainer.frame.width, 0)), animatedTarget:animationCell! , bounce: 10.0, speed: 10.0)
+                var rowFrameSizeAnimation = AnimationFactory.frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(0, screenHeight, tableViewContainer.frame.width, 0)), animatedTarget:animationCell! , bounce: 10.0, speed: 10.0)
                 animationCell?.pop_addAnimation(rowFrameSizeAnimation, forKey: "FrameSizeAnimation")
-                
-//                var rotate = POPSpringAnimation(propertyNamed: kPOPLayerRotation)
-//                rotate.toValue = M_PI/4
-//                animationCell?.layer.pop_addAnimation(rotate, forKey: "rotate")
-//                
-//                dummyCell_animator.removeAllBehaviors()
-//                
-//                var gravity = UIGravityBehavior(items: [animationCell!])
-//                gravity.gravityDirection = CGVectorMake(0, 10)
-//                dummyCell_animator.addBehavior(gravity)
-                
-//                delay(0.3) {
-//                    self.dummyCell_animator.removeAllBehaviors()
-//                }
                 
             }
         }
@@ -141,13 +139,13 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func searchAreaTouchUpOutside(sender: UIButton) {
-        var searchTextFieldAnimation = touchDownPopSpringAnimationGenerate("searchTextFieldScaleTouch", toValue:1.0, animatedTarget: searchTextField)
+        var searchTextFieldAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchTextFieldScaleTouch", toValue:1.0, animatedTarget: searchTextField)
         searchTextField.pop_addAnimation(searchTextFieldAnimation, forKey: "searchTextFieldScaleTouch")
         
-        var searchButtonAnimation = touchDownPopSpringAnimationGenerate("searchButtonScaleTouch", toValue:1.0, animatedTarget: searchButton)
+        var searchButtonAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchButtonScaleTouch", toValue:1.0, animatedTarget: searchButton)
         searchButton.pop_addAnimation(searchButtonAnimation, forKey: "searchButtonScaleTouch")
         
-        var menuButtonAnimation = touchDownPopSpringAnimationGenerate("menuButtonScaleTouch", toValue:1.0, animatedTarget: menuButton)
+        var menuButtonAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("menuButtonScaleTouch", toValue:1.0, animatedTarget: menuButton)
         menuButton.pop_addAnimation(menuButtonAnimation, forKey: "menuButtonScaleTouch")
     }
     
@@ -167,7 +165,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
         // Dictionary Textfield Scale Up animation
-        var searchTextFieldAnimation = touchDownPopSpringAnimationGenerate("searchTextFieldScaleTouch", toValue:1.0, animatedTarget: searchTextField)
+        var searchTextFieldAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchTextFieldScaleTouch", toValue:1.0, animatedTarget: searchTextField)
         searchTextFieldAnimation.completionBlock = {
             (animation, finished) in
             self.searchControllerPreprocessing(true)
@@ -175,26 +173,26 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         searchTextField.pop_addAnimation(searchTextFieldAnimation, forKey: "searchTextFieldScaleTouch")
         
         // Search Button and Menu button Scale Up
-        var searchButtonAnimation = touchDownPopSpringAnimationGenerate("searchButtonScaleTouch", toValue:1.0, animatedTarget: searchButton)
+        var searchButtonAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchButtonScaleTouch", toValue:1.0, animatedTarget: searchButton)
         searchButton.pop_addAnimation(searchButtonAnimation, forKey: "searchButtonScaleTouch")
         
-        var menuButtonAnimation = touchDownPopSpringAnimationGenerate("menuButtonScaleTouch", toValue:1.0, animatedTarget: menuButton)
+        var menuButtonAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("menuButtonScaleTouch", toValue:1.0, animatedTarget: menuButton)
         menuButton.pop_addAnimation(menuButtonAnimation, forKey: "menuButtonScaleTouch")
         
         // Main view component fade away
-        fadeToComponent(menuButton, fadeTo: 0.0)
-        fadeToComponent(searchButton, fadeTo: 0.0)
-        fadeToComponent(flashCardView, fadeTo: 0.0)
+        AnimationFactory.fadeToComponent(menuButton, fadeTo: 0.0)
+        AnimationFactory.fadeToComponent(searchButton, fadeTo: 0.0)
+        AnimationFactory.fadeToComponent(flashCardView, fadeTo: 0.0)
         
         // Change Dictionary Color
         var searchTextFieldColor = searchTextField.pop_animationForKey("searchTextFieldColor") as? POPSpringAnimation
         if (searchTextFieldColor != nil) {
-            searchTextFieldColor!.toValue = colorWithHexString("#FAFAFA")
+            searchTextFieldColor!.toValue = Utility.colorWithHexString("#FAFAFA")
         }
         else {
             
             searchTextFieldColor = POPSpringAnimation(propertyNamed: kPOPViewBackgroundColor)
-            searchTextFieldColor!.toValue = colorWithHexString("#FAFAFA")
+            searchTextFieldColor!.toValue = Utility.colorWithHexString("#FAFAFA")
             searchTextField.pop_addAnimation(searchTextFieldColor, forKey: "searchTextFieldColor")
         }
         
@@ -224,7 +222,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
         tableViewContainer.hidden = false
-        fadeToComponent(tableViewContainer, fadeTo: 1.0)
+        AnimationFactory.fadeToComponent(tableViewContainer, fadeTo: 1.0)
 
     }
     
@@ -235,34 +233,14 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func searchAreaTouchDown(sender: UIButton) {
         
         //println("Touch Down")
-        var searchTextFieldAnimation = touchDownPopSpringAnimationGenerate("searchTextFieldScaleTouch", toValue:0.9, animatedTarget: searchTextField)
+        var searchTextFieldAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchTextFieldScaleTouch", toValue:0.9, animatedTarget: searchTextField)
         searchTextField.pop_addAnimation(searchTextFieldAnimation, forKey: "searchTextFieldScaleTouch")
-        var searchButtonAnimation = touchDownPopSpringAnimationGenerate("searchButtonScaleTouch", toValue:0.9, animatedTarget: searchButton)
+        var searchButtonAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchButtonScaleTouch", toValue:0.9, animatedTarget: searchButton)
         searchButton.pop_addAnimation(searchButtonAnimation, forKey: "searchButtonScaleTouch")
-        var menuButtonAnimation = touchDownPopSpringAnimationGenerate("menuButtonScaleTouch", toValue:0.9, animatedTarget: menuButton)
+        var menuButtonAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("menuButtonScaleTouch", toValue:0.9, animatedTarget: menuButton)
         menuButton.pop_addAnimation(menuButtonAnimation, forKey: "menuButtonScaleTouch")
         
     }
-    
-    func touchDownPopSpringAnimationGenerate(name:String, toValue:CGFloat, animatedTarget:UIView) -> POPSpringAnimation {
-        var scaleXY: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
-        
-        if (scaleXY != nil) {
-            //println("Not new \(toValue)")
-            scaleXY!.toValue = NSValue(CGSize: CGSize(width: toValue, height: toValue))
-        }
-        else {
-            //println("New \(toValue)")
-            scaleXY = POPSpringAnimation(propertyNamed: kPOPViewScaleXY)
-            scaleXY!.toValue = NSValue(CGSize: CGSize(width: toValue, height: toValue))
-            scaleXY!.springBounciness = 10.0
-            scaleXY!.springSpeed = 20.0
-            //view.pop_addAnimation(scaleXY, forKey: name)
-        }
-        
-        return scaleXY!
-    }
-    
     
     /*
         Search Controller processing
@@ -277,7 +255,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
             searchTextField.placeholder = "Search"
             searchTextField.textAlignment = NSTextAlignment.Left
             searchView.hidden = false
-            searchTextField.textColor = colorWithHexString("#7D7D7D")
+            searchTextField.textColor = Utility.colorWithHexString("#7D7D7D")
             self.searchTextField.becomeFirstResponder()
             
         }
@@ -286,7 +264,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
             searchTextField.placeholder = ""
             searchTextField.textAlignment = NSTextAlignment.Center
             searchView.hidden = true
-            searchTextField.textColor = colorWithHexString("#FAFAFA")
+            searchTextField.textColor = Utility.colorWithHexString("#FAFAFA")
             
         }
     }
@@ -408,51 +386,19 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         flashCardView.center = flashCardCenter//view.center
         viewDidAppear(true)
     }
-    
-    func colorWithHexString (hex:String) -> UIColor {
-        var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
-        
-        if (cString.hasPrefix("#")) {
-            cString = (cString as NSString).substringFromIndex(1)
-        }
-        
-        if (count(cString) != 6) {
-            return UIColor.grayColor()
-        }
-        
-        var rString = (cString as NSString).substringToIndex(2)
-        var gString = ((cString as NSString).substringFromIndex(2) as NSString).substringToIndex(2)
-        var bString = ((cString as NSString).substringFromIndex(4) as NSString).substringToIndex(2)
-        
-        var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
-        NSScanner(string: rString).scanHexInt(&r)
-        NSScanner(string: gString).scanHexInt(&g)
-        NSScanner(string: bString).scanHexInt(&b)
-        
-        return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: CGFloat(1))
-    }
 
-    /*
-        Search View section
-    */
-    
-    // MARK: - SearchView
     
     // MARK: - SearchView IBOUTLET
-    
-    @IBOutlet weak var searchView: UIView!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tableViewContainer: UIView!
     
     @IBAction func onBackPressed(sender: UIButton) {
         //searchTextField.textColor = colorWithHexString("#2D8BCE")
         var searchTextFieldColor = searchTextField.pop_animationForKey("searchTextFieldColor") as? POPSpringAnimation
         if (searchTextFieldColor != nil) {
-            searchTextFieldColor!.toValue = colorWithHexString("#2D8BCE")
+            searchTextFieldColor!.toValue = Utility.colorWithHexString("#2D8BCE")
         }
         else {
             searchTextFieldColor = POPSpringAnimation(propertyNamed: kPOPViewBackgroundColor)
-            searchTextFieldColor!.toValue = colorWithHexString("#2D8BCE")
+            searchTextFieldColor!.toValue = Utility.colorWithHexString("#2D8BCE")
             searchTextFieldColor!.completionBlock = {
                 (animation, finished) in
                 self.searchControllerPreprocessing(false)
@@ -461,15 +407,15 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
         menuButton.transform = CGAffineTransformMakeScale(0.001, 0.001);
-        scaleToComponent(menuButton, scaleTo: 1.0)
+        AnimationFactory.scaleToComponent(menuButton, scaleTo: 1.0)
         searchButton.transform = CGAffineTransformMakeScale(0.001, 0.001);
-        scaleToComponent(searchButton, scaleTo: 1.0)
+        AnimationFactory.scaleToComponent(searchButton, scaleTo: 1.0)
         
         // Main view component fade in
         
-        fadeToComponent(menuButton, fadeTo: 1.0)
-        fadeToComponent(searchButton, fadeTo: 1.0)
-        fadeToComponent(flashCardView, fadeTo: 1.0)
+        AnimationFactory.fadeToComponent(menuButton, fadeTo: 1.0)
+        AnimationFactory.fadeToComponent(searchButton, fadeTo: 1.0)
+        AnimationFactory.fadeToComponent(flashCardView, fadeTo: 1.0)
         
         // Search view component move in
         var translateBackButton = backButton.pop_animationForKey("translateBackButton") as? POPSpringAnimation
@@ -496,7 +442,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
             clearButton.pop_addAnimation(translateClearButton, forKey: "translateClearButton")
         }
         
-        var fadeAnimation = fadeAnimationFactory("fade", toValue: 0.0, animatedTarget: tableViewContainer)
+        var fadeAnimation = AnimationFactory.fadeAnimationFactory("fade", toValue: 0.0, animatedTarget: tableViewContainer)
         fadeAnimation.completionBlock = {
             (animation, finished) in
             self.tableViewContainer.hidden = true
@@ -505,227 +451,6 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         
         searchTextField.resignFirstResponder()
     }
-    
-    // MARK: - Animation Factory
-    
-    func scaleToComponent(component:UIView, scaleTo:CGFloat){
-        var scaleAnimation = scaleAnimaionFactory("scaleAnimation", toValue:scaleTo, animatedTarget: component)
-        component.pop_addAnimation(scaleAnimation, forKey: "scaleAnimation")
-    }
-    
-    func scaleAnimaionFactory(name:String, toValue:CGFloat, animatedTarget:UIView) -> POPSpringAnimation {
-        var scaleXY: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
-        
-        if (scaleXY != nil) {
-            //println("Not new \(toValue)")
-            scaleXY!.toValue = NSValue(CGSize: CGSize(width: toValue, height: toValue))
-        }
-        else {
-            //println("New \(toValue)")
-            scaleXY = POPSpringAnimation(propertyNamed: kPOPViewScaleXY)
-            scaleXY!.toValue = NSValue(CGSize: CGSize(width: toValue, height: toValue))
-            scaleXY!.springBounciness = 10.0
-            scaleXY!.springSpeed = 20.0
-            //view.pop_addAnimation(scaleXY, forKey: name)
-        }
-        
-        return scaleXY!
-    }
-    
-    func fadeToComponent(component:UIView, fadeTo:CGFloat){
-        var fadeAnimation = fadeAnimationFactory("fade", toValue: fadeTo, animatedTarget: component)
-        component.pop_addAnimation(fadeAnimation, forKey: "fade")
-    }
-    
-    func fadeAnimationFactory(name:String, toValue:CGFloat, animatedTarget:UIView) -> POPSpringAnimation {
-        var fade: POPSpringAnimation?  = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
-        
-        if fade != nil {
-            fade?.toValue = toValue
-        }
-        else {
-            fade = POPSpringAnimation(propertyNamed: kPOPViewAlpha)
-            fade!.toValue = toValue
-        }
-        
-        return fade!
-    }
-    
-    // MARK: - UITableView
-    // ============================= Start Table Sectionnnnnnnnn ============================= //
-    
-    var cellsEntity = [DummyEntity]()
-    
-    // TODO: OnClick Cell is here
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let row = indexPath.row
-        println("didSelectRowAtIndexPath \(row)")
-        searchTextField.resignFirstResponder()
-        dummyCell_animator.removeAllBehaviors()
-        wordControllerAnimation(tableView.cellForRowAtIndexPath(indexPath) as! SearchResultEntityCell, indexPath:indexPath)
-
-    }
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //println("numberOfRowsInSection")
-        return cellsEntity.count
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-
-        return 72
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCellWithIdentifier(entityCellIdentifier, forIndexPath: indexPath) as! SearchResultEntityCell
-        
-        let row = indexPath.row
-        cell.cellEntityFromDummyEntity(cellsEntity[row], text: searchTextField.text)
-        
-        //println("cellForRowAtIndexPath \(row)")
-        
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-        let row = indexPath.row
-        
-//        println("View Appear Row \(row) ")
-        
-        //println("TableView content size : \(tableView.contentSize)")
-        
-        var frame = tableViewContainer.frame
-        var cell_height = cell.frame.height
-//        
-//        println("Frame \(frame) \(cell_height)")
-//        
-        var lastFirstShowedCell:Int = Int( frame.size.height / cell_height ) + 1
-//        
-//        println("Last First Cell \(lastFirstShowedCell)")
-        
-        if !cellsEntity[row].isShow {
-            var animatedTarget = (cell as! SearchResultEntityCell).dummyView
-            var shadow = (cell as! SearchResultEntityCell).shadowView
-            animatedTarget.transform = CGAffineTransformMakeScale(1.0, 0.001)
-            shadow.alpha = 0.0
-            
-            if row < lastFirstShowedCell {
-            
-                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( getDelay() * cellDelayTime * Double(NSEC_PER_SEC)))
-                
-                pushDelayStack()
-                
-                //let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( 1 * cellDelayTime * Double(NSEC_PER_SEC)))
-                dispatch_after(delayTime, dispatch_get_main_queue()) {
-                    self.setCellScaleY(animatedTarget,scaleTo: 1.0)
-                    
-                    UIView.animateWithDuration(0.3, animations: {
-                        shadow.alpha = 0.0
-                    }, completion: nil)
-                    
-                }
-                
-            }
-            else {
-                self.setCellScaleY(animatedTarget,scaleTo: 1.0)
-                UIView.animateWithDuration(0.3, animations: {
-                    shadow.alpha = 0.0
-                    }, completion: nil)
-                //self.fadeToComponent(animatedTarget, fadeTo: 1.0)
-            }
-            
-            cellsEntity[row].showed()
-            
-        }
-        
-    }
-    
-    var stack:Double = 0.0
-    let cellDelayTime:Double = 0.075
-    func getDelay() -> Double {
-        return stack
-    }
-    
-    func pushDelayStack() {
-        stack+=1
-    }
-    
-    func popDelayStack() {
-        stack-=1
-        if stack < 0 {
-            stack = 0
-        }
-    }
-    
-    // MARK: - Table Scroll Delegate
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        searchTextField.resignFirstResponder()
-    }
-    
-    // MARK: - Table Cell Animation Factory
-    
-    func setCellScaleY(component:UIView, scaleTo:CGFloat){
-        var scaleAnimation = scaleYAnimaionFactory("scaleYAnimation", toValue:scaleTo, animatedTarget: component)
-        scaleAnimation.completionBlock = {(animation, finished) in
-            self.popDelayStack()
-        }
-        component.pop_addAnimation(scaleAnimation, forKey: "scaleYAnimation")
-    }
-    
-    func scaleYAnimaionFactory(name:String, toValue:CGFloat, animatedTarget:UIView) -> POPSpringAnimation {
-        var scaleY: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
-        
-        if (scaleY != nil) {
-            //println("Not new \(toValue)")
-            scaleY!.toValue = toValue
-        }
-        else {
-            //println("New \(toValue)")
-            scaleY = POPSpringAnimation(propertyNamed: kPOPViewScaleY)
-            scaleY!.toValue = toValue
-            scaleY!.springBounciness = 10.0
-            scaleY!.springSpeed = 10.0
-            //view.pop_addAnimation(scaleXY, forKey: name)
-        }
-        
-        return scaleY!
-    }
-
-    
-    func setCellHeight(component:UIView, sizeTo:CGFloat){
-        var heightAnimation = setHeightAnimaionFactory("heightAnimation", toValue:sizeTo, animatedTarget: component)
-        component.pop_addAnimation(heightAnimation, forKey: "heightAnimation")
-    }
-    
-    func setHeightAnimaionFactory(name:String, toValue:CGFloat, animatedTarget:UIView) -> POPSpringAnimation {
-        var height: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
-        
-        if (height != nil) {
-            //println("Not new \(toValue)")
-            height!.toValue = toValue
-        }
-        else {
-            //println("New \(toValue)")
-            height = POPSpringAnimation(propertyNamed: kPOPViewSize)
-            height!.toValue = toValue
-            height!.springBounciness = 10.0
-            height!.springSpeed = 1.0
-            //view.pop_addAnimation(scaleXY, forKey: name)
-        }
-        
-        return height!
-    }
-    
-    
-    
-    // ----------------------------- End Table Sectionnnnnnnnn ----------------------------- //
     
     // MARK: - SearchTextField Processing
     // ============================= Start Search Text field Section ============================= //
@@ -758,7 +483,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
                     }
                     
                     self.tableView.reloadData()
-                    self.stack = 0.0
+                    self.tableViewDelegate!.stack = 0.0
                 }
             }
         }
@@ -813,7 +538,7 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         animationCell?.frame = cellRectInTable
         animationCell?.layer.zPosition = CGFloat(MAXFLOAT);
         
-        var rowFrameSizeAnimation = frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(0, topview.frame.height, tableViewContainer.frame.width, tableViewContainer.frame.height)), animatedTarget:animationCell! , bounce: bounce, speed: speed)
+        var rowFrameSizeAnimation = AnimationFactory.frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(0, topview.frame.height, tableViewContainer.frame.width, tableViewContainer.frame.height)), animatedTarget:animationCell! , bounce: bounce, speed: speed)
         rowFrameSizeAnimation.completionBlock = {(animation, finished) in
             var controller = self.storyboard?.instantiateViewControllerWithIdentifier("WordViewController") as! WordViewController
             controller.entityObject = JMDictEntity(entity: self.cellsEntity[indexPath.row])
@@ -829,16 +554,13 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.view.addSubview(animationCell!)
         
-        var scaleTopViewAnimation = scaleYAnimaionFactory("scaleTopViewAnimation", toValue: 0.0, animatedTarget: topview_dummy)
+        var scaleTopViewAnimation = AnimationFactory.scaleYAnimaionFactory("scaleTopViewAnimation", toValue: 0.0, animatedTarget: topview_dummy)
         scaleTopViewAnimation.completionBlock = {
             (animation, finished) in
             self.topBarIsHide = true
         }
         topview_dummy.pop_addAnimation(scaleTopViewAnimation, forKey: "scaleTopViewAnimation")
-        
-//        var topviewSizeAnimation = frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(topview.frame.origin.x, topview.frame.origin.y, topview.frame.width, 0)), animatedTarget: topview, bounce: bounce, speed: speed)
-//        topview.pop_addAnimation(topviewSizeAnimation, forKey: "FrameSizeAnimation")
-        
+ 
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -851,44 +573,6 @@ class MainPageController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func sendDataFromChildToParent(segue: UIStoryboardSegue) {
         let childViewController:WordViewController = segue.sourceViewController as! WordViewController;
         println("Receive data from Child \(segue.identifier)")
-    }
-    
-    // MARK: - Animation Factory
-    
-    func frameSizeAnimationFactory(name:String, toValue:NSValue, animatedTarget:UIView, bounce:CGFloat, speed:CGFloat) -> POPSpringAnimation {
-        
-        // Find animation already exist
-        var popAnimation: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
-        
-        if (popAnimation != nil) {
-            popAnimation!.toValue = toValue
-        }
-        else {
-            popAnimation = POPSpringAnimation(propertyNamed: kPOPViewFrame)
-            popAnimation!.toValue = toValue
-            popAnimation!.springBounciness = bounce
-            popAnimation!.springSpeed = speed
-        }
-        
-        return popAnimation!
-    }
-    
-    func translationYPosition(name:String, toValue:CGFloat, animatedTarget:UIView, bounce:CGFloat, speed:CGFloat) -> POPSpringAnimation {
-        // Find animation already exist
-        var popAnimation: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
-        
-        if (popAnimation != nil) {
-            popAnimation!.toValue = toValue
-        }
-        else {
-            popAnimation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
-            popAnimation!.toValue = toValue
-            popAnimation!.springBounciness = bounce
-            popAnimation!.springSpeed = speed
-            println("translationYPosition")
-        }
-        
-        return popAnimation!
     }
     
     

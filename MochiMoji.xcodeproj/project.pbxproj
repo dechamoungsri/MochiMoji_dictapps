@@ -48,6 +48,8 @@
 		BE87F7D71A74DF6100267E85 /* KanjiCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE87F7D61A74DF6100267E85 /* KanjiCardView.xib */; };
 		BE90C1D51B23F52400510AD0 /* MeaningTableRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE90C1D41B23F52400510AD0 /* MeaningTableRowCell.xib */; };
 		BE90C1D71B23F9D200510AD0 /* MeaningTableSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE90C1D61B23F9D200510AD0 /* MeaningTableSectionCell.xib */; };
+		BE96F85A1B4D59050016B8AC /* SearchTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE96F8591B4D59050016B8AC /* SearchTableViewDelegate.swift */; };
+		BE96F85D1B4D61460016B8AC /* AnimationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE96F85C1B4D61460016B8AC /* AnimationFactory.swift */; };
 		BE999EE11B4D4BDD008A5C3D /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE4F6A7F1B22BDB7003180F6 /* CouchbaseLite.framework */; };
 		BEB3F10D1B2AC1AB00D6381F /* MeaningTableRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB3F10C1B2AC1AB00D6381F /* MeaningTableRowCell.swift */; };
 		BEB3F10F1B2AC22000D6381F /* MeaningTableSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB3F10E1B2AC22000D6381F /* MeaningTableSectionCell.swift */; };
@@ -146,6 +148,8 @@
 		BE87F7D61A74DF6100267E85 /* KanjiCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KanjiCardView.xib; sourceTree = "<group>"; };
 		BE90C1D41B23F52400510AD0 /* MeaningTableRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeaningTableRowCell.xib; sourceTree = "<group>"; };
 		BE90C1D61B23F9D200510AD0 /* MeaningTableSectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeaningTableSectionCell.xib; sourceTree = "<group>"; };
+		BE96F8591B4D59050016B8AC /* SearchTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewDelegate.swift; sourceTree = "<group>"; };
+		BE96F85C1B4D61460016B8AC /* AnimationFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationFactory.swift; sourceTree = "<group>"; };
 		BEB3F10C1B2AC1AB00D6381F /* MeaningTableRowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeaningTableRowCell.swift; sourceTree = "<group>"; };
 		BEB3F10E1B2AC22000D6381F /* MeaningTableSectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeaningTableSectionCell.swift; sourceTree = "<group>"; };
 		BEB8067D1A751B190096E790 /* MochiMoji-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MochiMoji-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -295,11 +299,13 @@
 		BE7C99CF1A74A5C7007E65AD /* MochiMoji */ = {
 			isa = PBXGroup;
 			children = (
+				BE96F85B1B4D5CD70016B8AC /* AnimationFactory */,
 				BED227021AD773B9000C0E88 /* Database */,
 				BED226FA1AD64776000C0E88 /* TableCell */,
 				BEEF7B6B1B1AD9F20088D2AA /* WordViewComponent */,
 				BE7C99D21A74A5C7007E65AD /* AppDelegate.swift */,
 				BE7C99D41A74A5C7007E65AD /* MainPageController.swift */,
+				BE96F8581B4D587F0016B8AC /* MainComponent */,
 				BEDAF1B11AFC6D4200D4050C /* WordViewController.swift */,
 				BE51927E1A96DDE300F19BEA /* Spring */,
 				BED711351ACF92B30013E891 /* Main_fixed.storyboard */,
@@ -354,6 +360,22 @@
 				BE87F7D61A74DF6100267E85 /* KanjiCardView.xib */,
 			);
 			name = CardView;
+			sourceTree = "<group>";
+		};
+		BE96F8581B4D587F0016B8AC /* MainComponent */ = {
+			isa = PBXGroup;
+			children = (
+				BE96F8591B4D59050016B8AC /* SearchTableViewDelegate.swift */,
+			);
+			name = MainComponent;
+			sourceTree = "<group>";
+		};
+		BE96F85B1B4D5CD70016B8AC /* AnimationFactory */ = {
+			isa = PBXGroup;
+			children = (
+				BE96F85C1B4D61460016B8AC /* AnimationFactory.swift */,
+			);
+			name = AnimationFactory;
 			sourceTree = "<group>";
 		};
 		BEB3F10B1B2ABF0F00D6381F /* MeaningTableComponent */ = {
@@ -601,11 +623,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE5192B31A96DDE300F19BEA /* UnwindSegue.swift in Sources */,
+				BE96F85A1B4D59050016B8AC /* SearchTableViewDelegate.swift in Sources */,
 				BED227011AD76EBC000C0E88 /* Entity.swift in Sources */,
 				BE5192A41A96DDE300F19BEA /* KeyboardLayoutConstraint.swift in Sources */,
 				BED2270A1ADA5F7D000C0E88 /* JMDictEntity.swift in Sources */,
 				BE7C99D51A74A5C7007E65AD /* MainPageController.swift in Sources */,
 				BE5192AB1A96DDE300F19BEA /* SpringButton.swift in Sources */,
+				BE96F85D1B4D61460016B8AC /* AnimationFactory.swift in Sources */,
 				BE5192A81A96DDE300F19BEA /* SoundPlayer.swift in Sources */,
 				BE51929F1A96DDE300F19BEA /* DesignableTextField.swift in Sources */,
 				BE5192A71A96DDE300F19BEA /* Misc.swift in Sources */,
