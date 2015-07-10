@@ -54,6 +54,8 @@ class MainPageController: UIViewController {
     
     var tableViewDelegate:SearchTableViewDelegate?
     
+    var component_list = Dictionary<String, CGFloat>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -155,7 +157,7 @@ class MainPageController: UIViewController {
         Search area touchup indeside 
         Animation tranform to search view
     */
-    var component_list = Dictionary<String, CGFloat>()
+    
     @IBAction func searchAreaTouchUpInside(sender: UIButton) {
         //println("Touch Up")
         //finish_check_list = []
@@ -197,29 +199,11 @@ class MainPageController: UIViewController {
         }
         
         // Search view component move in
-        var translateBackButton = backButton.pop_animationForKey("translateBackButton") as? POPSpringAnimation
-        if (translateBackButton != nil) {
-            translateBackButton!.toValue = component_list["backButton.layer.position.x"]
-        }
-        else {
-            translateBackButton = POPSpringAnimation(propertyNamed: kPOPLayerPositionX)
-            translateBackButton!.toValue = component_list["backButton.layer.position.x"]
-            translateBackButton!.springBounciness = 5.0
-            translateBackButton!.springSpeed = 20.0
-            backButton.pop_addAnimation(translateBackButton, forKey: "translateBackButton")
-        }
+        var translateBackButton = translateXAnimationFactory("translateBackButton", toValue: component_list["backButton.layer.position.x"]!, animatedTarget: backButton, bounce: 5.0, speed: 20.0)
+        backButton.pop_addAnimation(translateBackButton, forKey: "translateBackButton")
         
-        var translateClearButton = backButton.pop_animationForKey("translateClearButton") as? POPSpringAnimation
-        if (translateClearButton != nil) {
-            translateClearButton!.toValue = component_list["clearButton.layer.position.x"]
-        }
-        else {
-            translateClearButton = POPSpringAnimation(propertyNamed: kPOPLayerPositionX)
-            translateClearButton!.toValue = component_list["clearButton.layer.position.x"]
-            translateClearButton!.springBounciness = 5.0
-            translateClearButton!.springSpeed = 20.0
-            clearButton.pop_addAnimation(translateClearButton, forKey: "translateClearButton")
-        }
+        var translateClearButton = translateXAnimationFactory("translateClearButton", toValue: component_list["clearButton.layer.position.x"]!, animatedTarget: clearButton, bounce: 5.0, speed: 20.0)
+        clearButton.pop_addAnimation(translateClearButton, forKey: "translateClearButton")
         
         tableViewContainer.hidden = false
         AnimationFactory.fadeToComponent(tableViewContainer, fadeTo: 1.0)
@@ -387,6 +371,19 @@ class MainPageController: UIViewController {
         viewDidAppear(true)
     }
 
+    func translateXAnimationFactory(name:String, toValue:CGFloat, animatedTarget:UIView, bounce:CGFloat, speed:CGFloat) -> POPAnimation? {
+        var animationObject = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
+        if (animationObject != nil) {
+            animationObject!.toValue = toValue
+        }
+        else {
+            animationObject = POPSpringAnimation(propertyNamed: kPOPLayerPositionX)
+            animationObject!.toValue = toValue
+            animationObject!.springBounciness = bounce
+            animationObject!.springSpeed = speed
+        }
+        return animationObject
+    }
     
     // MARK: - SearchView IBOUTLET
     
@@ -418,29 +415,11 @@ class MainPageController: UIViewController {
         AnimationFactory.fadeToComponent(flashCardView, fadeTo: 1.0)
         
         // Search view component move in
-        var translateBackButton = backButton.pop_animationForKey("translateBackButton") as? POPSpringAnimation
-        if (translateBackButton != nil) {
-            translateBackButton!.toValue = component_list["backButton.layer.position.x"]! - 80
-        }
-        else {
-            translateBackButton = POPSpringAnimation(propertyNamed: kPOPLayerPositionX)
-            translateBackButton!.toValue = component_list["backButton.layer.position.x"]! - 80
-            translateBackButton!.springBounciness = 5.0
-            translateBackButton!.springSpeed = 20.0
-            backButton.pop_addAnimation(translateBackButton, forKey: "translateBackButton")
-        }
+        var translateBackButton = translateXAnimationFactory("translateBackButton", toValue: component_list["backButton.layer.position.x"]! - 80, animatedTarget: backButton, bounce: 5.0, speed: 20.0)
+        backButton.pop_addAnimation(translateBackButton, forKey: "translateBackButton")
         
-        var translateClearButton = backButton.pop_animationForKey("translateClearButton") as? POPSpringAnimation
-        if (translateClearButton != nil) {
-            translateClearButton!.toValue = component_list["clearButton.layer.position.x"]! + 80
-        }
-        else {
-            translateClearButton = POPSpringAnimation(propertyNamed: kPOPLayerPositionX)
-            translateClearButton!.toValue = component_list["clearButton.layer.position.x"]! + 80
-            translateClearButton!.springBounciness = 5.0
-            translateClearButton!.springSpeed = 20.0
-            clearButton.pop_addAnimation(translateClearButton, forKey: "translateClearButton")
-        }
+        var translateClearButton = translateXAnimationFactory("translateClearButton", toValue: component_list["clearButton.layer.position.x"]! + 80, animatedTarget: clearButton, bounce: 5.0, speed: 20.0)
+        clearButton.pop_addAnimation(translateClearButton, forKey: "translateClearButton")
         
         var fadeAnimation = AnimationFactory.fadeAnimationFactory("fade", toValue: 0.0, animatedTarget: tableViewContainer)
         fadeAnimation.completionBlock = {
