@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="h3h-bD-AUT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="h3h-bD-AUT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -32,7 +32,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1o-AO-Fp4" userLabel="FlashCard" propertyAccessControl="all">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1o-AO-Fp4" userLabel="FlashCard">
                                 <rect key="frame" x="16" y="96" width="288" height="456"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aNG-hc-n53" userLabel="AnswerCard">
@@ -56,8 +56,8 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last seen : 7 days ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IgR-xv-CcN">
-                                                <rect key="frame" x="8" y="8" width="159" height="19"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Last seen : 7 days ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IgR-xv-CcN">
+                                                <rect key="frame" x="8" y="8" width="161.5" height="19"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                                 <color key="textColor" red="0.71365642549999997" green="0.71377545600000003" blue="0.71363109349999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -65,8 +65,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LDn-jw-vKx" userLabel="RecallContainerView">
                                                 <rect key="frame" x="0.0" y="356" width="288" height="100"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recall again in next ..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xhb-mW-5Ij">
-                                                        <rect key="frame" x="24" y="8" width="156" height="19"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Recall again in next ..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xhb-mW-5Ij">
+                                                        <rect key="frame" x="24" y="8" width="157.5" height="19"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                                         <color key="textColor" red="0.2350620031" green="0.66936302189999997" blue="0.94295048709999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -74,8 +74,8 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4nF-09-bW4" userLabel="ChoiceContainer">
                                                         <rect key="frame" x="24" y="27" width="240" height="64"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A34-vK-oNa">
-                                                                <rect key="frame" x="164" y="17" width="56" height="31"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A34-vK-oNa">
+                                                                <rect key="frame" x="165" y="17" width="55" height="31"/>
                                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                                                 <state key="normal" title="1month">
                                                                     <color key="titleColor" red="0.86279517409999995" green="0.36370140309999999" blue="0.49799323080000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -194,9 +194,16 @@
                                     <constraint firstAttribute="height" constant="300" id="pNv-GE-wNB"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JNZ-W5-mBo" userLabel="TopbarView" propertyAccessControl="all">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JNZ-W5-mBo" userLabel="TopbarView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gs2-fn-cUY" userLabel="CellAnimatingView">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="0.0"/>
+                                        <color key="backgroundColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" id="yoj-KB-M60"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fea-9d-rmS" userLabel="topbardummy">
                                         <rect key="frame" x="0.0" y="-80" width="320" height="160"/>
                                         <subviews>
@@ -321,6 +328,7 @@
                                     <constraint firstAttribute="bottom" secondItem="Fea-9d-rmS" secondAttribute="bottom" id="5Sd-LW-HQb"/>
                                     <constraint firstItem="Fea-9d-rmS" firstAttribute="leading" secondItem="JNZ-W5-mBo" secondAttribute="leading" id="5jb-0X-yi4"/>
                                     <constraint firstAttribute="trailing" secondItem="Fea-9d-rmS" secondAttribute="trailing" id="8Ip-v4-jU2"/>
+                                    <constraint firstAttribute="trailing" secondItem="gs2-fn-cUY" secondAttribute="trailing" id="9kJ-9k-bnn"/>
                                     <constraint firstAttribute="height" constant="80" id="Iic-6S-cuC"/>
                                     <constraint firstAttribute="bottom" secondItem="F7V-VC-6ut" secondAttribute="bottom" constant="10" id="PMQ-6N-vy3"/>
                                     <constraint firstAttribute="trailing" secondItem="F7V-VC-6ut" secondAttribute="trailing" constant="59" id="aEk-pr-ptg"/>
@@ -328,7 +336,9 @@
                                     <constraint firstItem="QW0-WR-4mU" firstAttribute="leading" secondItem="JNZ-W5-mBo" secondAttribute="leading" constant="20" id="gDV-0H-SUq"/>
                                     <constraint firstItem="Fea-9d-rmS" firstAttribute="top" secondItem="JNZ-W5-mBo" secondAttribute="top" constant="-80" id="hmi-qW-H1n"/>
                                     <constraint firstItem="F7V-VC-6ut" firstAttribute="centerY" secondItem="4bl-Of-O70" secondAttribute="centerY" id="iMa-lD-ouT"/>
+                                    <constraint firstItem="gs2-fn-cUY" firstAttribute="leading" secondItem="JNZ-W5-mBo" secondAttribute="leading" id="k46-aA-wLg"/>
                                     <constraint firstItem="F7V-VC-6ut" firstAttribute="centerY" secondItem="QW0-WR-4mU" secondAttribute="centerY" id="lXV-F2-guH"/>
+                                    <constraint firstItem="gs2-fn-cUY" firstAttribute="top" secondItem="JNZ-W5-mBo" secondAttribute="top" id="nbk-qb-hMM"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EQV-S2-KDZ" userLabel="TouchArea" propertyAccessControl="all">
@@ -427,6 +437,10 @@
                                     <constraint firstItem="1Y5-xV-JZA" firstAttribute="leading" secondItem="Tog-Ed-oF8" secondAttribute="leadingMargin" constant="-8" id="msU-tf-6pB"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WAd-dd-eg3" userLabel="MaskView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.87834751605987549" green="0.87849199771881104" blue="0.87831676006317139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -440,16 +454,20 @@
                             <constraint firstItem="EQV-S2-KDZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="GNu-GY-o8T"/>
                             <constraint firstItem="JNZ-W5-mBo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="Qvb-de-p15"/>
                             <constraint firstAttribute="trailingMargin" secondItem="B1o-AO-Fp4" secondAttribute="trailing" id="R7x-Av-su0"/>
+                            <constraint firstItem="WAd-dd-eg3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="SFs-8K-wjm"/>
                             <constraint firstItem="uNH-FN-f68" firstAttribute="top" secondItem="JNZ-W5-mBo" secondAttribute="bottom" id="Sqm-a3-fWS"/>
+                            <constraint firstItem="WAd-dd-eg3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="U2d-87-TME"/>
                             <constraint firstItem="Tog-Ed-oF8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="VvY-jL-LyB"/>
                             <constraint firstAttribute="bottomMargin" secondItem="B1o-AO-Fp4" secondAttribute="bottom" constant="16" id="WMw-Is-qfF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="EQV-S2-KDZ" secondAttribute="trailing" constant="-16" id="a3c-6m-YK8"/>
                             <constraint firstItem="KEd-af-17C" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-220" id="bJh-7c-hbI"/>
                             <constraint firstItem="SSb-Yk-FYy" firstAttribute="top" secondItem="uNH-FN-f68" secondAttribute="bottom" id="iuO-jY-KW3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WAd-dd-eg3" secondAttribute="trailing" constant="-16" id="jBv-qb-07X"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JNZ-W5-mBo" secondAttribute="trailing" constant="-16" id="lzT-io-XFd"/>
                             <constraint firstItem="JNZ-W5-mBo" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="ns1-7J-DUZ"/>
                             <constraint firstItem="Tog-Ed-oF8" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="oZe-uI-a6a"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Tog-Ed-oF8" secondAttribute="trailing" constant="-16" id="rAE-lv-SZ3"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="WAd-dd-eg3" secondAttribute="bottom" id="t5N-zZ-AGj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LAo-Sr-KNC"/>
@@ -458,9 +476,11 @@
                         <outlet property="backButton" destination="g4O-hn-aCC" id="j2T-wl-Ndn"/>
                         <outlet property="cardContextView" destination="0Ld-M9-3Rq" id="uiz-hP-pPH"/>
                         <outlet property="cardFrontView" destination="k1y-6t-Klw" id="4fq-Rp-ILh"/>
+                        <outlet property="cellAnimatingView" destination="gs2-fn-cUY" id="7zg-Fc-enF"/>
                         <outlet property="clearButton" destination="X4t-9j-yLT" id="ZLp-Ru-8Sb"/>
                         <outlet property="flashCardView" destination="B1o-AO-Fp4" id="ctn-V8-3mP"/>
                         <outlet property="lastSeenReportUILabel" destination="IgR-xv-CcN" id="rxG-U3-Ozv"/>
+                        <outlet property="maskView" destination="WAd-dd-eg3" id="EyI-83-9yX"/>
                         <outlet property="menuButton" destination="QW0-WR-4mU" id="tPo-nB-17X"/>
                         <outlet property="menuView" destination="KEd-af-17C" id="g0g-7j-r1l"/>
                         <outlet property="panRecognizer" destination="gKn-TD-Ayd" id="X9U-hM-QD1"/>

@@ -32,7 +32,9 @@ class MainPageController: UIViewController {
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var topview: UIView!
     @IBOutlet weak var topview_dummy: UIView!
-    
+    @IBOutlet weak var cellAnimatingView: UIView!
+    @IBOutlet weak var maskView: UIView!
+
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewContainer: UIView!
@@ -52,9 +54,11 @@ class MainPageController: UIViewController {
     
     var cellsEntity = [DummyEntity]()
     
-    var tableViewDelegate:SearchTableViewDelegate?
+    var searchTableViewDelegate:SearchTableViewDelegate?
     
     var component_list = Dictionary<String, CGFloat>()
+    
+    var animationCell:UICellForAnimationView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,9 +89,9 @@ class MainPageController: UIViewController {
         self.tableView.registerNib(nibName, forCellReuseIdentifier: entityCellIdentifier)
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
-        tableViewDelegate = SearchTableViewDelegate(mainController: self)
-        self.tableView.delegate = tableViewDelegate
-        self.tableView.dataSource = tableViewDelegate
+        searchTableViewDelegate = SearchTableViewDelegate(mainController: self)
+        self.tableView.delegate = searchTableViewDelegate
+        self.tableView.dataSource = searchTableViewDelegate
         
     }
     
@@ -99,18 +103,7 @@ class MainPageController: UIViewController {
         // TODO: Implement Call back from Child
         
         if topBarIsHide {
-            var scaleTopViewAnimation = AnimationFactory.scaleYAnimaionFactory("scaleTopViewAnimation", toValue: 1.0, animatedTarget: topview_dummy)
-            scaleTopViewAnimation.completionBlock = {
-                (animation, finished) in
-                self.topBarIsHide = false
-            }
-            topview_dummy.pop_addAnimation(scaleTopViewAnimation, forKey: "scaleTopViewAnimation")
-            
-            if animationCell != nil {
-                var rowFrameSizeAnimation = AnimationFactory.frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(0, screenHeight, tableViewContainer.frame.width, 0)), animatedTarget:animationCell! , bounce: 10.0, speed: 10.0)
-                animationCell?.pop_addAnimation(rowFrameSizeAnimation, forKey: "FrameSizeAnimation")
-                
-            }
+            searchTableViewDelegate!.onBackToMainView()
         }
         
         super.viewWillAppear(animated)
@@ -161,11 +154,7 @@ class MainPageController: UIViewController {
     @IBAction func searchAreaTouchUpInside(sender: UIButton) {
         //println("Touch Up")
         //finish_check_list = []
-        
-        if animationCell != nil {
-            animationCell?.removeFromSuperview()
-        }
-        
+
         // Dictionary Textfield Scale Up animation
         var searchTextFieldAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchTextFieldScaleTouch", toValue:1.0, animatedTarget: searchTextField)
         searchTextFieldAnimation.completionBlock = {
@@ -456,13 +445,9 @@ class MainPageController: UIViewController {
                 if result.valueForKey(self.INPUTTEXT_KEY) as! String == self.mem_Text {
                     self.cellsEntity = result.valueForKey(self.ENTITY_KEY) as! [DummyEntity]
                     println("Reload Data")
-                    
-                    if self.animationCell != nil {
-                        self.animationCell?.removeFromSuperview()
-                    }
-                    
+
                     self.tableView.reloadData()
-                    self.tableViewDelegate!.stack = 0.0
+                    self.searchTableViewDelegate!.stack = 0.0
                 }
             }
         }
@@ -482,7 +467,7 @@ class MainPageController: UIViewController {
     
     // On press search button
     func textFieldShouldReturn(textField: UITextField!) -> Bool {   //delegate method
-        //println("Resign call")
+        println("Resign call")
         textField.resignFirstResponder()
         return true
     }
@@ -491,57 +476,7 @@ class MainPageController: UIViewController {
         searchTextField.becomeFirstResponder()
     }
     // ----------------------------- End Search Text field Section ----------------------------- //
-    
-    // MARK: - Word Controller Push
-    
-    var animationCell:UICellForAnimationView?
-    
-    func wordControllerAnimation(row:SearchResultEntityCell, indexPath: NSIndexPath){
         
-        var bounce = CGFloat(5.0)
-        var speed = CGFloat(10.0)
-        
-        // Cell enlarge Animation
-        
-        let rowContainer = row.viewContainer
-        
-        let cellFrame = tableView.rectForRowAtIndexPath(indexPath)
-        var cellRectInTable = tableView.convertRect(cellFrame, toView: tableView.superview)
-        
-        cellRectInTable.origin.y = cellRectInTable.origin.y + topview.frame.height
-        
-        if animationCell == nil {
-            animationCell = UIView.loadFromNibNamed("TableCellForAnimationView") as? UICellForAnimationView
-        }
-        
-        animationCell?.frame = cellRectInTable
-        animationCell?.layer.zPosition = CGFloat(MAXFLOAT);
-        
-        var rowFrameSizeAnimation = AnimationFactory.frameSizeAnimationFactory("FrameSizeAnimation", toValue: NSValue(CGRect: CGRectMake(0, topview.frame.height, tableViewContainer.frame.width, tableViewContainer.frame.height)), animatedTarget:animationCell! , bounce: bounce, speed: speed)
-        rowFrameSizeAnimation.completionBlock = {(animation, finished) in
-            var controller = self.storyboard?.instantiateViewControllerWithIdentifier("WordViewController") as! WordViewController
-            controller.entityObject = JMDictEntity(entity: self.cellsEntity[indexPath.row])
-            self.navigationController?.pushViewController(controller, animated: false)
-        }
-        animationCell?.pop_addAnimation(rowFrameSizeAnimation, forKey: "FrameSizeAnimation")
-        
-        UIView.animateWithDuration(0.1, animations: {
-            
-            self.animationCell!.container.alpha = 0
-            
-        }, completion: nil)
-        
-        self.view.addSubview(animationCell!)
-        
-        var scaleTopViewAnimation = AnimationFactory.scaleYAnimaionFactory("scaleTopViewAnimation", toValue: 0.0, animatedTarget: topview_dummy)
-        scaleTopViewAnimation.completionBlock = {
-            (animation, finished) in
-            self.topBarIsHide = true
-        }
-        topview_dummy.pop_addAnimation(scaleTopViewAnimation, forKey: "scaleTopViewAnimation")
- 
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Push Data Here
         println("Prepare for Segue \(segue.identifier)")

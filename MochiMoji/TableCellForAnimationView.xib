@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="NotoSansCJKjp-Regular.otf">
+            <string>NotoSansCJKjp-Regular</string>
             <string>NotoSansCJKjp-Regular</string>
             <string>NotoSansCJKjp-Regular</string>
         </mutableArray>
@@ -28,26 +29,26 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uBD-De-zyG" userLabel="ContainerView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGZ-5O-qF6">
-                            <rect key="frame" x="271" y="58" width="100" height="12"/>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGZ-5O-qF6">
+                            <rect key="frame" x="371" y="70" width="0.0" height="0.0"/>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="10"/>
                             <color key="textColor" red="0.71365642549999997" green="0.71377545600000003" blue="0.71363109349999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCv-UW-4a4" userLabel="japaneseEntityLabel">
-                            <rect key="frame" x="4" y="8" width="72" height="24"/>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCv-UW-4a4" userLabel="japaneseEntityLabel">
+                            <rect key="frame" x="4" y="8" width="0.0" height="0.0"/>
                             <fontDescription key="fontDescription" name="NotoSansCJKjp-Regular" family="Noto Sans CJK JP" pointSize="24"/>
                             <color key="textColor" red="0.12939518689999999" green="0.1294237375" blue="0.12938910719999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mk-v5-QyM" userLabel="readingLabel">
-                            <rect key="frame" x="84" y="13" width="225" height="14"/>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mk-v5-QyM" userLabel="readingLabel">
+                            <rect key="frame" x="12" y="8" width="0.0" height="0.0"/>
                             <fontDescription key="fontDescription" name="NotoSansCJKjp-Regular" family="Noto Sans CJK JP" pointSize="14"/>
                             <color key="textColor" red="0.93670910600000001" green="0.41067388649999997" blue="0.36670923230000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55O-As-b3n" userLabel="EnglishEntityLabel">
-                            <rect key="frame" x="8" y="41" width="301" height="18"/>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55O-As-b3n" userLabel="EnglishEntityLabel">
+                            <rect key="frame" x="8" y="59" width="301" height="0.0"/>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                             <color key="textColor" red="0.44701367619999999" green="0.44709134099999998" blue="0.44699710609999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -137,17 +138,50 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2Z-aE-6lP" userLabel="cellSeparator">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2Z-aE-6lP" userLabel="cellSeparator">
                             <rect key="frame" x="0.0" y="71" width="375" height="1"/>
                             <color key="backgroundColor" red="0.87834751609999995" green="0.87849199769999997" blue="0.87831676010000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="P87-RF-W2u"/>
                             </constraints>
                         </view>
+                        <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FXh-lx-IVC" userLabel="TopBarView" propertyAccessControl="none">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ema-fF-QAQ" userLabel="backIcon">
+                                    <rect key="frame" x="20" y="46" width="17" height="17"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="17" id="Cgo-hd-0PN"/>
+                                        <constraint firstAttribute="height" constant="17" id="NAK-W0-9sj"/>
+                                    </constraints>
+                                    <state key="normal" image="backicon">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KUY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjM-h5-r2N">
+                                    <rect key="frame" x="47" y="40" width="281" height="24"/>
+                                    <fontDescription key="fontDescription" name="NotoSansCJKjp-Regular" family="Noto Sans CJK JP" pointSize="24"/>
+                                    <color key="textColor" red="0.99990516900000004" green="1" blue="0.99987047910000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.32384634020000003" green="0.67653894420000005" blue="0.92817783359999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="tjM-h5-r2N" firstAttribute="leading" secondItem="ema-fF-QAQ" secondAttribute="trailing" constant="10" id="3gc-ZC-ccg"/>
+                                <constraint firstAttribute="height" constant="80" id="51u-fg-Xbh"/>
+                                <constraint firstAttribute="bottom" secondItem="ema-fF-QAQ" secondAttribute="bottom" constant="17" id="7br-Yw-rLn"/>
+                                <constraint firstAttribute="centerX" secondItem="tjM-h5-r2N" secondAttribute="centerX" id="7fA-H8-svf"/>
+                                <constraint firstItem="tjM-h5-r2N" firstAttribute="top" secondItem="FXh-lx-IVC" secondAttribute="top" constant="40" id="WL0-jB-E1O"/>
+                                <constraint firstItem="ema-fF-QAQ" firstAttribute="leading" secondItem="FXh-lx-IVC" secondAttribute="leading" constant="20" id="eOe-2d-9lh"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="0.98029917478561401" green="0.98045939207077026" blue="0.98026508092880249" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="FXh-lx-IVC" secondAttribute="trailing" id="1ao-03-K4g"/>
                         <constraint firstItem="0mk-v5-QyM" firstAttribute="leading" secondItem="aCv-UW-4a4" secondAttribute="trailing" constant="8" id="2FK-kR-Qqw"/>
+                        <constraint firstItem="FXh-lx-IVC" firstAttribute="leading" secondItem="uBD-De-zyG" secondAttribute="leading" id="2bR-Xi-4Ab"/>
+                        <constraint firstItem="FXh-lx-IVC" firstAttribute="top" secondItem="uBD-De-zyG" secondAttribute="top" id="6DS-Tw-L4b"/>
                         <constraint firstAttribute="height" constant="72" id="74g-fu-bXM"/>
                         <constraint firstAttribute="bottom" secondItem="V2Z-aE-6lP" secondAttribute="bottom" id="A2x-O9-dHv"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="72" id="BHl-VG-r42"/>
@@ -204,8 +238,12 @@
                 <outlet property="pos3" destination="lPD-qi-ysC" id="2q6-3e-Otr"/>
                 <outlet property="pos4" destination="j7K-DU-yYh" id="6uY-u6-0i7"/>
                 <outlet property="readingEntity" destination="0mk-v5-QyM" id="APQ-Wy-hgf"/>
+                <outlet property="topbar" destination="FXh-lx-IVC" id="iHI-Js-keU"/>
             </connections>
             <point key="canvasLocation" x="243.5" y="65.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="backicon" width="17" height="17"/>
+    </resources>
 </document>

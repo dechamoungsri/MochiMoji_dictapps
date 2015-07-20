@@ -71,7 +71,7 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
             }
             
             var meanings = sense[JMDictEntity.KEY.glossKey.rawValue] as! [NSDictionary]
-            println(meanings)
+            //println(meanings)
             
             var dict = NSMutableDictionary()
             dict.setObject(pos, forKey: JMDictEntity.KEY.posKey.rawValue)

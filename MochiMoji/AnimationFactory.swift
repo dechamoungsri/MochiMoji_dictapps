@@ -114,6 +114,22 @@ class AnimationFactory {
         return fade!
     }
     
+    class func fadeAnimationFactory(name:String, toValue:CGFloat, animatedTarget:UIView, bounce:CGFloat, speed:CGFloat) -> POPSpringAnimation {
+        var fade: POPSpringAnimation?  = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
+        
+        if fade != nil {
+            fade?.toValue = toValue
+        }
+        else {
+            fade = POPSpringAnimation(propertyNamed: kPOPViewAlpha)
+            fade!.toValue = toValue
+            fade!.springBounciness = bounce
+            fade!.springSpeed = speed
+        }
+        
+        return fade!
+    }
+    
     class func touchDownPopSpringAnimationGenerate(name:String, toValue:CGFloat, animatedTarget:UIView) -> POPSpringAnimation {
         var scaleXY: POPSpringAnimation? = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
         

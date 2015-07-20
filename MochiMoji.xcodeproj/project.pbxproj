@@ -70,6 +70,7 @@
 		BED2270A1ADA5F7D000C0E88 /* JMDictEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED227091ADA5F7D000C0E88 /* JMDictEntity.swift */; };
 		BED711361ACF92B30013E891 /* Main_fixed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED711351ACF92B30013E891 /* Main_fixed.storyboard */; };
 		BEDAF1B21AFC6D4200D4050C /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDAF1B11AFC6D4200D4050C /* WordViewController.swift */; };
+		BEE84EA51B5A6A2B006989EC /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE84EA41B5A6A2B006989EC /* PassThroughView.swift */; };
 		BEEF7B6A1B1AB73C0088D2AA /* JapaneseEntityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEEF7B691B1AB73C0088D2AA /* JapaneseEntityView.xib */; };
 		BEEF7B6D1B1ADA280088D2AA /* JapaneseEntityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF7B6C1B1ADA280088D2AA /* JapaneseEntityView.swift */; };
 /* End PBXBuildFile section */
@@ -171,6 +172,7 @@
 		BED227091ADA5F7D000C0E88 /* JMDictEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMDictEntity.swift; sourceTree = "<group>"; };
 		BED711351ACF92B30013E891 /* Main_fixed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_fixed.storyboard; sourceTree = "<group>"; };
 		BEDAF1B11AFC6D4200D4050C /* WordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
+		BEE84EA41B5A6A2B006989EC /* PassThroughView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
 		BEEF7B691B1AB73C0088D2AA /* JapaneseEntityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JapaneseEntityView.xib; sourceTree = "<group>"; };
 		BEEF7B6C1B1ADA280088D2AA /* JapaneseEntityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JapaneseEntityView.swift; sourceTree = "<group>"; };
 		C24EA031D4D882D492031D2A /* Pods-MochiMoji.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MochiMoji.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MochiMoji/Pods-MochiMoji.debug.xcconfig"; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				BED711351ACF92B30013E891 /* Main_fixed.storyboard */,
 				BE7C99DB1A74A5C8007E65AD /* LaunchScreen.xib */,
 				BE7C99D91A74A5C8007E65AD /* Images.xcassets */,
+				BEE84EA31B5A6A15006989EC /* CustomView */,
 				BED226F41AD6379B000C0E88 /* ViewResource */,
 				BE7C99F21A74C286007E65AD /* AppFonts */,
 				BE7C99D01A74A5C7007E65AD /* Supporting Files */,
@@ -451,6 +454,14 @@
 				BED227071ADA5F13000C0E88 /* Utility.swift */,
 			);
 			name = Database;
+			sourceTree = "<group>";
+		};
+		BEE84EA31B5A6A15006989EC /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				BEE84EA41B5A6A2B006989EC /* PassThroughView.swift */,
+			);
+			name = CustomView;
 			sourceTree = "<group>";
 		};
 		BEEF7B661B1AB68B0088D2AA /* WordViewComponents */ = {
@@ -631,6 +642,7 @@
 				BE5192AB1A96DDE300F19BEA /* SpringButton.swift in Sources */,
 				BE96F85D1B4D61460016B8AC /* AnimationFactory.swift in Sources */,
 				BE5192A81A96DDE300F19BEA /* SoundPlayer.swift in Sources */,
+				BEE84EA51B5A6A2B006989EC /* PassThroughView.swift in Sources */,
 				BE51929F1A96DDE300F19BEA /* DesignableTextField.swift in Sources */,
 				BE5192A71A96DDE300F19BEA /* Misc.swift in Sources */,
 				BE5192A21A96DDE300F19BEA /* ImageLoader.swift in Sources */,

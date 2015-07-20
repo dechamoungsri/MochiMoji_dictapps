@@ -57,6 +57,12 @@ class WordViewController: UIViewController {
                 japaneseEntityView.getHeight() +
                 meaningEntityView.getHeight())
         wordViewBody.addSubview(scrollviewDummy)
+        
+//        var controller = self.navigationController!.viewControllers[stackSize!-2] as! MainPageController
+//        var tempArchiveView = NSKeyedArchiver.archivedDataWithRootObject(controller.tableView)
+//        var viewOfSelf = NSKeyedUnarchiver.unarchiveObjectWithData(tempArchiveView) as! UITableView
+//        self.view.addSubview(viewOfSelf)
+        
     }
     
     override func viewDidLayoutSubviews() {

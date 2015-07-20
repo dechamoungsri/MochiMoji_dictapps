@@ -10,6 +10,7 @@ import Foundation
 
 class UICellForAnimationView : UIView {
 
+    @IBOutlet weak var topbar: UIView!
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var japaneseEntity: UILabel!
     @IBOutlet weak var readingEntity: UILabel!
@@ -19,6 +20,9 @@ class UICellForAnimationView : UIView {
     @IBOutlet weak var pos3: UILabel!
     @IBOutlet weak var pos4: UILabel!
     
+    var targetCell:SearchResultEntityCell?
+    var rectWhenReturn:CGRect?
+    var indexPath:NSIndexPath?
     
 //    init(tableCell:SearchResultEntityCell){
 //        super.init()
