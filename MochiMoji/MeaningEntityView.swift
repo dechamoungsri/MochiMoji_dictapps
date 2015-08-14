@@ -201,7 +201,9 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
             return 0
         }
         
-        let base_width = screenWidth - 2*32 - 24 - 8
+        let base_width = screenWidth
+            - 32 - 16 // TableView Leading and trailing
+            - 16 - 8 // Leading space plus default cell space
         
         var label = UILabel()
         label.font = UIFont(name: "Roboto-Regular", size: 22)

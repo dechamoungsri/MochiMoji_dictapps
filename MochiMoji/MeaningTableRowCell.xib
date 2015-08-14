@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -20,23 +20,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0x-56-s0k">
-                        <rect key="frame" x="16" y="0.0" width="9.5" height="33"/>
+                        <rect key="frame" x="8" y="0.0" width="9.5" height="33"/>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="28"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to eat fjsa;dfh sadfsad;flkasdh f;sadfas\" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8IU-p0-dgC">
-                        <rect key="frame" x="32" y="0.0" width="252.5" height="52"/>
+                        <rect key="frame" x="24" y="0.0" width="296" height="52"/>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="22"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="8IU-p0-dgC" secondAttribute="trailing" constant="8" id="1zI-cg-NLZ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="8IU-p0-dgC" secondAttribute="trailing" constant="-8" id="1zI-cg-NLZ"/>
                     <constraint firstItem="8IU-p0-dgC" firstAttribute="leading" secondItem="l0x-56-s0k" secondAttribute="trailing" constant="8" id="Ezi-eG-IsM"/>
-                    <constraint firstItem="8IU-p0-dgC" firstAttribute="leading" secondItem="35D-ed-UI5" secondAttribute="leadingMargin" constant="24" id="MKW-Vz-8eB"/>
-                    <constraint firstItem="l0x-56-s0k" firstAttribute="leading" secondItem="35D-ed-UI5" secondAttribute="leadingMargin" constant="8" id="VZ9-fE-0wC"/>
+                    <constraint firstItem="8IU-p0-dgC" firstAttribute="leading" secondItem="35D-ed-UI5" secondAttribute="leadingMargin" constant="16" id="MKW-Vz-8eB"/>
+                    <constraint firstItem="l0x-56-s0k" firstAttribute="leading" secondItem="35D-ed-UI5" secondAttribute="leadingMargin" id="VZ9-fE-0wC"/>
                     <constraint firstAttribute="centerY" secondItem="l0x-56-s0k" secondAttribute="centerY" id="X38-3Z-Ufr"/>
                     <constraint firstItem="8IU-p0-dgC" firstAttribute="centerY" secondItem="l0x-56-s0k" secondAttribute="centerY" id="Xpa-Kn-KBX"/>
                     <constraint firstItem="l0x-56-s0k" firstAttribute="top" secondItem="35D-ed-UI5" secondAttribute="topMargin" constant="-8" id="ln5-ob-urs"/>

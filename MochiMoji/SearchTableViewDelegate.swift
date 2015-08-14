@@ -67,6 +67,9 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
         //println("cellForRowAtIndexPath \(indexPath.row)")
         
         let cell = tableView.dequeueReusableCellWithIdentifier(mainController!.entityCellIdentifier, forIndexPath: indexPath) as! SearchResultEntityCell
+        
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        
         cell.dummyView.alpha = 1
         let row = indexPath.row
         cell.cellEntityFromDummyEntity(self.mainController!.cellsEntity[row], text: mainController!.searchTextField.text)
@@ -116,6 +119,20 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
             
         }
         
+    }
+    
+    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
+        var cell = tableView.cellForRowAtIndexPath(indexPath) as! SearchResultEntityCell
+        cell.viewContainer.backgroundColor = SearchResultEntityCell.COLOR.selectedColor
+    }
+    
+    func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
+        var cell = tableView.cellForRowAtIndexPath(indexPath) as! SearchResultEntityCell
+        cell.viewContainer.backgroundColor = SearchResultEntityCell.COLOR.defaultColor
     }
     
     var stack:Double = 0.0
@@ -286,7 +303,7 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
                 speed: 10)
             rowFrameSizeAnimation.completionBlock = {
                 (animation, finished) in
-                UIView.animateWithDuration(0.05, animations: {
+                UIView.animateWithDuration(0.1, animations: {
                     // Animation Go here
                     self.mainController?.animationCell?.alpha = 0
                     self.mainController?.animationCell?.targetCell?.dummyView.alpha = 1

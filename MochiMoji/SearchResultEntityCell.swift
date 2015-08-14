@@ -10,6 +10,11 @@ import UIKit
 
 class SearchResultEntityCell: UITableViewCell {
 
+    struct COLOR {
+        static let selectedColor = Utility.colorWithHexString("81D4FA")
+        static let defaultColor = Utility.colorWithHexString("FAFAFA")
+    }
+    
     enum CellEntityType {
         case NOUN
         case ADJECTIVE
@@ -36,8 +41,7 @@ class SearchResultEntityCell: UITableViewCell {
         ]
         
     }
-    
-    @IBOutlet weak var cellContainer: UIView!
+
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var dummyView: UIView!
     @IBOutlet weak var shadowView: UIView!
@@ -55,6 +59,13 @@ class SearchResultEntityCell: UITableViewCell {
     @IBOutlet weak var pos3: UILabel!
     @IBOutlet weak var pos4: UILabel!
 
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        var view = UIView()
+        view.backgroundColor = COLOR.defaultColor
+        self.backgroundView = view
+    }
+    
     func setComponentExample(dummy:String){
         japaneseEntityLabel.text = dummy
         englishEntityLabel.text = dummy

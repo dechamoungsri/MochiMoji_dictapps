@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -26,10 +26,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Baf-1f-0ph" userLabel="TableContainer">
-                    <rect key="frame" x="32" y="50" width="536" height="533"/>
+                    <rect key="frame" x="32" y="50" width="552" height="533"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1VK-gh-M8J">
-                            <rect key="frame" x="0.0" y="0.0" width="536" height="533"/>
+                            <rect key="frame" x="0.0" y="0.0" width="552" height="533"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="200" id="lLo-7c-IJl"/>
@@ -80,7 +80,7 @@
                 <constraint firstAttribute="trailing" secondItem="5Gw-zK-REY" secondAttribute="trailing" constant="8" id="XkV-U9-nWY"/>
                 <constraint firstItem="JZP-9J-REL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Xyp-Z9-h01"/>
                 <constraint firstItem="JZP-9J-REL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="a51-ID-pXF"/>
-                <constraint firstAttribute="trailing" secondItem="Baf-1f-0ph" secondAttribute="trailing" constant="32" id="bY1-NO-gaa"/>
+                <constraint firstAttribute="trailing" secondItem="Baf-1f-0ph" secondAttribute="trailing" constant="16" id="bY1-NO-gaa"/>
                 <constraint firstItem="5Gw-zK-REY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="scC-RU-CqY"/>
                 <constraint firstItem="Baf-1f-0ph" firstAttribute="top" secondItem="JZP-9J-REL" secondAttribute="bottom" constant="16" id="tb8-az-gsa"/>
                 <constraint firstItem="5Gw-zK-REY" firstAttribute="top" secondItem="Baf-1f-0ph" secondAttribute="bottom" constant="16" id="xwx-Y5-BbA"/>

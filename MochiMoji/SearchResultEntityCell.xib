@@ -219,7 +219,6 @@
                 <userDefinedRuntimeAttribute type="boolean" keyPath="contentView.preservesSuperviewLayoutMargins" value="NO"/>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="cellContainer" destination="kxn-c5-UtB" id="GnE-e6-CN1"/>
                 <outlet property="dummyView" destination="rbw-iO-bO3" id="NL3-0Z-G7z"/>
                 <outlet property="englishEntityLabel" destination="1fm-OC-lXK" id="tyv-rX-WnJ"/>
                 <outlet property="entityTypeLabel" destination="gTv-Es-M8h" id="gIu-fo-n67"/>
