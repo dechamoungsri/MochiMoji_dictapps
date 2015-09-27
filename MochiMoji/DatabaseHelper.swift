@@ -15,7 +15,6 @@ import Foundation
 
 private let sharedHelperInstance = DatabaseHelper()
 
-
 class DatabaseHelper{
     
     let DEBUG_THIS_FILE = false
