@@ -45,11 +45,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func databaseConnection() {
         
-        var dbname = DatabaseInterface.DatabaseStringName.JMDICT.rawValue
+        let dbname = DatabaseInterface.DatabaseStringName.JMDICT.rawValue
         
         let dbManager = CBLManager.sharedInstance()
         var error :NSError?
-        var database = dbManager.existingDatabaseNamed(dbname, error: &error)
+        var database: CBLDatabase!
+        do {
+            database = try dbManager.existingDatabaseNamed(dbname)
+        } catch let error1 as NSError {
+            error = error1
+            database = nil
+        }
         if database == nil {
             
             Utility.debug_println(debug_appdelegate, swift_file: fileName, function: "databaseConnection", text: "database == nil : Trying to copying")
@@ -57,11 +63,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let cannedDbPath = NSBundle.mainBundle().pathForResource(dbname, ofType: "cblite")
             //println(cannedDbPath)
             let cannedAttPath = NSBundle.mainBundle().pathForResource("CouchbaseLite/jmdict attachments", ofType: "")
-            dbManager.replaceDatabaseNamed(dbname, withDatabaseFile: cannedDbPath!, withAttachments: cannedAttPath, error: &error)
-            database = dbManager.existingDatabaseNamed(dbname, error: &error)
+            do {
+                try dbManager.replaceDatabaseNamed(dbname, withDatabaseFile: cannedDbPath!, withAttachments: cannedAttPath)
+            } catch let error1 as NSError {
+                error = error1
+            }
+            do {
+                database = try dbManager.existingDatabaseNamed(dbname)
+            } catch let error1 as NSError {
+                error = error1
+                database = nil
+            }
             if error != nil {
                 //self.handleError(error)
-                println("Error \(error?.description)")
+                print("Error \(error?.description)")
             }
         }
         
@@ -99,9 +114,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func getListOfDictionary(enumerator: CBLQueryEnumerator) -> [CBLQueryRow] {
         var outList: [CBLQueryRow] = [];
-        var setCheck = NSMutableSet()
+        let setCheck = NSMutableSet()
         while let row = enumerator.nextRow() {
-            var st = row.documentID
+            let st = row.documentID
             if !setCheck.containsObject(st) {
                 setCheck.addObject(st)
                 outList.append(row)

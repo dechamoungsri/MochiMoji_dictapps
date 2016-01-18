@@ -64,14 +64,14 @@ class MainPageController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     
-        var paddingView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
+        let paddingView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
         self.searchTextField.leftView = paddingView
         self.searchTextField.leftViewMode = UITextFieldViewMode.Always
         
         animator = UIDynamicAnimator(referenceView: view)
         dummyCell_animator = UIDynamicAnimator(referenceView: view)
         
-        var cardView = UIView.loadFromNibNamed("KanjiCardView")!
+        let cardView = UIView.loadFromNibNamed("KanjiCardView")!
         cardView.frame = CGRectMake(0, 0, cardContextView.bounds.width, cardContextView.bounds.height)
         cardContextView.addSubview(cardView)
         
@@ -98,7 +98,7 @@ class MainPageController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         //println("viewWillAppear")
         let stackSize = self.navigationController?.viewControllers.count
-        println("Stack Size : \(stackSize)")
+        print("Stack Size : \(stackSize)")
         
         // TODO: Implement Call back from Child
         
@@ -124,7 +124,7 @@ class MainPageController: UIViewController {
         let translate = CGAffineTransformMakeTranslation(0, -200)
         flashCardView.transform = CGAffineTransformConcat(scale, translate)
 
-        spring(0.5) {
+        SpringAnimation.spring(0.5) {
             let scale = CGAffineTransformMakeScale(1, 1)
             let translate = CGAffineTransformMakeTranslation(0, 0)
             self.flashCardView.transform = CGAffineTransformConcat(scale, translate)
@@ -134,13 +134,13 @@ class MainPageController: UIViewController {
     }
     
     @IBAction func searchAreaTouchUpOutside(sender: UIButton) {
-        var searchTextFieldAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchTextFieldScaleTouch", toValue:1.0, animatedTarget: searchTextField)
+        let searchTextFieldAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchTextFieldScaleTouch", toValue:1.0, animatedTarget: searchTextField)
         searchTextField.pop_addAnimation(searchTextFieldAnimation, forKey: "searchTextFieldScaleTouch")
         
-        var searchButtonAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchButtonScaleTouch", toValue:1.0, animatedTarget: searchButton)
+        let searchButtonAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchButtonScaleTouch", toValue:1.0, animatedTarget: searchButton)
         searchButton.pop_addAnimation(searchButtonAnimation, forKey: "searchButtonScaleTouch")
         
-        var menuButtonAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("menuButtonScaleTouch", toValue:1.0, animatedTarget: menuButton)
+        let menuButtonAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("menuButtonScaleTouch", toValue:1.0, animatedTarget: menuButton)
         menuButton.pop_addAnimation(menuButtonAnimation, forKey: "menuButtonScaleTouch")
     }
     
@@ -156,7 +156,7 @@ class MainPageController: UIViewController {
         //finish_check_list = []
 
         // Dictionary Textfield Scale Up animation
-        var searchTextFieldAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchTextFieldScaleTouch", toValue:1.0, animatedTarget: searchTextField)
+        let searchTextFieldAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchTextFieldScaleTouch", toValue:1.0, animatedTarget: searchTextField)
         searchTextFieldAnimation.completionBlock = {
             (animation, finished) in
             self.searchControllerPreprocessing(true)
@@ -164,10 +164,10 @@ class MainPageController: UIViewController {
         searchTextField.pop_addAnimation(searchTextFieldAnimation, forKey: "searchTextFieldScaleTouch")
         
         // Search Button and Menu button Scale Up
-        var searchButtonAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchButtonScaleTouch", toValue:1.0, animatedTarget: searchButton)
+        let searchButtonAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchButtonScaleTouch", toValue:1.0, animatedTarget: searchButton)
         searchButton.pop_addAnimation(searchButtonAnimation, forKey: "searchButtonScaleTouch")
         
-        var menuButtonAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("menuButtonScaleTouch", toValue:1.0, animatedTarget: menuButton)
+        let menuButtonAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("menuButtonScaleTouch", toValue:1.0, animatedTarget: menuButton)
         menuButton.pop_addAnimation(menuButtonAnimation, forKey: "menuButtonScaleTouch")
         
         // Main view component fade away
@@ -188,10 +188,10 @@ class MainPageController: UIViewController {
         }
         
         // Search view component move in
-        var translateBackButton = translateXAnimationFactory("translateBackButton", toValue: component_list["backButton.layer.position.x"]!, animatedTarget: backButton, bounce: 5.0, speed: 20.0)
+        let translateBackButton = translateXAnimationFactory("translateBackButton", toValue: component_list["backButton.layer.position.x"]!, animatedTarget: backButton, bounce: 5.0, speed: 20.0)
         backButton.pop_addAnimation(translateBackButton, forKey: "translateBackButton")
         
-        var translateClearButton = translateXAnimationFactory("translateClearButton", toValue: component_list["clearButton.layer.position.x"]!, animatedTarget: clearButton, bounce: 5.0, speed: 20.0)
+        let translateClearButton = translateXAnimationFactory("translateClearButton", toValue: component_list["clearButton.layer.position.x"]!, animatedTarget: clearButton, bounce: 5.0, speed: 20.0)
         clearButton.pop_addAnimation(translateClearButton, forKey: "translateClearButton")
         
         tableViewContainer.hidden = false
@@ -206,11 +206,11 @@ class MainPageController: UIViewController {
     @IBAction func searchAreaTouchDown(sender: UIButton) {
         
         //println("Touch Down")
-        var searchTextFieldAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchTextFieldScaleTouch", toValue:0.9, animatedTarget: searchTextField)
+        let searchTextFieldAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchTextFieldScaleTouch", toValue:0.9, animatedTarget: searchTextField)
         searchTextField.pop_addAnimation(searchTextFieldAnimation, forKey: "searchTextFieldScaleTouch")
-        var searchButtonAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchButtonScaleTouch", toValue:0.9, animatedTarget: searchButton)
+        let searchButtonAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("searchButtonScaleTouch", toValue:0.9, animatedTarget: searchButton)
         searchButton.pop_addAnimation(searchButtonAnimation, forKey: "searchButtonScaleTouch")
-        var menuButtonAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("menuButtonScaleTouch", toValue:0.9, animatedTarget: menuButton)
+        let menuButtonAnimation = AnimationFactory.touchDownPopSpringAnimationGenerate("menuButtonScaleTouch", toValue:0.9, animatedTarget: menuButton)
         menuButton.pop_addAnimation(menuButtonAnimation, forKey: "menuButtonScaleTouch")
         
     }
@@ -248,13 +248,13 @@ class MainPageController: UIViewController {
         
         if isMenuButtonPressed {
             isMenuButtonPressed = false
-            var tranformY: POPSpringAnimation? = menuView.pop_animationForKey("translationAnimation") as? POPSpringAnimation
+            let tranformY: POPSpringAnimation? = menuView.pop_animationForKey("translationAnimation") as? POPSpringAnimation
             
             if (tranformY != nil) {
                 tranformY!.toValue = -150
             }
             else {
-                var tranformY = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
+                let tranformY = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
                 tranformY!.toValue = -150
                 tranformY!.springBounciness = 10.0
                 tranformY!.springSpeed = 1.0
@@ -334,7 +334,7 @@ class MainPageController: UIViewController {
             if translation.y > 100 {
                 animator.removeAllBehaviors()
                 
-                var gravity = UIGravityBehavior(items: [flashCardView])
+                let gravity = UIGravityBehavior(items: [flashCardView])
                 gravity.gravityDirection = CGVectorMake(0, 10)
                 animator.addBehavior(gravity)
                 
@@ -404,13 +404,13 @@ class MainPageController: UIViewController {
         AnimationFactory.fadeToComponent(flashCardView, fadeTo: 1.0)
         
         // Search view component move in
-        var translateBackButton = translateXAnimationFactory("translateBackButton", toValue: component_list["backButton.layer.position.x"]! - 80, animatedTarget: backButton, bounce: 5.0, speed: 20.0)
+        let translateBackButton = translateXAnimationFactory("translateBackButton", toValue: component_list["backButton.layer.position.x"]! - 80, animatedTarget: backButton, bounce: 5.0, speed: 20.0)
         backButton.pop_addAnimation(translateBackButton, forKey: "translateBackButton")
         
-        var translateClearButton = translateXAnimationFactory("translateClearButton", toValue: component_list["clearButton.layer.position.x"]! + 80, animatedTarget: clearButton, bounce: 5.0, speed: 20.0)
+        let translateClearButton = translateXAnimationFactory("translateClearButton", toValue: component_list["clearButton.layer.position.x"]! + 80, animatedTarget: clearButton, bounce: 5.0, speed: 20.0)
         clearButton.pop_addAnimation(translateClearButton, forKey: "translateClearButton")
         
-        var fadeAnimation = AnimationFactory.fadeAnimationFactory("fade", toValue: 0.0, animatedTarget: tableViewContainer)
+        let fadeAnimation = AnimationFactory.fadeAnimationFactory("fade", toValue: 0.0, animatedTarget: tableViewContainer)
         fadeAnimation.completionBlock = {
             (animation, finished) in
             self.tableViewContainer.hidden = true
@@ -427,7 +427,7 @@ class MainPageController: UIViewController {
     var INPUTTEXT_KEY = "INPUTTEXT_KEY"
     @IBAction func searchTextFieldEditingChanged(sender: UITextField) {
         
-        var inputText:String = searchTextField.text
+        let inputText:String = searchTextField.text!
         if inputText == "" {
             return
         }
@@ -436,15 +436,15 @@ class MainPageController: UIViewController {
             return
         }
         
-        println("Search Input text is : \(inputText)")
+        print("Search Input text is : \(inputText)")
         
         mem_Text = inputText
-        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) {
-            var result = self.searchProcessing(inputText)
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
+            let result = self.searchProcessing(inputText)
             dispatch_async(dispatch_get_main_queue()) { // 2
                 if result.valueForKey(self.INPUTTEXT_KEY) as! String == self.mem_Text {
                     self.cellsEntity = result.valueForKey(self.ENTITY_KEY) as! [DummyEntity]
-                    println("Reload Data")
+                    print("Reload Data")
 
                     self.tableView.reloadData()
                     self.searchTableViewDelegate!.stack = 0.0
@@ -456,10 +456,10 @@ class MainPageController: UIViewController {
     
     func searchProcessing(inputText:String) -> NSMutableDictionary{
         var starttime = NSDate().timeIntervalSince1970
-        var cells = DatabaseHelper.sharedInstance.queryTextInput(inputText)
+        let cells = DatabaseHelper.sharedInstance.queryTextInput(inputText)
         var endtime = NSDate().timeIntervalSince1970
         //println("searchProcessing Duration : \(endtime-starttime) Seconds")
-        var dictionary = NSMutableDictionary()
+        let dictionary = NSMutableDictionary()
         dictionary.setObject(cells, forKey: ENTITY_KEY)
         dictionary.setObject(inputText, forKey: INPUTTEXT_KEY)
         return dictionary
@@ -467,7 +467,7 @@ class MainPageController: UIViewController {
     
     // On press search button
     func textFieldShouldReturn(textField: UITextField!) -> Bool {   //delegate method
-        println("Resign call")
+        print("Resign call")
         textField.resignFirstResponder()
         return true
     }
@@ -479,14 +479,14 @@ class MainPageController: UIViewController {
         
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Push Data Here
-        println("Prepare for Segue \(segue.identifier)")
+        print("Prepare for Segue \(segue.identifier)")
     }
     
     // MARK: - Word delegate back
     
     @IBAction func sendDataFromChildToParent(segue: UIStoryboardSegue) {
         let childViewController:WordViewController = segue.sourceViewController as! WordViewController;
-        println("Receive data from Child \(segue.identifier)")
+        print("Receive data from Child \(segue.identifier)")
     }
     
     

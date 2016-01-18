@@ -42,7 +42,13 @@ class DatabaseInterface {
     init(){
         dbManager = CBLManager.sharedInstance()
         var error :NSError?
-        var database = dbManager.existingDatabaseNamed(DatabaseStringName.JMDICT.rawValue, error: &error)
+        var database: CBLDatabase!
+        do {
+            database = try dbManager.existingDatabaseNamed(DatabaseStringName.JMDICT.rawValue)
+        } catch let error1 as NSError {
+            error = error1
+            database = nil
+        }
         databases[DatabaseName.JMDICT] = database
     }
 
@@ -50,9 +56,15 @@ class DatabaseInterface {
         
         let function_name = "queryWordinJMDict"
         
-        var databaseManager = CBLManager.sharedInstance().copy()
+        let databaseManager = CBLManager.sharedInstance().copy()
         var error :NSError?
-        var database = databaseManager.existingDatabaseNamed(DatabaseStringName.JMDICT.rawValue, error: &error)
+        var database: CBLDatabase!
+        do {
+            database = try databaseManager.existingDatabaseNamed(DatabaseStringName.JMDICT.rawValue)
+        } catch let error1 as NSError {
+            error = error1
+            database = nil
+        }
         
         var starttime = NSDate().timeIntervalSince1970
         
@@ -67,7 +79,13 @@ class DatabaseInterface {
         query?.endKey = text + "\u{FFFF}"
         
         //query?.fullTextQuery = text
-        let result = query?.run(&error)
+        let result: CBLQueryEnumerator!
+        do {
+            result = try query?.run()
+        } catch let error1 as NSError {
+            error = error1
+            result = nil
+        }
 
         var endtime = NSDate().timeIntervalSince1970
 
@@ -133,7 +151,7 @@ class DatabaseInterface {
                     let dictionary = senses[i] as! NSDictionary
 
                     // Gloss Extraction
-                    var meaning_list = Array<Dictionary<String,String>>()
+                    _ = Array<Dictionary<String,String>>()
                     if let glosses = Utility.getArrayForKey(dictionary, keyString: self.glossKey) {
                         for var j = 0; j < glosses.count ; j++ {
                             if let gloss = glosses[j] as? String {

@@ -30,13 +30,13 @@ class WordViewController: UIViewController {
         let functionName = "viewDidLoad"
         
         // TODO: Assume it is JMDict
-        var jmDict = entityObject as! JMDictEntity
+        let jmDict = entityObject as! JMDictEntity
         Utility.debug_println(debug, swift_file: filename, function: functionName, text: "Id : \(jmDict.unique_id)")
         
         let stackSize = self.navigationController?.viewControllers.count
-        println("Stack Size : \(stackSize)")
+        print("Stack Size : \(stackSize)")
         
-        var scrollviewDummy = UIScrollView(frame: CGRectMake(0, 0, screenWidth, screenHeight-80))
+        let scrollviewDummy = UIScrollView(frame: CGRectMake(0, 0, screenWidth, screenHeight-80))
         
         japaneseEntityView = UIView.loadFromNibNamed("JapaneseEntityView") as! JapaneseEntityView
         scrollviewDummy.addSubview(japaneseEntityView)
@@ -79,7 +79,7 @@ class WordViewController: UIViewController {
     }
     
     @IBAction func backButtonPressed(sender: UIButton) {
-        println("backButtonPressed")
+        print("backButtonPressed")
         self.navigationController?.popViewControllerAnimated(false)
     }
     

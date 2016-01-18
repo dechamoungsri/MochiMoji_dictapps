@@ -61,7 +61,7 @@ class SearchResultEntityCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        var view = UIView()
+        let view = UIView()
         view.backgroundColor = COLOR.defaultColor
         self.backgroundView = view
     }
@@ -109,8 +109,8 @@ class SearchResultEntityCell: UITableViewCell {
         var read_out = ""
         var readingList = entity.readingEntityList
         for var i = 0 ; i < readingList.count ; i++ {
-            var read = (readingList[i] as NSDictionary)
-            var str = read["reb"] as! String
+            let read = (readingList[i] as NSDictionary)
+            let str = read["reb"] as! String
             read_out = read_out + str
             if i != (readingList.count-1) {
                 read_out = read_out + ", "
@@ -139,7 +139,7 @@ class SearchResultEntityCell: UITableViewCell {
                     }
                 }
                 
-                if !contains(pos_list, pos_other) {
+                if !pos_list.contains(pos_other) {
                     pos_list.append(pos_other)
                     
                 }
@@ -198,7 +198,7 @@ class SearchResultEntityCell: UITableViewCell {
     func assignJapaneseEntityFromJMDict(entity:JMDictEntity, text:String) {
         
         for var i = 0; i < entity.japaneseEntityList.count ; i++ {
-            var kanji = entity.japaneseEntityList[i]["keb"] as! String
+            let kanji = entity.japaneseEntityList[i]["keb"] as! String
             
             if i == 0 {
                 japaneseEntityLabel.text = kanji

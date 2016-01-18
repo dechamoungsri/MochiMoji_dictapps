@@ -39,7 +39,7 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
         super.init(frame: frame)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -54,7 +54,7 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
     
     func setData(entity:Entity){
         // TODO: Check Before set
-        var jmDict = entity as! JMDictEntity
+        let jmDict = entity as! JMDictEntity
         var senses = jmDict.englishEntityList
         
         var posTemp: [String]
@@ -70,10 +70,10 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
                 posTemp = pos
             }
             
-            var meanings = sense[JMDictEntity.KEY.glossKey.rawValue] as! [NSDictionary]
+            let meanings = sense[JMDictEntity.KEY.glossKey.rawValue] as! [NSDictionary]
             //println(meanings)
             
-            var dict = NSMutableDictionary()
+            let dict = NSMutableDictionary()
             dict.setObject(pos, forKey: JMDictEntity.KEY.posKey.rawValue)
             dict.setObject(meanings, forKey: JMDictEntity.KEY.glossKey.rawValue)
             
@@ -137,7 +137,7 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
         
         //Utility.debug_println(DEBUG_MeaningEntityView, swift_file: fileName, function: "heightForRowAtIndexPath", text: "\(indexPath.section) \(indexPath.row)")
         
-        var height:CGFloat = getEstimatedHeightFromLabel(retrievedTextFromSensesList(indexPath.section, row: indexPath.row)) //CGFloat(20 * (indexPath.section+1))
+        let height:CGFloat = getEstimatedHeightFromLabel(retrievedTextFromSensesList(indexPath.section, row: indexPath.row)) //CGFloat(20 * (indexPath.section+1))
         
         return height
     }
@@ -182,7 +182,7 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
             }
         }
         
-        return str[Range<Int>(start: 0, end: count(str)-2)]
+        return str[Range<Int>(start: 0, end: str.characters.count-2)]
         
     }
     
@@ -205,7 +205,7 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
             - 32 - 16 // TableView Leading and trailing
             - 16 - 8 // Leading space plus default cell space
         
-        var label = UILabel()
+        let label = UILabel()
         label.font = UIFont(name: "Roboto-Regular", size: 22)
         label.numberOfLines = 0
         label.text = text

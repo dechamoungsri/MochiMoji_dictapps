@@ -30,28 +30,28 @@ class DatabaseHelper{
 
     func queryTextInput(text:String) -> [DummyEntity]{
         
-        var function_name = "queryTextInput"
+        let function_name = "queryTextInput"
         
         Utility.debug_println(DEBUG_THIS_FILE, swift_file : class_name, function : function_name, text: "\n Text input : \(text) \n")
         
-        var starttime = NSDate().timeIntervalSince1970
+        let starttime = NSDate().timeIntervalSince1970
         
-        var inputText = textAddingSearchFunction(text)
+        let inputText = textAddingSearchFunction(text)
 
-        var viewName = getViewNameForJMDict(text)
+        let viewName = getViewNameForJMDict(text)
         
         var output_array:[DummyEntity] = []
         
-        var results = DatabaseInterface.sharedInstance.queryWordinJMDict(inputText, viewName: viewName)
+        let results = DatabaseInterface.sharedInstance.queryWordinJMDict(inputText, viewName: viewName)
         
-        var mid = NSDate().timeIntervalSince1970
+        _ = NSDate().timeIntervalSince1970
         
 //        Utility.debug_println(DEBUG_THIS_FILE, swift_file : class_name, function : function_name, text: "\n Query Time : \(mid-starttime) Seconds \n")
         
-        var wordList = CBLQueryEnumeratorToJMEntity(results, text: text)
+        let wordList = CBLQueryEnumeratorToJMEntity(results, text: text)
         output_array = output_array + wordList
         
-        var endtime = NSDate().timeIntervalSince1970
+        let endtime = NSDate().timeIntervalSince1970
         //println("CBLQueryEnumeratorToJMEntity Duration : \(endtime-mid) Seconds")
         
         Utility.debug_println(DEBUG_THIS_FILE, swift_file : class_name, function : function_name, text: "\n queryTextInput(text:String) Duration : \(endtime-starttime) Seconds \n")
@@ -102,7 +102,7 @@ class DatabaseHelper{
         var set = [Int]()
         
         while let row = queryLists.nextRow() {
-            var jmDict = DummyEntity(row: row, dbName:DatabaseInterface.DatabaseName.JMDICT)
+            let jmDict = DummyEntity(row: row, dbName:DatabaseInterface.DatabaseName.JMDICT)
             
 //            if !contains(set, jmDict.unique){
                 output.append(jmDict)
@@ -114,7 +114,7 @@ class DatabaseHelper{
         Utility.debug_println(DEBUG_THIS_FILE, swift_file: class_name, function: function_name, text: "\n  output \(output.count) \n")
         
         var mid = NSDate().timeIntervalSince1970
-        output.sort({
+        output.sortInPlace({
             (a:DummyEntity,b:DummyEntity)-> Bool in
             return a.frequency > b.frequency
         })
@@ -129,9 +129,9 @@ class DatabaseHelper{
  
     func removeDuplicate(enumerator: CBLQueryEnumerator) -> [CBLQueryRow] {
         var outList: [CBLQueryRow] = [];
-        var setCheck = NSMutableSet()
+        let setCheck = NSMutableSet()
         while let row = enumerator.nextRow() {
-            var st = row.documentID
+            let st = row.documentID
             if !setCheck.containsObject(st) {
                 setCheck.addObject(st)
                 outList.append(row)

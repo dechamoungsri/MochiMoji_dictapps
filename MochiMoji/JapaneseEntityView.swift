@@ -23,14 +23,14 @@ class JapaneseEntityView : UIView {
         super.init(frame: frame)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     func setData(entity:Entity){
         
         // TODO: Cast to JMDict
-        var jmDict = entity as! JMDictEntity
+        let jmDict = entity as! JMDictEntity
         
         // FIXME: Correct it
         japaneseEntity.text = jmDict.japaneseEntity

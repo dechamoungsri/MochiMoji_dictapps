@@ -62,7 +62,7 @@ class AnimationFactory {
             popAnimation!.toValue = toValue
             popAnimation!.springBounciness = bounce
             popAnimation!.springSpeed = speed
-            println("translationYPosition")
+            print("translationYPosition")
         }
         
         return popAnimation!
@@ -72,7 +72,7 @@ class AnimationFactory {
     // MARK: - Animation Factory
     
     class func scaleToComponent(component:UIView, scaleTo:CGFloat){
-        var scaleAnimation = scaleAnimaionFactory("scaleAnimation", toValue:scaleTo, animatedTarget: component)
+        let scaleAnimation = scaleAnimaionFactory("scaleAnimation", toValue:scaleTo, animatedTarget: component)
         component.pop_addAnimation(scaleAnimation, forKey: "scaleAnimation")
     }
     
@@ -96,7 +96,7 @@ class AnimationFactory {
     }
     
     class func fadeToComponent(component:UIView, fadeTo:CGFloat){
-        var fadeAnimation = fadeAnimationFactory("fade", toValue: fadeTo, animatedTarget: component)
+        let fadeAnimation = fadeAnimationFactory("fade", toValue: fadeTo, animatedTarget: component)
         component.pop_addAnimation(fadeAnimation, forKey: "fade")
     }
     

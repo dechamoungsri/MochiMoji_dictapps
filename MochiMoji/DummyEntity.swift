@@ -31,11 +31,11 @@ class DummyEntity: Equatable {
     
     init(row:CBLQueryRow, dbName:DatabaseInterface.DatabaseName){
         
-        var doc = row.document
+        let doc = row.document
         //ent_seq
         self.doc = doc
         //self.unique = 0
-        self.unique = ((doc.properties as NSDictionary).valueForKey("ent_seq") as! String).toInt()!
+        self.unique = Int(((doc.properties as NSDictionary).valueForKey("ent_seq") as! String))!
         
         self.frequency = ((doc.properties as NSDictionary).valueForKey("frequency") as! Int)
         

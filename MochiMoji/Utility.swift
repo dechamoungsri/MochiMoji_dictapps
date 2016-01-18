@@ -11,7 +11,7 @@ import Foundation
 extension String {
     
     subscript (i: Int) -> Character {
-        return self[advance(self.startIndex, i)]
+        return self[self.startIndex.advancedBy(i)]
     }
     
     subscript (i: Int) -> String {
@@ -19,7 +19,7 @@ extension String {
     }
     
     subscript (r: Range<Int>) -> String {
-        return substringWithRange(Range(start: advance(startIndex, r.startIndex), end: advance(startIndex, r.endIndex)))
+        return substringWithRange(Range(start: startIndex.advancedBy(r.startIndex), end: startIndex.advancedBy(r.endIndex)))
     }
 }
 
@@ -33,7 +33,13 @@ class Utility {
     
     class func nsobjectToString(anyObject:AnyObject) -> String{
         var error :NSError?
-        let jsData = NSJSONSerialization.dataWithJSONObject(anyObject, options: NSJSONWritingOptions.allZeros, error: &error)
+        let jsData: NSData?
+        do {
+            jsData = try NSJSONSerialization.dataWithJSONObject(anyObject, options: NSJSONWritingOptions())
+        } catch let error1 as NSError {
+            error = error1
+            jsData = nil
+        }
         let nsJson = NSString(data: jsData!, encoding: NSUTF8StringEncoding) as! String
         return nsJson
     }
@@ -57,7 +63,7 @@ class Utility {
             }
             return d_array
         case .ARRAY:
-            var d = dictionary.objectForKey(keyString) as! NSArray
+            let d = dictionary.objectForKey(keyString) as! NSArray
             var d_array = [Any]()
             for var i = 0 ; i < d.count ; i++ {
                 if let dict = d[i] as? NSDictionary {
@@ -78,7 +84,7 @@ class Utility {
     class func statusDictionary(dictionary:NSDictionary, key:String) -> ElementStatus{
         if dictionary[key] != nil {
             
-            if let d = (dictionary as NSDictionary).objectForKey(key) as? NSArray {
+            if let _ = (dictionary as NSDictionary).objectForKey(key) as? NSArray {
                 return ElementStatus.ARRAY
             }
             else {
@@ -96,7 +102,7 @@ class Utility {
         if let hasPrefix = str.hasPrefix(prefix) as Bool? {
             return hasPrefix
         }
-        println("\(str) \(prefix) nil return")
+        print("\(str) \(prefix) nil return")
         return false
     }
     
@@ -107,13 +113,13 @@ class Utility {
             cString = (cString as NSString).substringFromIndex(1)
         }
         
-        if count(cString) != 6 {
+        if cString.characters.count != 6 {
             return UIColor.grayColor()
         }
         
-        var rString = (cString as NSString).substringToIndex(2)
-        var gString = ((cString as NSString).substringFromIndex(2) as NSString).substringToIndex(2)
-        var bString = ((cString as NSString).substringFromIndex(4) as NSString).substringToIndex(2)
+        let rString = (cString as NSString).substringToIndex(2)
+        let gString = ((cString as NSString).substringFromIndex(2) as NSString).substringToIndex(2)
+        let bString = ((cString as NSString).substringFromIndex(4) as NSString).substringToIndex(2)
         
         var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
         NSScanner(string: rString).scanHexInt(&r)
@@ -125,7 +131,7 @@ class Utility {
     
     class func debug_println(debug:Bool, swift_file:String, function:String, text:String){
         if debug {
-            println("\n Debug\n\t Class : \(swift_file)\n\t Function : \(function)\n\t Text : \(text)\n")
+            print("\n Debug\n\t Class : \(swift_file)\n\t Function : \(function)\n\t Text : \(text)\n")
         }
         
     }

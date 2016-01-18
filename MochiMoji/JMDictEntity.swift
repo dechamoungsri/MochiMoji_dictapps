@@ -40,15 +40,15 @@ class JMDictEntity: Entity {
     convenience init(entity:DummyEntity){
         self.init()
         
-        var doc = entity.doc
+        let doc = entity.doc
         if doc == nil {
             return
         }
         
         self.document = doc!
         
-        var unique:String = (self.document!.properties as NSDictionary).valueForKey("ent_seq") as! String
-        self.unique_id = unique.toInt()!
+        let unique:String = (self.document!.properties as NSDictionary).valueForKey("ent_seq") as! String
+        self.unique_id = Int(unique)!
         //println(unique)
         
         assignDictName()
@@ -62,7 +62,7 @@ class JMDictEntity: Entity {
     }
     
     func assignReadingEntity(doc: CBLDocument){
-        var r_ele_Key = "r_ele"
+        let r_ele_Key = "r_ele"
         if let d = Utility.getArrayForKey(doc.properties, keyString: r_ele_Key) {
             for var i = 0; i < d.count ; i++ {
                 readingEntityList.append(d[i] as! NSDictionary)
@@ -71,7 +71,7 @@ class JMDictEntity: Entity {
     }
     
     func assignJapaneseEntity(doc: CBLDocument) {
-        var k_ele_Key = "k_ele"
+        let k_ele_Key = "k_ele"
         if let d = Utility.getArrayForKey(doc.properties, keyString: k_ele_Key) {
             for var i = 0; i < d.count ; i++ {
                 japaneseEntityList.append(d[i] as! NSDictionary)
@@ -97,7 +97,7 @@ class JMDictEntity: Entity {
                     for var j = 0; j < glosses.count ; j++ {
                         if let gloss = glosses[j] as? String {
                             //println("Eng : \(gloss)")
-                            var dict = [languageKey: englishValue, meaningKey: gloss]
+                            let dict = [languageKey: englishValue, meaningKey: gloss]
                             meaning_list.append(dict)
                             meaningEntity += gloss + ", "
                         }
@@ -121,7 +121,7 @@ class JMDictEntity: Entity {
                 }
                 // End Part of speech Extraction
                 
-                var sense_dictionary = NSMutableDictionary()
+                let sense_dictionary = NSMutableDictionary()
                 sense_dictionary.setObject(meaning_list, forKey: glossKey)
                 sense_dictionary.setObject(pos_list, forKey: posKey)
                 englishList.append(sense_dictionary)
@@ -152,15 +152,15 @@ class JMDictEntity: Entity {
         
         self.init()
         
-        var doc = row.document
+        let doc = row.document
         if doc == nil {
             return
         }
         
         self.document = doc
         
-        var unique:String = (doc.properties as NSDictionary).valueForKey("ent_seq") as! String
-        self.unique_id = unique.toInt()!
+        let unique:String = (doc.properties as NSDictionary).valueForKey("ent_seq") as! String
+        self.unique_id = Int(unique)!
         //println(unique)
         
         assignDictName()
