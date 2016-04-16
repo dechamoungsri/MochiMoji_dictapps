@@ -94,12 +94,12 @@ class DatabaseHelper{
         
         let function_name = "CBLQueryEnumeratorToJMEntity"
         
-        var starttime = NSDate().timeIntervalSince1970
+        _ = NSDate().timeIntervalSince1970
         var output:[DummyEntity] = []
 
         Utility.debug_println(DEBUG_THIS_FILE, swift_file: class_name, function: function_name, text: "\n  queryLists \(queryLists.count) \n")
         
-        var set = [Int]()
+        _ = [Int]()
         
         while let row = queryLists.nextRow() {
             let jmDict = DummyEntity(row: row, dbName:DatabaseInterface.DatabaseName.JMDICT)
@@ -113,12 +113,12 @@ class DatabaseHelper{
         
         Utility.debug_println(DEBUG_THIS_FILE, swift_file: class_name, function: function_name, text: "\n  output \(output.count) \n")
         
-        var mid = NSDate().timeIntervalSince1970
+        _ = NSDate().timeIntervalSince1970
         output.sortInPlace({
             (a:DummyEntity,b:DummyEntity)-> Bool in
             return a.frequency > b.frequency
         })
-        var endtime = NSDate().timeIntervalSince1970
+        _ = NSDate().timeIntervalSince1970
         
 //        Utility.debug_println(DEBUG_THIS_FILE, swift_file: class_name, function: function_name, text: "DummayEntity Duration : \(mid-starttime) Seconds")
 //        Utility.debug_println(DEBUG_THIS_FILE, swift_file: class_name, function: function_name, text: "output.sort Duration : \(endtime-mid) Seconds")

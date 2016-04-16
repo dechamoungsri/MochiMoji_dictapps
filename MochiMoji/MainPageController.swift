@@ -455,9 +455,9 @@ class MainPageController: UIViewController {
     }
     
     func searchProcessing(inputText:String) -> NSMutableDictionary{
-        var starttime = NSDate().timeIntervalSince1970
+//        var starttime = NSDate().timeIntervalSince1970
         let cells = DatabaseHelper.sharedInstance.queryTextInput(inputText)
-        var endtime = NSDate().timeIntervalSince1970
+//        var endtime = NSDate().timeIntervalSince1970
         //println("searchProcessing Duration : \(endtime-starttime) Seconds")
         let dictionary = NSMutableDictionary()
         dictionary.setObject(cells, forKey: ENTITY_KEY)
@@ -485,7 +485,7 @@ class MainPageController: UIViewController {
     // MARK: - Word delegate back
     
     @IBAction func sendDataFromChildToParent(segue: UIStoryboardSegue) {
-        let childViewController:WordViewController = segue.sourceViewController as! WordViewController;
+//        let childViewController:WordViewController = segue.sourceViewController as! WordViewController;
         print("Receive data from Child \(segue.identifier)")
     }
     

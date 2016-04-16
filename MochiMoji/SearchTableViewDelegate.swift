@@ -319,7 +319,7 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
             
             UIView.animateWithDuration(0.2, animations: {
                 // Animation Go here
-                mainController?.animationCell?.topbar.alpha = 0
+                self.mainController?.animationCell?.topbar.alpha = 0
                 }, completion: { (complete: Bool) in
                     // complete go here
             })

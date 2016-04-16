@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		516DC95A79936466B62D4621 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0242B8920EFDA16EE0BDD3A /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		516DC95A79936466B62D4621 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0242B8920EFDA16EE0BDD3A /* Pods.framework */; };
 		BE1B667E1AE9D1D10041D065 /* DummyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1B667D1AE9D1D10041D065 /* DummyEntity.swift */; };
+		BE1ED3501CB6000B0087F434 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1ED3491CB5FF540087F434 /* pop.framework */; };
+		BE1ED3511CB6000B0087F434 /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE1ED3491CB5FF540087F434 /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BE3238D01AF4AB970096A7F9 /* jmdict-30-4-2015-view.cblite in Resources */ = {isa = PBXBuildFile; fileRef = BE3238CF1AF4AB970096A7F9 /* jmdict-30-4-2015-view.cblite */; };
 		BE43A6A41B22C0EE00A61169 /* MeaningEntityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE43A6A31B22C0EE00A61169 /* MeaningEntityView.xib */; };
 		BE43A6A61B22C57300A61169 /* MeaningEntityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE43A6A51B22C57300A61169 /* MeaningEntityView.swift */; };
@@ -89,12 +91,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		BE08FA2B1A762C1700FAF01C /* Embed Frameworks */ = {
+		BE1ED3521CB6000C0087F434 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				BE1ED3511CB6000B0087F434 /* pop.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +108,8 @@
 		5DE0274CDEF855A992DD8D5A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9E55323F697205746F1FD91E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		BE1B667D1AE9D1D10041D065 /* DummyEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyEntity.swift; sourceTree = "<group>"; };
+		BE1ED3491CB5FF540087F434 /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = "../../Library/Developer/Xcode/DerivedData/MochiMoji-fzqvfcihyhikbyelidxkjrcigjbc/Build/Products/Debug-iphonesimulator/pop.framework"; sourceTree = "<group>"; };
+		BE1ED34B1CB5FF580087F434 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = "../../Library/Developer/Xcode/DerivedData/MochiMoji-fzqvfcihyhikbyelidxkjrcigjbc/Build/Products/Debug-iphonesimulator/CocoaLumberjack.framework"; sourceTree = "<group>"; };
 		BE3238CF1AF4AB970096A7F9 /* jmdict-30-4-2015-view.cblite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "jmdict-30-4-2015-view.cblite"; sourceTree = "<group>"; };
 		BE43A6A31B22C0EE00A61169 /* MeaningEntityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeaningEntityView.xib; sourceTree = "<group>"; };
 		BE43A6A51B22C57300A61169 /* MeaningEntityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeaningEntityView.swift; sourceTree = "<group>"; };
@@ -191,6 +196,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE1ED3501CB6000B0087F434 /* pop.framework in Frameworks */,
 				BE999EE11B4D4BDD008A5C3D /* CouchbaseLite.framework in Frameworks */,
 				BEC117BF1AD4DCBC00FB5457 /* Security.framework in Frameworks */,
 				BEC117BD1AD4DCB200FB5457 /* CFNetwork.framework in Frameworks */,
@@ -214,6 +220,8 @@
 		7F25BFAB90101EAA2A72885F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE1ED34B1CB5FF580087F434 /* CocoaLumberjack.framework */,
+				BE1ED3491CB5FF540087F434 /* pop.framework */,
 				BE468E4E1B24472C00A76032 /* CouchbaseLite.framework */,
 				BEC117BE1AD4DCBC00FB5457 /* Security.framework */,
 				BEC117BC1AD4DCB200FB5457 /* CFNetwork.framework */,
@@ -504,9 +512,9 @@
 				BE7C99C91A74A5C7007E65AD /* Sources */,
 				BE7C99CA1A74A5C7007E65AD /* Frameworks */,
 				BE7C99CB1A74A5C7007E65AD /* Resources */,
-				BE08FA2B1A762C1700FAF01C /* Embed Frameworks */,
 				B6C2DCF6E644DC73E09228C6 /* Copy Pods Resources */,
 				2FECF001C256A30011399937 /* Embed Pods Frameworks */,
+				BE1ED3521CB6000C0087F434 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

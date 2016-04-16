@@ -19,7 +19,7 @@ extension String {
     }
     
     subscript (r: Range<Int>) -> String {
-        return substringWithRange(Range(start: startIndex.advancedBy(r.startIndex), end: startIndex.advancedBy(r.endIndex)))
+        return substringWithRange(Range(startIndex.advancedBy(r.startIndex) ..< startIndex.advancedBy(r.endIndex)))
     }
 }
 
@@ -65,7 +65,7 @@ class Utility {
         case .ARRAY:
             let d = dictionary.objectForKey(keyString) as! NSArray
             var d_array = [Any]()
-            for var i = 0 ; i < d.count ; i++ {
+            for i in 0  ..< d.count  {
                 if let dict = d[i] as? NSDictionary {
                     d_array.append(dict)
                 }

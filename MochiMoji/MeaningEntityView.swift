@@ -60,7 +60,7 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
         var posTemp: [String]
         posTemp = senses[0][JMDictEntity.KEY.posKey.rawValue] as! [String]
         
-        for var i = 0 ; i < senses.count ; i++ {
+        for i in 0  ..< senses.count  {
             let sense = senses[i]
             var pos = sense[JMDictEntity.KEY.posKey.rawValue] as! [String]
             if pos.count == 0 {
@@ -87,8 +87,8 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
         
         var height:CGFloat = 16 + meaningLabel.frame.height + 16 + 16 + borderline.frame.height
         
-        for var i = 0 ; i < senseList.count ; i++ {
-            for var j = 0 ; j < senseList[i][JMDictEntity.KEY.glossKey.rawValue]!.count ; j++ {
+        for i in 0  ..< senseList.count  {
+            for j in 0 ..< senseList[i][JMDictEntity.KEY.glossKey.rawValue]!.count  {
                 height += getEstimatedHeightFromLabel(retrievedTextFromSensesList(i, row: j))
             }
         }
@@ -177,12 +177,12 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
         var str = ""
         
         if let pos = (senseList[section][JMDictEntity.KEY.posKey.rawValue] as? [String]) {
-            for var i = 0 ; i < pos.count ; i++ {
+            for i in 0  ..< pos.count  {
                 str += pos[i] + ", "
             }
         }
         
-        return str[Range<Int>(start: 0, end: str.characters.count-2)]
+        return str[Range<Int>(0 ..< str.characters.count-2)]
         
     }
     

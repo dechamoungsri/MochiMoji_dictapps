@@ -64,7 +64,7 @@ class JMDictEntity: Entity {
     func assignReadingEntity(doc: CBLDocument){
         let r_ele_Key = "r_ele"
         if let d = Utility.getArrayForKey(doc.properties, keyString: r_ele_Key) {
-            for var i = 0; i < d.count ; i++ {
+            for i in 0 ..< d.count  {
                 readingEntityList.append(d[i] as! NSDictionary)
             }
         }
@@ -73,7 +73,7 @@ class JMDictEntity: Entity {
     func assignJapaneseEntity(doc: CBLDocument) {
         let k_ele_Key = "k_ele"
         if let d = Utility.getArrayForKey(doc.properties, keyString: k_ele_Key) {
-            for var i = 0; i < d.count ; i++ {
+            for i in 0 ..< d.count  {
                 japaneseEntityList.append(d[i] as! NSDictionary)
             }
             self.japaneseEntity = jpListTojpString(self.japaneseEntityList)
@@ -88,13 +88,13 @@ class JMDictEntity: Entity {
         var meaningEntity = ""
         
         if let senses = Utility.getArrayForKey(doc.properties, keyString: senseKey) {
-            for var i = 0; i < senses.count ; i++ {
+            for i in 0 ..< senses.count  {
                 let dictionary = senses[i] as! NSDictionary
                 
                 // Gloss Extraction
                 var meaning_list = Array<Dictionary<String,String>>()
                 if let glosses = Utility.getArrayForKey(dictionary, keyString: glossKey) {
-                    for var j = 0; j < glosses.count ; j++ {
+                    for j in 0 ..< glosses.count  {
                         if let gloss = glosses[j] as? String {
                             //println("Eng : \(gloss)")
                             let dict = [languageKey: englishValue, meaningKey: gloss]
@@ -114,7 +114,7 @@ class JMDictEntity: Entity {
                 // Part of speech Extraction
                 var pos_list = [String]()
                 if let poses = Utility.getArrayForKey(dictionary, keyString: posKey) {
-                    for var j = 0 ; j < poses.count ; j++ {
+                    for j in 0  ..< poses.count  {
                         //println("Pos : \(poses[j])")
                         pos_list.append(poses[j] as! String)
                     }
@@ -129,14 +129,14 @@ class JMDictEntity: Entity {
             }
             
             self.englishEntityList = englishList
-            self.englishEntity = meaningEntity[Range(start: 0,end: meaningEntity.length-2)]
+            self.englishEntity = meaningEntity[Range( 0 ..< meaningEntity.length-2)]
             
         }
     }
     
     func jpListTojpString(jplist:[NSDictionary]) -> String{
         var out = ""
-        for var i=0; i < jplist.count ; i++ {
+        for i in 0 ..< jplist.count  {
             if jplist[i].valueForKey("keb") != nil {
                 out = out + (jplist[i].valueForKey("keb") as! String)
                 if i != (jplist.count-1) {

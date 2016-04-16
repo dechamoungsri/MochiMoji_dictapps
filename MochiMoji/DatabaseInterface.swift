@@ -66,7 +66,7 @@ class DatabaseInterface {
             database = nil
         }
         
-        var starttime = NSDate().timeIntervalSince1970
+//        var starttime = NSDate().timeIntervalSince1970
         
         Utility.debug_println(DEBUG_THIS_FILE, swift_file: class_name, function: function_name, text: "\n Input : \(text)\n")
         
@@ -87,7 +87,7 @@ class DatabaseInterface {
             result = nil
         }
 
-        var endtime = NSDate().timeIntervalSince1970
+//        var endtime = NSDate().timeIntervalSince1970
 
 //        Utility.debug_println(DEBUG_THIS_FILE, swift_file : class_name, function : function_name, text: "\n Run queryWordinJMDict Query Duration : \(endtime-starttime) Seconds \n")
         
@@ -112,7 +112,7 @@ class DatabaseInterface {
                 
                 if let d = (doc as NSDictionary).objectForKey(self.kanji_element_key) as? NSArray {
                     var str_all = ""
-                    for var i = 0; i < d.count ; i++ {
+                    for i in 0 ..< d.count  {
                         if ((d[i] as! NSDictionary)[self.kanji_entity] != nil) {
                             let str = (d[i] as! NSDictionary)[self.kanji_entity] as! String
                             str_all = str_all + " " + str
@@ -147,13 +147,13 @@ class DatabaseInterface {
             var meaning = ""
 
             if let senses = Utility.getArrayForKey(doc, keyString: self.senseKey) {
-                for var i = 0; i < senses.count ; i++ {
+                for i in 0 ..< senses.count  {
                     let dictionary = senses[i] as! NSDictionary
 
                     // Gloss Extraction
                     _ = Array<Dictionary<String,String>>()
                     if let glosses = Utility.getArrayForKey(dictionary, keyString: self.glossKey) {
-                        for var j = 0; j < glosses.count ; j++ {
+                        for j in 0 ..< glosses.count  {
                             if let gloss = glosses[j] as? String {
                                 //println("Eng : \(gloss)")
                                 meaning = meaning + " | " + gloss

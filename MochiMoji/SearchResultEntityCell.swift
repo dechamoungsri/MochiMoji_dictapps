@@ -108,7 +108,7 @@ class SearchResultEntityCell: UITableViewCell {
     func assignReadingFromJMDict(entity:JMDictEntity){
         var read_out = ""
         var readingList = entity.readingEntityList
-        for var i = 0 ; i < readingList.count ; i++ {
+        for i in 0  ..< readingList.count  {
             let read = (readingList[i] as NSDictionary)
             let str = read["reb"] as! String
             read_out = read_out + str
@@ -124,15 +124,15 @@ class SearchResultEntityCell: UITableViewCell {
     func assignPartOfSpeechFromJMDict(entity:JMDictEntity){
         var pos_list = [String]()
         var senses = entity.englishEntityList
-        for var i = 0; i < senses.count ; i++ {
+        for i in 0 ..< senses.count  {
             var pos = senses[i][JMDictEntity.KEY.posKey.rawValue] as! [String]
-            for var j = 0; j < pos.count ; j++ {
+            for j in 0 ..< pos.count  {
                 
                 var pos_array_list = PART_OF_SPEECH_INFO.Pos_List
                 
                 var pos_other = PART_OF_SPEECH_INFO.Other
                 
-                for var k = 0 ; k < pos_array_list.count ; k++ {
+                for k in 0  ..< pos_array_list.count  {
                     if Utility.hasPrefix(pos[j], prefix: pos_array_list[k]) {
                         pos_other = PART_OF_SPEECH_INFO.Pos_JMDict[pos_array_list[k]]!
                         break
@@ -162,11 +162,11 @@ class SearchResultEntityCell: UITableViewCell {
     
     func settingWordTypeLabel(pos_list:[String], count:Int){
         var labels = [pos1,pos2,pos3,pos4]
-        for var i = 0 ; i < labels.count ; i++ {
+        for i in 0  ..< labels.count  {
             labels[i].hidden = true
         }
         
-        for var i = 0 ; i < count ; i++ {
+        for i in 0  ..< count  {
             setPartOfSpeechLabel(labels[i], pos: pos_list[i])
         }
     }
@@ -197,7 +197,7 @@ class SearchResultEntityCell: UITableViewCell {
     
     func assignJapaneseEntityFromJMDict(entity:JMDictEntity, text:String) {
         
-        for var i = 0; i < entity.japaneseEntityList.count ; i++ {
+        for i in 0 ..< entity.japaneseEntityList.count  {
             let kanji = entity.japaneseEntityList[i]["keb"] as! String
             
             if i == 0 {
