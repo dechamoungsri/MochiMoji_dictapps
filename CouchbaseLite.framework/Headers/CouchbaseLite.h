@@ -26,6 +26,7 @@
 #import "CBLQuery.h"
 #import "CBLQuery+FullTextSearch.h"
 #import "CBLQuery+Geo.h"
+#import "CBLQueryBuilder.h"
 #import "CBLAuthenticator.h"
 #import "CBLReplication.h"
 #import "CBLModel.h"
@@ -34,4 +35,6 @@
 
 #if TARGET_OS_IPHONE
 #import "CBLUITableSource.h"
+#else
+#import "CBLRegisterJSViewCompiler.h"
 #endif

@@ -149,5 +149,18 @@ class AnimationFactory {
         return scaleXY!
     }
     
+    class func translateXAnimationFactory(name:String, toValue:CGFloat, animatedTarget:UIView, bounce:CGFloat, speed:CGFloat) -> POPAnimation? {
+        var animationObject = animatedTarget.pop_animationForKey(name) as? POPSpringAnimation
+        if (animationObject != nil) {
+            animationObject!.toValue = toValue
+        }
+        else {
+            animationObject = POPSpringAnimation(propertyNamed: kPOPLayerPositionX)
+            animationObject!.toValue = toValue
+            animationObject!.springBounciness = bounce
+            animationObject!.springSpeed = speed
+        }
+        return animationObject
+    }
     
 }

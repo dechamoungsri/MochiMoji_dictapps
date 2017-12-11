@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         databaseConnection()
         return true
     }
-
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -56,6 +56,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             error = error1
             database = nil
         }
+        
+        print("Couchbase version : \(CBLVersion())")
+        
         if database == nil {
             
             Utility.debug_println(debug_appdelegate, swift_file: fileName, function: "databaseConnection", text: "database == nil : Trying to copying")
@@ -83,7 +86,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DatabaseInterface.sharedInstance.reEmitWordView(database)
         
         DatabaseHelper.sharedInstance.queryTextInput("drink")
-        DatabaseHelper.sharedInstance.queryTextInput("食")
+        var dummy = DatabaseHelper.sharedInstance.queryTextInput("食")
+        print(Utility.nsobjectToString(dummy[0].doc!.properties))
         
 //        DatabaseInterface.sharedInstance
 //        let result = DatabaseInterface.sharedInstance.queryWordinJMDict("食べる")

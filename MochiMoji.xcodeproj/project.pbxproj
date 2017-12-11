@@ -12,6 +12,7 @@
 		BE1ED3501CB6000B0087F434 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1ED3491CB5FF540087F434 /* pop.framework */; };
 		BE1ED3511CB6000B0087F434 /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE1ED3491CB5FF540087F434 /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BE3238D01AF4AB970096A7F9 /* jmdict-30-4-2015-view.cblite in Resources */ = {isa = PBXBuildFile; fileRef = BE3238CF1AF4AB970096A7F9 /* jmdict-30-4-2015-view.cblite */; };
+		BE38610A1D0D0D9500EE35AB /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE4F6A7F1B22BDB7003180F6 /* CouchbaseLite.framework */; };
 		BE43A6A41B22C0EE00A61169 /* MeaningEntityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE43A6A31B22C0EE00A61169 /* MeaningEntityView.xib */; };
 		BE43A6A61B22C57300A61169 /* MeaningEntityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE43A6A51B22C57300A61169 /* MeaningEntityView.swift */; };
 		BE70994E1BB84FC3002718A5 /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7099301BB84FC3002718A5 /* AsyncButton.swift */; };
@@ -56,7 +57,6 @@
 		BE90C1D71B23F9D200510AD0 /* MeaningTableSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE90C1D61B23F9D200510AD0 /* MeaningTableSectionCell.xib */; };
 		BE96F85A1B4D59050016B8AC /* SearchTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE96F8591B4D59050016B8AC /* SearchTableViewDelegate.swift */; };
 		BE96F85D1B4D61460016B8AC /* AnimationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE96F85C1B4D61460016B8AC /* AnimationFactory.swift */; };
-		BE999EE11B4D4BDD008A5C3D /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE4F6A7F1B22BDB7003180F6 /* CouchbaseLite.framework */; };
 		BEB3F10D1B2AC1AB00D6381F /* MeaningTableRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB3F10C1B2AC1AB00D6381F /* MeaningTableRowCell.swift */; };
 		BEB3F10F1B2AC22000D6381F /* MeaningTableSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB3F10E1B2AC22000D6381F /* MeaningTableSectionCell.swift */; };
 		BEC117B71AD4DC9800FB5457 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC117B61AD4DC9800FB5457 /* libz.dylib */; };
@@ -78,6 +78,12 @@
 		BEE84EA51B5A6A2B006989EC /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE84EA41B5A6A2B006989EC /* PassThroughView.swift */; };
 		BEEF7B6A1B1AB73C0088D2AA /* JapaneseEntityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEEF7B691B1AB73C0088D2AA /* JapaneseEntityView.xib */; };
 		BEEF7B6D1B1ADA280088D2AA /* JapaneseEntityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF7B6C1B1ADA280088D2AA /* JapaneseEntityView.swift */; };
+		BEF2EBC61CC223CA0010D5D3 /* UICardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEF2EBC51CC223CA0010D5D3 /* UICardView.xib */; };
+		BEF2EBC81CC226BF0010D5D3 /* UICardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF2EBC71CC226BF0010D5D3 /* UICardView.swift */; };
+		BEF2EBCA1CC32BCE0010D5D3 /* DummyCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEF2EBC91CC32BCE0010D5D3 /* DummyCardView.xib */; };
+		BEF2EBCC1CC32BE60010D5D3 /* DummyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF2EBCB1CC32BE60010D5D3 /* DummyCardView.swift */; };
+		BEFA11191CC5F7F8008C1D64 /* SearchAreaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA11181CC5F7F8008C1D64 /* SearchAreaController.swift */; };
+		BEFA111B1CC6029E008C1D64 /* MenuAreaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA111A1CC6029E008C1D64 /* MenuAreaController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,7 +171,6 @@
 		BEB3F10C1B2AC1AB00D6381F /* MeaningTableRowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeaningTableRowCell.swift; sourceTree = "<group>"; };
 		BEB3F10E1B2AC22000D6381F /* MeaningTableSectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeaningTableSectionCell.swift; sourceTree = "<group>"; };
 		BEB8067D1A751B190096E790 /* MochiMoji-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MochiMoji-Bridging-Header.h"; sourceTree = "<group>"; };
-		BEC117B41AD4DC7400FB5457 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = ../../Desktop/CouchbaseLite.framework; sourceTree = "<group>"; };
 		BEC117B61AD4DC9800FB5457 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BEC117B81AD4DC9F00FB5457 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		BEC117BA1AD4DCAE00FB5457 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -185,6 +190,12 @@
 		BEE84EA41B5A6A2B006989EC /* PassThroughView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
 		BEEF7B691B1AB73C0088D2AA /* JapaneseEntityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JapaneseEntityView.xib; sourceTree = "<group>"; };
 		BEEF7B6C1B1ADA280088D2AA /* JapaneseEntityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JapaneseEntityView.swift; sourceTree = "<group>"; };
+		BEF2EBC51CC223CA0010D5D3 /* UICardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UICardView.xib; sourceTree = "<group>"; };
+		BEF2EBC71CC226BF0010D5D3 /* UICardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICardView.swift; sourceTree = "<group>"; };
+		BEF2EBC91CC32BCE0010D5D3 /* DummyCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DummyCardView.xib; sourceTree = "<group>"; };
+		BEF2EBCB1CC32BE60010D5D3 /* DummyCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyCardView.swift; sourceTree = "<group>"; };
+		BEFA11181CC5F7F8008C1D64 /* SearchAreaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAreaController.swift; sourceTree = "<group>"; };
+		BEFA111A1CC6029E008C1D64 /* MenuAreaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuAreaController.swift; sourceTree = "<group>"; };
 		C0242B8920EFDA16EE0BDD3A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C24EA031D4D882D492031D2A /* Pods-MochiMoji.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MochiMoji.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MochiMoji/Pods-MochiMoji.debug.xcconfig"; sourceTree = "<group>"; };
 		C6FD660FF368BCED3CBD337A /* libPods-MochiMoji.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MochiMoji.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,8 +207,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE38610A1D0D0D9500EE35AB /* CouchbaseLite.framework in Frameworks */,
 				BE1ED3501CB6000B0087F434 /* pop.framework in Frameworks */,
-				BE999EE11B4D4BDD008A5C3D /* CouchbaseLite.framework in Frameworks */,
 				BEC117BF1AD4DCBC00FB5457 /* Security.framework in Frameworks */,
 				BEC117BD1AD4DCB200FB5457 /* CFNetwork.framework in Frameworks */,
 				BEC117BB1AD4DCAE00FB5457 /* SystemConfiguration.framework in Frameworks */,
@@ -228,8 +239,8 @@
 				BEC117BA1AD4DCAE00FB5457 /* SystemConfiguration.framework */,
 				BEC117B81AD4DC9F00FB5457 /* libsqlite3.dylib */,
 				BEC117B61AD4DC9800FB5457 /* libz.dylib */,
-				BEC117B41AD4DC7400FB5457 /* CouchbaseLite.framework */,
 				C6FD660FF368BCED3CBD337A /* libPods-MochiMoji.a */,
+				BE4F6A7F1B22BDB7003180F6 /* CouchbaseLite.framework */,
 				C0242B8920EFDA16EE0BDD3A /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -302,7 +313,6 @@
 				8A1C0E72D3313A87A310D1B1 /* Pods */,
 				7F25BFAB90101EAA2A72885F /* Frameworks */,
 				BEC117B01AD4DC1000FB5457 /* CouchbaseLite */,
-				BE4F6A7F1B22BDB7003180F6 /* CouchbaseLite.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -318,6 +328,7 @@
 		BE7C99CF1A74A5C7007E65AD /* MochiMoji */ = {
 			isa = PBXGroup;
 			children = (
+				BEF2EBC41CC2222F0010D5D3 /* CardView */,
 				BE70992F1BB84FC3002718A5 /* Spring */,
 				BE96F85B1B4D5CD70016B8AC /* AnimationFactory */,
 				BED227021AD773B9000C0E88 /* Database */,
@@ -386,6 +397,8 @@
 			isa = PBXGroup;
 			children = (
 				BE96F8591B4D59050016B8AC /* SearchTableViewDelegate.swift */,
+				BEFA11181CC5F7F8008C1D64 /* SearchAreaController.swift */,
+				BEFA111A1CC6029E008C1D64 /* MenuAreaController.swift */,
 			);
 			name = MainComponent;
 			sourceTree = "<group>";
@@ -501,6 +514,17 @@
 			name = WordViewComponent;
 			sourceTree = "<group>";
 		};
+		BEF2EBC41CC2222F0010D5D3 /* CardView */ = {
+			isa = PBXGroup;
+			children = (
+				BEF2EBC51CC223CA0010D5D3 /* UICardView.xib */,
+				BEF2EBC71CC226BF0010D5D3 /* UICardView.swift */,
+				BEF2EBC91CC32BCE0010D5D3 /* DummyCardView.xib */,
+				BEF2EBCB1CC32BE60010D5D3 /* DummyCardView.swift */,
+			);
+			name = CardView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -556,6 +580,7 @@
 				TargetAttributes = {
 					BE7C99CC1A74A5C7007E65AD = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = H63NN58PZH;
 					};
 					BE7C99E11A74A5C8007E65AD = {
 						CreatedOnToolsVersion = 6.1;
@@ -594,8 +619,10 @@
 				BE87F7D51A74DC7400267E85 /* TestCardView.xib in Resources */,
 				BECCEA021AFF7A6A00C661D6 /* TableCellForAnimationView.xib in Resources */,
 				BE7C99DD1A74A5C8007E65AD /* LaunchScreen.xib in Resources */,
+				BEF2EBCA1CC32BCE0010D5D3 /* DummyCardView.xib in Resources */,
 				BE90C1D71B23F9D200510AD0 /* MeaningTableSectionCell.xib in Resources */,
 				BE70995A1BB84FC3002718A5 /* Info.plist in Resources */,
+				BEF2EBC61CC223CA0010D5D3 /* UICardView.xib in Resources */,
 				BE70995D1BB84FC3002718A5 /* LoadingView.xib in Resources */,
 				BE7C99F41A74C313007E65AD /* Roboto-Regular.ttf in Resources */,
 				BE87F7D71A74DF6100267E85 /* KanjiCardView.xib in Resources */,
@@ -680,9 +707,11 @@
 				BE7099501BB84FC3002718A5 /* AutoTextView.swift in Sources */,
 				BE7099681BB84FC3002718A5 /* TransitionManager.swift in Sources */,
 				BE7099581BB84FC3002718A5 /* DesignableView.swift in Sources */,
+				BEF2EBC81CC226BF0010D5D3 /* UICardView.swift in Sources */,
 				BE70994F1BB84FC3002718A5 /* AsyncImageView.swift in Sources */,
 				BE7C99D51A74A5C7007E65AD /* MainPageController.swift in Sources */,
 				BE7099651BB84FC3002718A5 /* SpringTextField.swift in Sources */,
+				BEFA111B1CC6029E008C1D64 /* MenuAreaController.swift in Sources */,
 				BE96F85D1B4D61460016B8AC /* AnimationFactory.swift in Sources */,
 				BEE84EA51B5A6A2B006989EC /* PassThroughView.swift in Sources */,
 				BED227061AD773EA000C0E88 /* DatabaseInterface.swift in Sources */,
@@ -691,6 +720,7 @@
 				BEEF7B6D1B1ADA280088D2AA /* JapaneseEntityView.swift in Sources */,
 				BE7099611BB84FC3002718A5 /* SpringAnimation.swift in Sources */,
 				BE7099561BB84FC3002718A5 /* DesignableTextField.swift in Sources */,
+				BEFA11191CC5F7F8008C1D64 /* SearchAreaController.swift in Sources */,
 				BE7099521BB84FC3002718A5 /* DesignableButton.swift in Sources */,
 				BED226FE1AD647F4000C0E88 /* SearchResultEntityCell.swift in Sources */,
 				BE43A6A61B22C57300A61169 /* MeaningEntityView.swift in Sources */,
@@ -710,6 +740,7 @@
 				BEB3F10F1B2AC22000D6381F /* MeaningTableSectionCell.swift in Sources */,
 				BE7099551BB84FC3002718A5 /* DesignableTabBarController.swift in Sources */,
 				BED227081ADA5F13000C0E88 /* Utility.swift in Sources */,
+				BEF2EBCC1CC32BE60010D5D3 /* DummyCardView.swift in Sources */,
 				BE70994E1BB84FC3002718A5 /* AsyncButton.swift in Sources */,
 				BE70995F1BB84FC3002718A5 /* SoundPlayer.swift in Sources */,
 				BEB3F10D1B2AC1AB00D6381F /* MeaningTableRowCell.swift in Sources */,
@@ -833,6 +864,9 @@
 			baseConfigurationReference = 9E55323F697205746F1FD91E /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/dechamoungsri/Desktop,
@@ -843,7 +877,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.decha.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MochiMoji;
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MochiMoji/MochiMoji-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
@@ -854,6 +889,9 @@
 			baseConfigurationReference = 5DE0274CDEF855A992DD8D5A /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/dechamoungsri/Desktop,
@@ -864,7 +902,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.decha.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MochiMoji;
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MochiMoji/MochiMoji-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
