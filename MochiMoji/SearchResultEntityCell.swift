@@ -16,11 +16,11 @@ class SearchResultEntityCell: UITableViewCell {
     }
     
     enum CellEntityType {
-        case NOUN
-        case ADJECTIVE
-        case VERB
-        case ADVERB
-        case OTHER
+        case noun
+        case adjective
+        case verb
+        case adverb
+        case other
     }
     
     struct PART_OF_SPEECH_INFO {
@@ -59,27 +59,27 @@ class SearchResultEntityCell: UITableViewCell {
     @IBOutlet weak var pos3: UILabel!
     @IBOutlet weak var pos4: UILabel!
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         let view = UIView()
         view.backgroundColor = COLOR.defaultColor
         self.backgroundView = view
     }
     
-    func setComponentExample(dummy:String){
+    func setComponentExample(_ dummy:String){
         japaneseEntityLabel.text = dummy
         englishEntityLabel.text = dummy
         readingLabel.text = dummy
         lastseenLabel.text = dummy
     }
     
-    func setComponentFromEntity(entity:Entity, text:String){
+    func setComponentFromEntity(_ entity:Entity, text:String){
         japaneseEntityLabel.text = ""
         englishEntityLabel.text = ""
         readingLabel.text = ""
         lastseenLabel.text = ""
         switch entity.databaseName {
-        case DatabaseInterface.DatabaseName.JMDICT:
+        case DatabaseInterface.DatabaseName.jmdict:
             cellEntityFromJMDict(entity as! JMDictEntity,text: text)
         default:
             return
@@ -87,7 +87,7 @@ class SearchResultEntityCell: UITableViewCell {
 
     }
     
-    func cellEntityFromDummyEntity(entity:DummyEntity, text:String){
+    func cellEntityFromDummyEntity(_ entity:DummyEntity, text:String){
         japaneseEntityLabel.text = ""
         englishEntityLabel.text = ""
         readingLabel.text = ""
@@ -96,7 +96,7 @@ class SearchResultEntityCell: UITableViewCell {
         cellEntityFromJMDict(self.entity as! JMDictEntity, text: text)
     }
     
-    func cellEntityFromJMDict(entity:JMDictEntity, text:String){
+    func cellEntityFromJMDict(_ entity:JMDictEntity, text:String){
         
         assignJapaneseEntityFromJMDict(entity, text: text)
         englishEntityLabel.text = entity.englishEntity
@@ -105,7 +105,7 @@ class SearchResultEntityCell: UITableViewCell {
         
     }
     
-    func assignReadingFromJMDict(entity:JMDictEntity){
+    func assignReadingFromJMDict(_ entity:JMDictEntity){
         var read_out = ""
         var readingList = entity.readingEntityList
         for i in 0  ..< readingList.count  {
@@ -121,7 +121,7 @@ class SearchResultEntityCell: UITableViewCell {
         
     }
     
-    func assignPartOfSpeechFromJMDict(entity:JMDictEntity){
+    func assignPartOfSpeechFromJMDict(_ entity:JMDictEntity){
         var pos_list = [String]()
         var senses = entity.englishEntityList
         for i in 0 ..< senses.count  {
@@ -160,18 +160,18 @@ class SearchResultEntityCell: UITableViewCell {
         
     }
     
-    func settingWordTypeLabel(pos_list:[String], count:Int){
+    func settingWordTypeLabel(_ pos_list:[String], count:Int){
         var labels = [pos1,pos2,pos3,pos4]
         for i in 0  ..< labels.count  {
-            labels[i].hidden = true
+            labels[i]?.isHidden = true
         }
         
         for i in 0  ..< count  {
-            setPartOfSpeechLabel(labels[i], pos: pos_list[i])
+            setPartOfSpeechLabel(labels[i]!, pos: pos_list[i])
         }
     }
     
-    func setPartOfSpeechLabel(label:UILabel, pos:String){
+    func setPartOfSpeechLabel(_ label:UILabel, pos:String){
         
         var titleDictionary = [
             PART_OF_SPEECH_INFO.Noun : "Noun",
@@ -192,10 +192,10 @@ class SearchResultEntityCell: UITableViewCell {
         }
         
         label.text = titleDictionary[pos]
-        label.hidden = false
+        label.isHidden = false
     }
     
-    func assignJapaneseEntityFromJMDict(entity:JMDictEntity, text:String) {
+    func assignJapaneseEntityFromJMDict(_ entity:JMDictEntity, text:String) {
         
         for i in 0 ..< entity.japaneseEntityList.count  {
             let kanji = entity.japaneseEntityList[i]["keb"] as! String

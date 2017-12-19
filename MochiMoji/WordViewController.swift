@@ -22,8 +22,8 @@ class WordViewController: UIViewController {
     var japaneseEntityView: JapaneseEntityView!
     var meaningEntityView: MeaningEntityView!
     
-    var screenWidth:CGFloat = UIScreen.mainScreen().bounds.size.width
-    var screenHeight:CGFloat = UIScreen.mainScreen().bounds.size.height
+    var screenWidth:CGFloat = UIScreen.main.bounds.size.width
+    var screenHeight:CGFloat = UIScreen.main.bounds.size.height
     
     override func viewDidLoad() {
         
@@ -36,7 +36,7 @@ class WordViewController: UIViewController {
         let stackSize = self.navigationController?.viewControllers.count
         print("Stack Size : \(stackSize)")
         
-        let scrollviewDummy = UIScrollView(frame: CGRectMake(0, 0, screenWidth, screenHeight-80))
+        let scrollviewDummy = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-80))
         
         japaneseEntityView = UIView.loadFromNibNamed("JapaneseEntityView") as! JapaneseEntityView
         scrollviewDummy.addSubview(japaneseEntityView)
@@ -50,11 +50,11 @@ class WordViewController: UIViewController {
         meaningEntityView.frame.size.width = scrollviewDummy.frame.width
         meaningEntityView.layoutIfNeeded()
         
-        meaningEntityView.frame = CGRectMake(0, japaneseEntityView.getHeight(), scrollviewDummy.frame.width, meaningEntityView.getHeight())
+        meaningEntityView.frame = CGRect(x: 0, y: japaneseEntityView.getHeight(), width: scrollviewDummy.frame.width, height: meaningEntityView.getHeight())
         meaningEntityView.layoutIfNeeded()
         
-        scrollviewDummy.contentSize = CGSizeMake(screenWidth,
-                japaneseEntityView.getHeight() +
+        scrollviewDummy.contentSize = CGSize(width: screenWidth,
+                height: japaneseEntityView.getHeight() +
                 meaningEntityView.getHeight())
         wordViewBody.addSubview(scrollviewDummy)
         
@@ -70,17 +70,17 @@ class WordViewController: UIViewController {
         //println("viewDidLayoutSubviews \(japaneseEntityView.frame)")
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         //println("viewWillAppear \(japaneseEntityView.frame)")
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         //println("viewDidAppear \(japaneseEntityView.frame)")
     }
     
-    @IBAction func backButtonPressed(sender: UIButton) {
+    @IBAction func backButtonPressed(_ sender: UIButton) {
         print("backButtonPressed")
-        self.navigationController?.popViewControllerAnimated(false)
+        self.navigationController?.popViewController(animated: false)
     }
     
 //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -22,7 +22,7 @@ class UICellForAnimationView : UIView {
     
     var targetCell:SearchResultEntityCell?
     var rectWhenReturn:CGRect?
-    var indexPath:NSIndexPath?
+    var indexPath:IndexPath?
     
 //    init(tableCell:SearchResultEntityCell){
 //        super.init()

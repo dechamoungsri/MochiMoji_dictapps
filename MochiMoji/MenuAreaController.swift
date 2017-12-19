@@ -23,7 +23,7 @@ class MenuAreaController {
         
         if isMenuButtonPressed {
             isMenuButtonPressed = false
-            let tranformY: POPSpringAnimation? = menuView.pop_animationForKey("translationAnimation") as? POPSpringAnimation
+            let tranformY: POPSpringAnimation? = menuView?.pop_animation(forKey: "translationAnimation") as? POPSpringAnimation
             
             if (tranformY != nil) {
                 tranformY!.toValue = -150
@@ -33,12 +33,12 @@ class MenuAreaController {
                 tranformY!.toValue = -150
                 tranformY!.springBounciness = 10.0
                 tranformY!.springSpeed = 1.0
-                menuView.pop_addAnimation(tranformY, forKey: "translationAnimation")
+                menuView?.pop_add(tranformY, forKey: "translationAnimation")
             }
         }
         else {
             isMenuButtonPressed = true
-            var tranformY: POPSpringAnimation? = menuView.pop_animationForKey("translationAnimation") as? POPSpringAnimation
+            var tranformY: POPSpringAnimation? = menuView?.pop_animation(forKey: "translationAnimation") as? POPSpringAnimation
             
             if (tranformY != nil) {
                 tranformY!.toValue = 150
@@ -48,7 +48,7 @@ class MenuAreaController {
                 tranformY!.toValue = 150
                 tranformY!.springBounciness = 10.0
                 tranformY!.springSpeed = 1.0
-                menuView.pop_addAnimation(tranformY, forKey: "translationAnimation")
+                menuView?.pop_add(tranformY, forKey: "translationAnimation")
             }
         }
     }

@@ -8,62 +8,47 @@
 
 import Foundation
 
-extension String {
-    
-    subscript (i: Int) -> Character {
-        return self[self.startIndex.advancedBy(i)]
-    }
-    
-    subscript (i: Int) -> String {
-        return String(self[i] as Character)
-    }
-    
-    subscript (r: Range<Int>) -> String {
-        return substringWithRange(Range(startIndex.advancedBy(r.startIndex) ..< startIndex.advancedBy(r.endIndex)))
-    }
-}
-
 class Utility {
 
     enum ElementStatus {
-        case NULL
-        case DICTIONARY
-        case ARRAY
+        case null
+        case dictionary
+        case array
     }
     
-    class func nsobjectToString(anyObject:AnyObject) -> String{
+    class func nsobjectToString(_ anyObject:AnyObject) -> String{
         var error :NSError?
-        let jsData: NSData?
+        let jsData: Data?
         do {
-            jsData = try NSJSONSerialization.dataWithJSONObject(anyObject, options: NSJSONWritingOptions())
+            jsData = try JSONSerialization.data(withJSONObject: anyObject, options: JSONSerialization.WritingOptions())
         } catch let error1 as NSError {
             error = error1
             jsData = nil
         }
-        let nsJson = NSString(data: jsData!, encoding: NSUTF8StringEncoding) as! String
+        let nsJson = NSString(data: jsData!, encoding: String.Encoding.utf8.rawValue) as! String
         return nsJson
     }
 
-    class func getArrayForKey(dictionary:NSDictionary, keyString:String) -> [Any]? {
+    class func getArrayForKey(_ dictionary:NSDictionary, keyString:String) -> [Any]? {
         switch Utility.statusDictionary(dictionary, key: keyString) {
-        case .NULL:
+        case .null:
             return nil
-        case .DICTIONARY:
+        case .dictionary:
             var d_array = [Any]()
-            if let d = dictionary.objectForKey(keyString) as? NSDictionary {
+            if let d = dictionary.object(forKey: keyString) as? NSDictionary {
                 d_array.append(d)
             }
-            else if let d = dictionary.objectForKey(keyString) as? NSString {
+            else if let d = dictionary.object(forKey: keyString) as? NSString {
                 d_array.append(d)
             }
             else {
                 // DEBUG Must remove when release
-                let d: AnyObject? = dictionary.objectForKey(keyString)
+                let d: AnyObject? = dictionary.object(forKey: keyString) as AnyObject?
                 d_array.append(d)
             }
             return d_array
-        case .ARRAY:
-            let d = dictionary.objectForKey(keyString) as! NSArray
+        case .array:
+            let d = dictionary.object(forKey: keyString) as! NSArray
             var d_array = [Any]()
             for i in 0  ..< d.count  {
                 if let dict = d[i] as? NSDictionary {
@@ -81,24 +66,24 @@ class Utility {
         }
     }
     
-    class func statusDictionary(dictionary:NSDictionary, key:String) -> ElementStatus{
+    class func statusDictionary(_ dictionary:NSDictionary, key:String) -> ElementStatus{
         if dictionary[key] != nil {
             
-            if let _ = (dictionary as NSDictionary).objectForKey(key) as? NSArray {
-                return ElementStatus.ARRAY
+            if let _ = (dictionary as NSDictionary).object(forKey: key) as? NSArray {
+                return ElementStatus.array
             }
             else {
                 //let d:NSDictionary = dictionary.objectForKey(key) as NSDictionary!
-                return ElementStatus.DICTIONARY
+                return ElementStatus.dictionary
             }
             
         }
         else {
-            return ElementStatus.NULL
+            return ElementStatus.null
         }
     }
     
-    class func hasPrefix(str:String, prefix:String) -> Bool{
+    class func hasPrefix(_ str:String, prefix:String) -> Bool{
         if let hasPrefix = str.hasPrefix(prefix) as Bool? {
             return hasPrefix
         }
@@ -106,30 +91,32 @@ class Utility {
         return false
     }
     
-    class func colorWithHexString (hex:String) -> UIColor {
-        var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
+    class func colorWithHexString (_ hex:String) -> UIColor {
+//        var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercased()
+        
+        var cString:String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
         
         if (cString.hasPrefix("#")) {
-            cString = (cString as NSString).substringFromIndex(1)
+            cString = (cString as NSString).substring(from: 1)
         }
         
         if cString.characters.count != 6 {
-            return UIColor.grayColor()
+            return UIColor.gray
         }
         
-        let rString = (cString as NSString).substringToIndex(2)
-        let gString = ((cString as NSString).substringFromIndex(2) as NSString).substringToIndex(2)
-        let bString = ((cString as NSString).substringFromIndex(4) as NSString).substringToIndex(2)
+        let rString = (cString as NSString).substring(to: 2)
+        let gString = ((cString as NSString).substring(from: 2) as NSString).substring(to: 2)
+        let bString = ((cString as NSString).substring(from: 4) as NSString).substring(to: 2)
         
         var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
-        NSScanner(string: rString).scanHexInt(&r)
-        NSScanner(string: gString).scanHexInt(&g)
-        NSScanner(string: bString).scanHexInt(&b)
+        Scanner(string: rString).scanHexInt32(&r)
+        Scanner(string: gString).scanHexInt32(&g)
+        Scanner(string: bString).scanHexInt32(&b)
         
         return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: CGFloat(1))
     }
     
-    class func debug_println(debug:Bool, swift_file:String, function:String, text:String){
+    class func debug_println(_ debug:Bool, swift_file:String, function:String, text:String){
         if debug {
             print("\n Debug\n\t Class : \(swift_file)\n\t Function : \(function)\n\t Text : \(text)\n")
         }

@@ -37,14 +37,14 @@ class UICardView : UIView {
         animator = UIDynamicAnimator(referenceView: self)
         
         frontView = UIView.loadFromNibNamed("DummyCardView")!
-        frontView.frame = CGRectMake(0, 0, ui_card.bounds.width, ui_card.bounds.height)
-        frontView.hidden = false
+        frontView.frame = CGRect(x: 0, y: 0, width: ui_card.bounds.width, height: ui_card.bounds.height)
+        frontView.isHidden = false
         (frontView as! DummyCardView).ui_label.text = "frontView"
         ui_card.addSubview(frontView)
         
         backView = UIView.loadFromNibNamed("DummyCardView")!
-        backView!.frame = CGRectMake(0, 0, ui_card.bounds.width, ui_card.bounds.height)
-        backView!.hidden = true
+        backView!.frame = CGRect(x: 0, y: 0, width: ui_card.bounds.width, height: ui_card.bounds.height)
+        backView!.isHidden = true
         (backView as! DummyCardView).ui_label.text = "backView"
         ui_card.addSubview(backView!)
         
@@ -54,53 +54,53 @@ class UICardView : UIView {
         
         debugPrint("Flip")
         
-        UIView.transitionWithView(ui_card , duration: 0.4, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: {
+        UIView.transition(with: ui_card , duration: 0.4, options: UIViewAnimationOptions.transitionFlipFromLeft, animations: {
             if self.isFlipped {
-                self.frontView.hidden = false
-                self.backView!.hidden = true
+                self.frontView.isHidden = false
+                self.backView!.isHidden = true
                 self.isFlipped = false
             }
             else {
-                self.frontView.hidden = true
-                self.backView!.hidden = false
+                self.frontView.isHidden = true
+                self.backView!.isHidden = false
                 self.isFlipped = true
             }
         }, completion: nil)
         
     }
     
-    func handleGesture(sender: AnyObject){
+    func handleGesture(_ sender: AnyObject){
         
         let myView = ui_card
-        let location = sender.locationInView(self)
-        let boxLocation = sender.locationInView(self)
+        let location = sender.location(in: self)
+        let boxLocation = sender.location(in: self)
         
-        if sender.state == UIGestureRecognizerState.Began {
+        if sender.state == UIGestureRecognizerState.began {
             if snapBehavior != nil {
                 animator.removeBehavior(snapBehavior)
             }
 
-            let centerOffset = UIOffsetMake(boxLocation.x - CGRectGetMidX(myView.bounds), boxLocation.y - CGRectGetMidY(myView.bounds));
-            attachmentBehavior = UIAttachmentBehavior(item: myView, offsetFromCenter: centerOffset, attachedToAnchor: location)
+            let centerOffset = UIOffsetMake(boxLocation.x - (myView?.bounds.midX)!, boxLocation.y - (myView?.bounds.midY)!);
+            attachmentBehavior = UIAttachmentBehavior(item: myView!, offsetFromCenter: centerOffset, attachedToAnchor: location)
             attachmentBehavior.frequency = 0
             
             animator.addBehavior(attachmentBehavior)
         }
-        else if sender.state == UIGestureRecognizerState.Changed {
+        else if sender.state == UIGestureRecognizerState.changed {
             attachmentBehavior.anchorPoint = location
         }
-        else if sender.state == UIGestureRecognizerState.Ended {
+        else if sender.state == UIGestureRecognizerState.ended {
             animator.removeBehavior(attachmentBehavior)
 
-            snapBehavior = UISnapBehavior(item: ui_card, snapToPoint: self.center)
+            snapBehavior = UISnapBehavior(item: ui_card, snapTo: self.center)
             animator.addBehavior(snapBehavior!)
             
-            let translation = sender.translationInView(self)
+            let translation = sender.translation(in: self)
             if translation.y > 100 {
                 animator.removeAllBehaviors()
                 
                 let gravity = UIGravityBehavior(items: [ui_card])
-                gravity.gravityDirection = CGVectorMake(0, 10)
+                gravity.gravityDirection = CGVector(dx: 0, dy: 10)
                 animator.addBehavior(gravity)
                 
                 delay(0.3) {
@@ -124,14 +124,14 @@ class UICardView : UIView {
 //        card_center = ui_card.center
 //        self.cardFrontView.hidden = false
 //        self.answerCardView.hidden = true
-        let scale = CGAffineTransformMakeScale(0.5, 0.5)
-        let translate = CGAffineTransformMakeTranslation(0, -200)
-        ui_card.transform = CGAffineTransformConcat(scale, translate)
+        let scale = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        let translate = CGAffineTransform(translationX: 0, y: -200)
+        ui_card.transform = scale.concatenating(translate)
         
         SpringAnimation.spring(0.5) {
-            let scale = CGAffineTransformMakeScale(1, 1)
-            let translate = CGAffineTransformMakeTranslation(0, 0)
-            self.ui_card.transform = CGAffineTransformConcat(scale, translate)
+            let scale = CGAffineTransform(scaleX: 1, y: 1)
+            let translate = CGAffineTransform(translationX: 0, y: 0)
+            self.ui_card.transform = scale.concatenating(translate)
         }
         
         ui_card.alpha = 1

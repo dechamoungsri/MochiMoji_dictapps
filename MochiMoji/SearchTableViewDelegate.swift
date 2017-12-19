@@ -25,50 +25,50 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
     // ============================= Start Table Sectionnnnnnnnn ============================= //
     
     // TODO: OnClick Cell is here
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         print("didSelectRowAtIndexPath \(row)")
         
         if mainController?.animationCell != nil {
             
-            if mainController?.animationCell?.hidden == true {
+            if mainController?.animationCell?.isHidden == true {
                 
                 mainController!.searchTextField.resignFirstResponder()
                 mainController!.dummyCell_animator.removeAllBehaviors()
                 
-                wordControllerAnimation(tableView.cellForRowAtIndexPath(indexPath) as! SearchResultEntityCell, indexPath:indexPath)
+                wordControllerAnimation(tableView.cellForRow(at: indexPath) as! SearchResultEntityCell, indexPath:indexPath)
             }
         }
         else {
             mainController!.searchTextField.resignFirstResponder()
             mainController!.dummyCell_animator.removeAllBehaviors()
             
-            wordControllerAnimation(tableView.cellForRowAtIndexPath(indexPath) as! SearchResultEntityCell, indexPath:indexPath)
+            wordControllerAnimation(tableView.cellForRow(at: indexPath) as! SearchResultEntityCell, indexPath:indexPath)
         }
         
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //println("numberOfRowsInSection")
         return self.mainController!.cellsEntity.count
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return 72
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //println("cellForRowAtIndexPath \(indexPath.row)")
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(mainController!.entityCellIdentifier, forIndexPath: indexPath) as! SearchResultEntityCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: mainController!.entityCellIdentifier, for: indexPath) as! SearchResultEntityCell
         
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         
         cell.dummyView.alpha = 1
         let row = indexPath.row
@@ -77,7 +77,7 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
         return cell
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         let row = indexPath.row
 
@@ -89,28 +89,28 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
         if !self.mainController!.cellsEntity[row].isShow {
             let animatedTarget = (cell as! SearchResultEntityCell).dummyView
             let shadow = (cell as! SearchResultEntityCell).shadowView
-            animatedTarget.transform = CGAffineTransformMakeScale(1.0, 0.001)
-            shadow.alpha = 0.0
+            animatedTarget?.transform = CGAffineTransform(scaleX: 1.0, y: 0.001)
+            shadow?.alpha = 0.0
             
             if row < lastFirstShowedCell {
                 
-                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( getDelay() * cellDelayTime * Double(NSEC_PER_SEC)))
+                let delayTime = DispatchTime.now() + Double(Int64( getDelay() * cellDelayTime * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                 
                 pushDelayStack()
-                dispatch_after(delayTime, dispatch_get_main_queue()) {
-                    self.setCellScaleY(animatedTarget,scaleTo: 1.0)
+                DispatchQueue.main.asyncAfter(deadline: delayTime) {
+                    self.setCellScaleY(animatedTarget!,scaleTo: 1.0)
                     
-                    UIView.animateWithDuration(0.3, animations: {
-                        shadow.alpha = 0.0
+                    UIView.animate(withDuration: 0.3, animations: {
+                        shadow?.alpha = 0.0
                         }, completion: nil)
                     
                 }
                 
             }
             else {
-                self.setCellScaleY(animatedTarget,scaleTo: 1.0)
-                UIView.animateWithDuration(0.3, animations: {
-                    shadow.alpha = 0.0
+                self.setCellScaleY(animatedTarget!,scaleTo: 1.0)
+                UIView.animate(withDuration: 0.3, animations: {
+                    shadow?.alpha = 0.0
                     }, completion: nil)
                 //self.fadeToComponent(animatedTarget, fadeTo: 1.0)
             }
@@ -121,17 +121,17 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
         
     }
     
-    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! SearchResultEntityCell
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! SearchResultEntityCell
         cell.viewContainer.backgroundColor = SearchResultEntityCell.COLOR.selectedColor
     }
     
-    func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! SearchResultEntityCell
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! SearchResultEntityCell
         cell.viewContainer.backgroundColor = SearchResultEntityCell.COLOR.defaultColor
     }
     
@@ -153,7 +153,7 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
     }
     
     // MARK: - Table Scroll Delegate
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         // TODO: Fix bug scroll
         // Bug description
@@ -163,15 +163,15 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
         mainController!.searchTextField.resignFirstResponder()
         if mainController?.animationCell != nil {
             if mainController?.animationCell!.indexPath != nil {
-                let row = mainController!.tableView.cellForRowAtIndexPath(mainController!.animationCell!.indexPath!)
+                let row = mainController!.tableView.cellForRow(at: mainController!.animationCell!.indexPath! as IndexPath)
                 if row != nil {
-                    var cellRectInTable = mainController!.tableView.convertRect(row!.frame, toView: mainController!.tableView.superview)
+                    var cellRectInTable = mainController!.tableView.convert(row!.frame, to: mainController!.tableView.superview)
                     cellRectInTable.origin.y = cellRectInTable.origin.y + mainController!.topview.frame.height
                     //println("Scrolling :\(cellRectInTable)")
                     
                     _ = AnimationFactory.frameSizeAnimationFactory(
                         "FrameSizeAnimation",
-                        toValue: NSValue(CGRect: cellRectInTable),
+                        toValue: NSValue(cgRect: cellRectInTable),
                         animatedTarget:mainController!.animationCell! ,
                         bounce: 2,
                         speed: 10)
@@ -184,12 +184,12 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
     
     // MARK: - Table Cell Animation Factory
     
-    func setCellScaleY(component:UIView, scaleTo:CGFloat){
+    func setCellScaleY(_ component:UIView, scaleTo:CGFloat){
         let scaleAnimation = AnimationFactory.scaleYAnimaionFactory("scaleYAnimation", toValue:scaleTo, animatedTarget: component)
         scaleAnimation.completionBlock = {(animation, finished) in
             self.popDelayStack()
         }
-        component.pop_addAnimation(scaleAnimation, forKey: "scaleYAnimation")
+        component.pop_add(scaleAnimation, forKey: "scaleYAnimation")
     }
     
     // ----------------------------- End Table Sectionnnnnnnnn ----------------------------- //
@@ -197,7 +197,7 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
     
     // MARK: - Word Controller Push
     
-    func wordControllerAnimation(row:SearchResultEntityCell, indexPath: NSIndexPath){
+    func wordControllerAnimation(_ row:SearchResultEntityCell, indexPath: IndexPath){
         
         // Param:
         //      row is the selected row
@@ -206,8 +206,8 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
         let speed = CGFloat(10.0)
         
         // Cell enlarge Animation
-        let cellFrame = mainController!.tableView.rectForRowAtIndexPath(indexPath) // Selected row
-        var cellRectInTable = mainController!.tableView.convertRect(cellFrame, toView: mainController!.tableView.superview)
+        let cellFrame = mainController!.tableView.rectForRow(at: indexPath) // Selected row
+        var cellRectInTable = mainController!.tableView.convert(cellFrame, to: mainController!.tableView.superview)
         
         cellRectInTable.origin.y = cellRectInTable.origin.y + mainController!.topview.frame.height
         
@@ -217,7 +217,7 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
         }
         
         mainController!.animationCell?.frame = cellRectInTable
-        mainController!.animationCell?.hidden = false
+        mainController!.animationCell?.isHidden = false
         //mainController!.animationCell?.layer.zPosition = CGFloat(MAXFLOAT);
         mainController!.animationCell!.alpha = 1.0
         
@@ -225,11 +225,11 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
         let rowFrameSizeAnimation = AnimationFactory.frameSizeAnimationFactory(
             "FrameSizeAnimation",
             toValue: NSValue(
-                CGRect: CGRectMake(
-                    0,
-                    0,
-                    mainController!.screenWidth,
-                    mainController!.screenHeight
+                cgRect: CGRect(
+                    x: 0,
+                    y: 0,
+                    width: mainController!.screenWidth,
+                    height: mainController!.screenHeight
                 )
             ),
             animatedTarget:mainController!.animationCell! ,
@@ -237,15 +237,15 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
             speed: speed)
         
         rowFrameSizeAnimation.completionBlock = {(animation, finished) in
-            let controller = self.mainController!.storyboard?.instantiateViewControllerWithIdentifier("WordViewController") as! WordViewController
+            let controller = self.mainController!.storyboard?.instantiateViewController(withIdentifier: "WordViewController") as! WordViewController
             controller.entityObject = JMDictEntity(entity: self.mainController!.cellsEntity[indexPath.row])
             self.mainController!.navigationController?.pushViewController(controller, animated: false)
         }
         
-        mainController!.animationCell?.pop_addAnimation(rowFrameSizeAnimation, forKey: "FrameSizeAnimation")
+        mainController!.animationCell?.pop_add(rowFrameSizeAnimation, forKey: "FrameSizeAnimation")
         
         // Alpha for dummy top view
-        UIView.animateWithDuration(0.1, animations: {
+        UIView.animate(withDuration: 0.1, animations: {
 
             self.mainController!.animationCell!.topbar.alpha = 1.0
             
@@ -262,9 +262,9 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
         row.dummyView.alpha = 0
         
         // Just in case
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            self.mainController!.animationCell?.hidden = true
+        let delayTime = DispatchTime.now() + Double(Int64(1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: delayTime) {
+            self.mainController!.animationCell?.isHidden = true
         }
         
     }
@@ -278,7 +278,7 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
             (animation, finished) in
             self.mainController!.topBarIsHide = true
         }
-        mainController!.topview_dummy.pop_addAnimation(scaleTopViewAnimation, forKey: "scaleTopViewAnimation")
+        mainController!.topview_dummy.pop_add(scaleTopViewAnimation, forKey: "scaleTopViewAnimation")
         
     }
     
@@ -289,35 +289,35 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
             (animation, finished) in
             self.mainController!.topBarIsHide = false
         }
-        mainController!.topview_dummy.pop_addAnimation(scaleTopViewAnimation, forKey: "scaleTopViewAnimation")
+        mainController!.topview_dummy.pop_add(scaleTopViewAnimation, forKey: "scaleTopViewAnimation")
 
         if mainController!.animationCell != nil {
             
-            mainController!.animationCell?.hidden = false
+            mainController!.animationCell?.isHidden = false
             
             let rowFrameSizeAnimation = AnimationFactory.frameSizeAnimationFactory(
                 "FrameSizeAnimation",
-                toValue: NSValue(CGRect: mainController!.animationCell!.rectWhenReturn!),
+                toValue: NSValue(cgRect: mainController!.animationCell!.rectWhenReturn!),
                 animatedTarget:mainController!.animationCell! ,
                 bounce: 2,
                 speed: 10)
             rowFrameSizeAnimation.completionBlock = {
                 (animation, finished) in
-                UIView.animateWithDuration(0.1, animations: {
+                UIView.animate(withDuration: 0.1, animations: {
                     // Animation Go here
                     self.mainController?.animationCell?.alpha = 0
                     self.mainController?.animationCell?.targetCell?.dummyView.alpha = 1
                     }, completion: { (complete: Bool) in
                         // complete go here
-                        self.mainController!.animationCell?.hidden = true
+                        self.mainController!.animationCell?.isHidden = true
                         self.mainController!.animationCell?.indexPath = nil
                         //self.mainController?.maskView.hidden = true
                 })
                 
             }
-            mainController!.animationCell?.pop_addAnimation(rowFrameSizeAnimation, forKey: "FrameSizeAnimation")
+            mainController!.animationCell?.pop_add(rowFrameSizeAnimation, forKey: "FrameSizeAnimation")
             
-            UIView.animateWithDuration(0.2, animations: {
+            UIView.animate(withDuration: 0.2, animations: {
                 // Animation Go here
                 self.mainController?.animationCell?.topbar.alpha = 0
                 }, completion: { (complete: Bool) in
@@ -325,10 +325,10 @@ class SearchTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDele
             })
             
             // Just in case
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+            let delayTime = DispatchTime.now() + Double(Int64(1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             
-            dispatch_after(delayTime, dispatch_get_main_queue()) {
-                self.mainController!.animationCell?.hidden = true
+            DispatchQueue.main.asyncAfter(deadline: delayTime) {
+                self.mainController!.animationCell?.isHidden = true
             }
             
         }

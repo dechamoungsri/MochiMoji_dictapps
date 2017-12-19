@@ -8,17 +8,17 @@
 
 import Foundation
 
-extension NSDate
-{
-    convenience
-    init(dateString:String) {
-        let dateStringFormatter = NSDateFormatter()
-        dateStringFormatter.dateFormat = "yyyy-MM-dd"
-        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        let d = dateStringFormatter.dateFromString(dateString)
-        self.init(timeInterval:0, sinceDate:d!)
-    }
-}
+//extension Date
+//{
+//    init(dateString:String) {
+//        let dateStringFormatter = DateFormatter()
+//        dateStringFormatter.dateFormat = "yyyy-MM-dd"
+//        dateStringFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        let d = dateStringFormatter.date(from: dateString)
+////        (self as NSDate).type(of:init)(timeInterval:0, since:d!)
+//        
+//    }
+//}
 
 class Entity {
     
@@ -33,8 +33,8 @@ class Entity {
         self.japaneseEntity = ""
         self.englishEntity = ""
         self.readingEntity = ""
-        self.databaseName = DatabaseInterface.DatabaseName.JMDICT
-        self.tableCellEntityType = SearchResultEntityCell.CellEntityType.OTHER
+        self.databaseName = DatabaseInterface.DatabaseName.jmdict
+        self.tableCellEntityType = SearchResultEntityCell.CellEntityType.other
         self.lastseen = ""//NSDate(dateString:"2015-04-01")
     }
     

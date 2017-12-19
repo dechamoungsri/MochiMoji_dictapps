@@ -8,6 +8,24 @@
 
 import Foundation
 
+extension String {
+    subscript (index: Int) -> Character {
+//        let charIndex = self.startIndex.advancedBy(index)
+        let charIndex = self.index(self.startIndex, offsetBy:index)
+        return self[charIndex]
+    }
+    
+    subscript (range: Range<Int>) -> String {
+//        let startIndex = self.startIndex.advancedBy(range.startIndex)
+        let startIndex = self.index(self.startIndex, offsetBy:range.lowerBound)
+//        let endIndex = startIndex.advancedBy(range.count)
+        let endIndex = self.index(self.startIndex, offsetBy:range.count)
+        
+        return self[startIndex..<endIndex]
+    }
+}
+
+
 class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var meaningLabel: UILabel!
@@ -15,8 +33,8 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var borderline: UIView!
     @IBOutlet weak var tableContainer: UIView!
     
-    let screenWidth:CGFloat = UIScreen.mainScreen().bounds.size.width
-    let screenHeight:CGFloat = UIScreen.mainScreen().bounds.size.height
+    let screenWidth:CGFloat = UIScreen.main.bounds.size.width
+    let screenHeight:CGFloat = UIScreen.main.bounds.size.height
     
     let DEBUG_MeaningEntityView = true
     let fileName = "MeaningEntityView"
@@ -46,13 +64,13 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
     func loadTable(){
         // Table Cell initialization
         let nibCellName = UINib(nibName: "MeaningTableRowCell", bundle:nil)
-        tableview.registerNib(nibCellName, forCellReuseIdentifier: meaningCellIdentifier)
+        tableview.register(nibCellName, forCellReuseIdentifier: meaningCellIdentifier)
 
-        tableview.separatorStyle = UITableViewCellSeparatorStyle.None
+        tableview.separatorStyle = UITableViewCellSeparatorStyle.none
         
     }
     
-    func setData(entity:Entity){
+    func setData(_ entity:Entity){
         // TODO: Check Before set
         let jmDict = entity as! JMDictEntity
         var senses = jmDict.englishEntityList
@@ -74,8 +92,8 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
             //println(meanings)
             
             let dict = NSMutableDictionary()
-            dict.setObject(pos, forKey: JMDictEntity.KEY.posKey.rawValue)
-            dict.setObject(meanings, forKey: JMDictEntity.KEY.glossKey.rawValue)
+            dict.setObject(pos, forKey: JMDictEntity.KEY.posKey.rawValue as NSCopying)
+            dict.setObject(meanings, forKey: JMDictEntity.KEY.glossKey.rawValue as NSCopying)
             
             senseList.append(dict)
             
@@ -88,7 +106,7 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
         var height:CGFloat = 16 + meaningLabel.frame.height + 16 + 16 + borderline.frame.height
         
         for i in 0  ..< senseList.count  {
-            for j in 0 ..< senseList[i][JMDictEntity.KEY.glossKey.rawValue]!.count  {
+            for j in 0 ..< (senseList[i][JMDictEntity.KEY.glossKey.rawValue]! as AnyObject).count  {
                 height += getEstimatedHeightFromLabel(retrievedTextFromSensesList(i, row: j))
             }
         }
@@ -99,31 +117,32 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
         
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return sectionHeight
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         
         //Utility.debug_println(DEBUG_MeaningEntityView, swift_file: fileName, function: "estimatedHeightForRowAtIndexPath", text: "\(indexPath.section) \(indexPath.row)")
         
         return cellHeight
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return senseList.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Utility.debug_println(DEBUG_MeaningEntityView, swift_file: fileName, function: "numberOfRowsInSection", text: "\(dataList.count)")
-        
-        return senseList[section][JMDictEntity.KEY.glossKey.rawValue]!.count
+        let a = JMDictEntity.KEY.glossKey.rawValue
+        let d = senseList[section]
+        return (d.object(forKey: a) as AnyObject).count
     }
 
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let sectionView = UIView.loadFromNibNamed("MeaningTableSectionCell") as! MeaningTableSectionCell
-        sectionView.frame = CGRectMake(0.0, 0.0, tableview.frame.width, sectionHeight)
+        sectionView.frame = CGRect(x: 0.0, y: 0.0, width: tableview.frame.width, height: sectionHeight)
         
         sectionView.partOfSpeechLabel.text = getPartOfSpeechList(section)
         
@@ -133,7 +152,7 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
         
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         //Utility.debug_println(DEBUG_MeaningEntityView, swift_file: fileName, function: "heightForRowAtIndexPath", text: "\(indexPath.section) \(indexPath.row)")
         
@@ -142,12 +161,12 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
         return height
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let section = indexPath.section
         let row = indexPath.row
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(meaningCellIdentifier) as! MeaningTableRowCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: meaningCellIdentifier) as! MeaningTableRowCell
 
         // TODO: Force to be english
         cell.meaningLabel.text = retrievedTextFromSensesList(section, row: row)
@@ -160,19 +179,19 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
         
     }
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return footerHeight
     }
     
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let sectionView = UIView(frame: CGRectMake(0.0, 0.0, tableview.frame.width, footerHeight))
-        sectionView.backgroundColor = UIColor.whiteColor()
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let sectionView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: tableview.frame.width, height: footerHeight))
+        sectionView.backgroundColor = UIColor.white
         return sectionView
     }
     
     // MARK: Factory section
     
-    func getPartOfSpeechList(section:Int) -> String{
+    func getPartOfSpeechList(_ section:Int) -> String{
         
         var str = ""
         
@@ -182,11 +201,13 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
             }
         }
         
-        return str[Range<Int>(0 ..< str.characters.count-2)]
+//        return str[CountableRange<Int>(0 ..< str.characters.count-2)]
+        let s = Int(str.characters.count)-2
+        return str[0..<s]
         
     }
     
-    func retrievedTextFromSensesList(section:Int, row:Int) -> String?{
+    func retrievedTextFromSensesList(_ section:Int, row:Int) -> String?{
         if let dict = (senseList[section][JMDictEntity.KEY.glossKey.rawValue] as? [NSDictionary]) {
             if let str = dict[row][JMDictEntity.KEY.meaningKey.rawValue] as? String {
                 return str
@@ -195,7 +216,7 @@ class MeaningEntityView : UIView, UITableViewDataSource, UITableViewDelegate {
         return nil
     }
     
-    func getEstimatedHeightFromLabel(text:String?) -> CGFloat{
+    func getEstimatedHeightFromLabel(_ text:String?) -> CGFloat{
 
         if text == nil {
             return 0

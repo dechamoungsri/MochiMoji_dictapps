@@ -26,7 +26,7 @@ class DummyEntity: Equatable {
         self.doc = nil
         self.frequency = 0
         self.unique = 0
-        self.databaseName = DatabaseInterface.DatabaseName.JMDICT
+        self.databaseName = DatabaseInterface.DatabaseName.jmdict
     }
     
     init(row:CBLQueryRow, dbName:DatabaseInterface.DatabaseName){
@@ -35,9 +35,9 @@ class DummyEntity: Equatable {
         //ent_seq
         self.doc = doc
         //self.unique = 0
-        self.unique = Int(((doc.properties as NSDictionary).valueForKey("ent_seq") as! String))!
+        self.unique = Int(((doc?.properties)?["ent_seq"] as! String))!
         
-        self.frequency = ((doc.properties as NSDictionary).valueForKey("frequency") as! Int)
+        self.frequency = ((doc?.properties["frequency"]) as! Int)
         
         self.databaseName = dbName
     }

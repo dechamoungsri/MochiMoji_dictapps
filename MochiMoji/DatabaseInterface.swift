@@ -21,10 +21,10 @@ class DatabaseInterface {
     }
     
     enum DatabaseName {
-        case JMDICT
-        case KANJI_DICT
-        case GRAMMAR
-        case EXAMPLE_SENTENCES
+        case jmdict
+        case kanji_DICT
+        case grammar
+        case example_SENTENCES
     }
     
     enum JMDictViewName: String {
@@ -49,10 +49,10 @@ class DatabaseInterface {
             error = error1
             database = nil
         }
-        databases[DatabaseName.JMDICT] = database
+        databases[DatabaseName.jmdict] = database
     }
 
-    func queryWordinJMDict(text:String, viewName:JMDictViewName) -> CBLQueryEnumerator {
+    func queryWordinJMDict(_ text:String, viewName:JMDictViewName) -> CBLQueryEnumerator {
         
         let function_name = "queryWordinJMDict"
         
@@ -60,7 +60,7 @@ class DatabaseInterface {
         var error :NSError?
         var database: CBLDatabase!
         do {
-            database = try databaseManager.existingDatabaseNamed(DatabaseStringName.JMDICT.rawValue)
+            database = try databaseManager?.existingDatabaseNamed(DatabaseStringName.JMDICT.rawValue)
         } catch let error1 as NSError {
             error = error1
             database = nil
@@ -101,33 +101,33 @@ class DatabaseInterface {
     let senseKey = "sense"
     let glossKey = "gloss"
     
-    func reEmitWordView(database:CBLDatabase){
+    func reEmitWordView(_ database:CBLDatabase){
         
         let wordView = database.viewNamed(JMDictViewName.KANJI_VIEW.rawValue)
         wordView?.setMapBlock({ (doc, emit) in
             
             var emitting_string = ""
             
-            if doc[self.kanji_element_key] != nil {
+            if doc?[self.kanji_element_key] != nil {
                 
-                if let d = (doc as NSDictionary).objectForKey(self.kanji_element_key) as? NSArray {
+                if let d = ( doc! as [AnyHashable: Any] as NSDictionary ).object(forKey: self.kanji_element_key) as? NSArray {
                     var str_all = ""
                     for i in 0 ..< d.count  {
                         if ((d[i] as! NSDictionary)[self.kanji_entity] != nil) {
                             let str = (d[i] as! NSDictionary)[self.kanji_entity] as! String
                             str_all = str_all + " " + str
                             //emit(CBLTextKey(str),nil)
-                            emit(str,nil)
+                            emit!(str,nil)
                         }
                     }
                     emitting_string = emitting_string + " " + str_all
                 }
                 else {
-                    let d:NSDictionary = (doc as NSDictionary).objectForKey(self.kanji_element_key) as! NSDictionary!
+                    let d:NSDictionary = (doc! as [AnyHashable: Any] as NSDictionary).object(forKey: self.kanji_element_key) as! NSDictionary!
                     if (d[self.kanji_entity] != nil) {
                         let str = d[self.kanji_entity] as! String
                         //emit(CBLTextKey(str),nil)
-                        emit(str,nil)
+                        emit!(str,nil)
                         emitting_string = emitting_string + " " + str
                     }
                 }
@@ -146,7 +146,7 @@ class DatabaseInterface {
             
             var meaning = ""
 
-            if let senses = Utility.getArrayForKey(doc, keyString: self.senseKey) {
+            if let senses = Utility.getArrayForKey(doc! as [AnyHashable: Any] as NSDictionary, keyString: self.senseKey) {
                 for i in 0 ..< senses.count  {
                     let dictionary = senses[i] as! NSDictionary
 
@@ -157,7 +157,7 @@ class DatabaseInterface {
                             if let gloss = glosses[j] as? String {
                                 //println("Eng : \(gloss)")
                                 meaning = meaning + " | " + gloss
-                                emit(gloss,nil)
+                                emit!(gloss,nil)
                             }
                         }
                     }

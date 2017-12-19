@@ -27,7 +27,7 @@ class JapaneseEntityView : UIView {
         super.init(coder: aDecoder)
     }
     
-    func setData(entity:Entity){
+    func setData(_ entity:Entity){
         
         // TODO: Cast to JMDict
         let jmDict = entity as! JMDictEntity

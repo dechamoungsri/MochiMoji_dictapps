@@ -47,7 +47,7 @@ class JMDictEntity: Entity {
         
         self.document = doc!
         
-        let unique:String = (self.document!.properties as NSDictionary).valueForKey("ent_seq") as! String
+        let unique:String = (self.document!.properties as NSDictionary).value(forKey: "ent_seq") as! String
         self.unique_id = Int(unique)!
         //println(unique)
         
@@ -58,21 +58,21 @@ class JMDictEntity: Entity {
     }
     
     func assignDictName(){
-        self.databaseName = DatabaseInterface.DatabaseName.JMDICT
+        self.databaseName = DatabaseInterface.DatabaseName.jmdict
     }
     
-    func assignReadingEntity(doc: CBLDocument){
+    func assignReadingEntity(_ doc: CBLDocument){
         let r_ele_Key = "r_ele"
-        if let d = Utility.getArrayForKey(doc.properties, keyString: r_ele_Key) {
+        if let d = Utility.getArrayForKey(doc.properties as NSDictionary, keyString: r_ele_Key) {
             for i in 0 ..< d.count  {
                 readingEntityList.append(d[i] as! NSDictionary)
             }
         }
     }
     
-    func assignJapaneseEntity(doc: CBLDocument) {
+    func assignJapaneseEntity(_ doc: CBLDocument) {
         let k_ele_Key = "k_ele"
-        if let d = Utility.getArrayForKey(doc.properties, keyString: k_ele_Key) {
+        if let d = Utility.getArrayForKey(doc.properties as NSDictionary, keyString: k_ele_Key) {
             for i in 0 ..< d.count  {
                 japaneseEntityList.append(d[i] as! NSDictionary)
             }
@@ -81,13 +81,13 @@ class JMDictEntity: Entity {
         }
     }
     
-    func assignEnglishEntity(doc: CBLDocument) {
+    func assignEnglishEntity(_ doc: CBLDocument) {
         
         var englishList = [NSDictionary]()
         
         var meaningEntity = ""
         
-        if let senses = Utility.getArrayForKey(doc.properties, keyString: senseKey) {
+        if let senses = Utility.getArrayForKey(doc.properties as NSDictionary, keyString: senseKey) {
             for i in 0 ..< senses.count  {
                 let dictionary = senses[i] as! NSDictionary
                 
@@ -122,8 +122,8 @@ class JMDictEntity: Entity {
                 // End Part of speech Extraction
                 
                 let sense_dictionary = NSMutableDictionary()
-                sense_dictionary.setObject(meaning_list, forKey: glossKey)
-                sense_dictionary.setObject(pos_list, forKey: posKey)
+                sense_dictionary.setObject(meaning_list, forKey: glossKey as NSCopying)
+                sense_dictionary.setObject(pos_list, forKey: posKey as NSCopying)
                 englishList.append(sense_dictionary)
                 
             }
@@ -134,11 +134,11 @@ class JMDictEntity: Entity {
         }
     }
     
-    func jpListTojpString(jplist:[NSDictionary]) -> String{
+    func jpListTojpString(_ jplist:[NSDictionary]) -> String{
         var out = ""
         for i in 0 ..< jplist.count  {
-            if jplist[i].valueForKey("keb") != nil {
-                out = out + (jplist[i].valueForKey("keb") as! String)
+            if jplist[i].value(forKey: "keb") != nil {
+                out = out + (jplist[i].value(forKey: "keb") as! String)
                 if i != (jplist.count-1) {
                     out = out + ", "
                 }
@@ -159,13 +159,13 @@ class JMDictEntity: Entity {
         
         self.document = doc
         
-        let unique:String = (doc.properties as NSDictionary).valueForKey("ent_seq") as! String
+        let unique:String = (doc!.properties as NSDictionary).value(forKey: "ent_seq") as! String
         self.unique_id = Int(unique)!
         //println(unique)
         
         assignDictName()
-        assignJapaneseEntity(doc)
-        assignEnglishEntity(doc)
+        assignJapaneseEntity(doc!)
+        assignEnglishEntity(doc!)
         
     }
     
